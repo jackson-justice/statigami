@@ -44,6 +44,16 @@ Innings were then grouped into:
 * Some innings consistently showed low activity, making them safer for breaks
 * Historical averages helped identify patterns beyond a single game
 
+Historical Plot
+<p align="left">
+  <img src="inning_excitement_historical_plot.png" width="800">
+</p>
+
+Game Plot
+<p align="left">
+  <img src="inning_excitement_game_plot.png" width="800">
+</p>
+
 ---
 
 ## Takeaway
