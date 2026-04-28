@@ -40,6 +40,8 @@ This measures how efficiently each team turned opportunities into runs.
 
 Both teams had nearly identical opportunities, but the Bees converted at a significantly higher rate.
 
+![Bees Efficiency Plot](bees_efficiency_plot.png)
+
 ---
 
 ## Takeaway
