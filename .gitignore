@@ -1,5 +1,45 @@
-.Rproj.user
+# RStudio / session files
+.Rproj.user/
 .Rhistory
 .RData
 .Ruserdata
 .positai
+
+# History files
+.Rapp.history
+
+# Session temp files
+.RDataTmp
+
+# Build / check outputs
+/*.tar.gz
+/*.Rcheck/
+
+# Vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth
+.httr-oauth
+
+# R Markdown / knitr
+*_cache/
+/cache/
+*.utf8.md
+*.knit.md
+
+# Environment files
+.Renviron
+
+# pkgdown
+docs/
+
+# translation temp
+po/*~
+
+# RStudio Connect
+rsconnect/
+
+# OS files
+.DS_Store
+Thumbs.db
