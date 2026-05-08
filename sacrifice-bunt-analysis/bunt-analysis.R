@@ -305,4 +305,116 @@ ggplot(
   )
 
 
+# Games since 2023 ############################################################
+season_dates <- list(
+  "2023" = seq(
+    as.Date("2023-03-30"),
+    as.Date("2023-10-01"),
+    by = "day"
+  ),
+  
+  "2024" = seq(
+    as.Date("2024-03-30"),
+    as.Date("2024-10-01"),
+    by = "day"
+  ),
+  
+  "2025" = seq(
+    as.Date("2025-03-30"),
+    as.Date("2025-10-01"),
+    by = "day"
+  ),
+  
+  "2026" = seq(
+    as.Date("2026-03-30"),
+    as.Date("2026-05-07"),
+    by = "day"
+  )
+)
+
+games_2023 <- map_dfr(
+  season_dates[["2023"]],
+  ~ mlb_game_pks(
+    date = .x,
+    level_ids = c(1)
+  )
+)
+
+dir.create(
+  "sacrifice-bunt-analysis/data",
+  recursive = TRUE,
+  showWarnings = FALSE
+)
+
+write_rds(
+  games_2023,
+  "sacrifice-bunt-analysis/data/games_2023.rds"
+)
+
+game_id_2023 <- games_2023 |> 
+  filter(!is.na(game_pk)) |> 
+  distinct(game_pk) |> 
+  pull(game_pk)
+
+safe_pull <- function(game_id) {
+  
+  tryCatch(
+    mlb_pbp(game_id),
+    error = function(e) {
+      message(paste("FAILED:", game_id))
+      return(NULL)
+    }
+  )
+}
+
+pull_and_filter_sac_bunts <- function(game_id) {
+  
+  pbp <- safe_pull(game_id)
+  
+  if (is.null(pbp)) return(NULL)
+  
+  pbp |>
+    filter(
+      last.pitch.of.ab == "true",
+      result.eventType == "sac_bunt"
+    )
+  
+}
+
+sac_bunts_2023 <- map_dfr(
+  game_id_2023,
+  pull_and_filter_sac_bunts
+)
+
+write_rds(
+  pbp_2023,
+  "sacrifice-bunt-analysis/data/pbp_2023.rds"
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
