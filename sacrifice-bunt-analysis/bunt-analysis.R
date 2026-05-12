@@ -1,8 +1,12 @@
-# Project: Sacrifice Bunt Run Expectancy
-# Date: 2026-05-06
+# Project: Sacrifice Bunt Analysis
+# Goal: Identify the situations where sacrifice bunts are most effective
 
 library(tidyverse)
 library(baseballr)
+
+# ============================================================================
+# EXPLORATION / VALIDATION ####
+# ============================================================================
 
 # Bees Game ###################################################################
 game <- mlb_game_pks(date = "2026-05-02", level_ids = c(11))
@@ -305,40 +309,14 @@ ggplot(
   )
 
 
-# Games since 2023 ############################################################
-season_dates <- list(
-  "2023" = seq(
-    as.Date("2023-03-30"),
-    as.Date("2023-10-01"),
-    by = "day"
-  ),
-  
-  "2024" = seq(
-    as.Date("2024-03-30"),
-    as.Date("2024-10-01"),
-    by = "day"
-  ),
-  
-  "2025" = seq(
-    as.Date("2025-03-30"),
-    as.Date("2025-10-01"),
-    by = "day"
-  ),
-  
-  "2026" = seq(
-    as.Date("2026-03-30"),
-    as.Date("2026-05-07"),
-    by = "day"
-  )
-)
 
-games_2023 <- map_dfr(
-  season_dates[["2023"]],
-  ~ mlb_game_pks(
-    date = .x,
-    level_ids = c(1)
-  )
-)
+# ============================================================================
+# FINAL DATA PIPELINE ####
+# ============================================================================
+
+# -----------------------------------------------------------------------------
+# Create folders ====
+# -----------------------------------------------------------------------------
 
 dir.create(
   "sacrifice-bunt-analysis/data",
@@ -346,20 +324,47 @@ dir.create(
   showWarnings = FALSE
 )
 
-write_rds(
-  games_2023,
-  "sacrifice-bunt-analysis/data/games_2023.rds"
+# -----------------------------------------------------------------------------
+# Season date ranges ====
+# -----------------------------------------------------------------------------
+
+season_dates <- list(
+  
+  "2023" = seq(
+    as.Date("2023-03-30"),
+    as.Date("2023-10-01"),
+    by = "day"
+  ),
+  
+  "2024" = seq(
+    as.Date("2024-03-28"),
+    as.Date("2024-09-29"),
+    by = "day"
+  ),
+  
+  "2025" = seq(
+    as.Date("2025-03-27"),
+    as.Date("2025-09-28"),
+    by = "day"
+  ),
+  
+  "2026" = seq(
+    as.Date("2026-03-27"),
+    as.Date("2026-05-07"),
+    by = "day"
+  )
 )
 
-game_id_2023 <- games_2023 |> 
-  filter(!is.na(game_pk)) |> 
-  distinct(game_pk) |> 
-  pull(game_pk)
+# -----------------------------------------------------------------------------
+# Safe PBP pull ====
+# -----------------------------------------------------------------------------
 
 safe_pull <- function(game_id) {
   
   tryCatch(
+    
     mlb_pbp(game_id),
+    
     error = function(e) {
       message(paste("FAILED:", game_id))
       return(NULL)
@@ -367,46 +372,825 @@ safe_pull <- function(game_id) {
   )
 }
 
-pull_and_filter_sac_bunts <- function(game_id) {
+# -----------------------------------------------------------------------------
+# Pull ONLY sacrifice bunt events ====
+# -----------------------------------------------------------------------------
+
+pull_sac_bunts <- function(game_id) {
   
   pbp <- safe_pull(game_id)
   
-  if (is.null(pbp)) return(NULL)
+  if (is.null(pbp)) {
+    return(NULL)
+  }
   
   pbp |>
     filter(
       last.pitch.of.ab == "true",
       result.eventType == "sac_bunt"
     )
-  
 }
 
-sac_bunts_2023 <- map_dfr(
-  game_id_2023,
-  pull_and_filter_sac_bunts
+# -----------------------------------------------------------------------------
+# Pull one full season of sacrifice bunts ====
+# -----------------------------------------------------------------------------
+
+get_season_sac_bunts <- function(season) {
+  
+  # Pull game IDs --------------------------------------------------------------
+  
+  games <- map_dfr(
+    season_dates[[as.character(season)]],
+    ~ mlb_game_pks(
+      date = .x,
+      level_ids = c(1)
+    )
+  )
+  
+  # Clean game IDs -------------------------------------------------------------
+  
+  game_ids <- games |>
+    filter(!is.na(game_pk)) |>
+    distinct(game_pk) |>
+    pull(game_pk)
+  
+  # Pull sacrifice bunts -------------------------------------------------------
+  
+  sac_bunts <- map_dfr(
+    game_ids,
+    pull_sac_bunts
+  ) |>
+    mutate(
+      season = season
+    )
+  
+  # Save raw season bunt data --------------------------------------------------
+  
+  write_rds(
+    sac_bunts,
+    paste0(
+      "sacrifice-bunt-analysis/data/sac_bunts_",
+      season,
+      ".rds"
+    )
+  )
+  
+  return(sac_bunts)
+}
+
+# -----------------------------------------------------------------------------
+# Pull all seasons ====
+# -----------------------------------------------------------------------------
+
+sac_bunts_2023 <- get_season_sac_bunts(2023)
+sac_bunts_2024 <- get_season_sac_bunts(2024)
+sac_bunts_2025 <- get_season_sac_bunts(2025)
+sac_bunts_2026 <- get_season_sac_bunts(2026)
+
+# -----------------------------------------------------------------------------
+# Combine all seasons ====
+# -----------------------------------------------------------------------------
+
+sac_bunts_all <- bind_rows(
+  sac_bunts_2023,
+  sac_bunts_2024,
+  sac_bunts_2025,
+  sac_bunts_2026
 )
+
+# -----------------------------------------------------------------------------
+# Save combined dataset ====
+# -----------------------------------------------------------------------------
 
 write_rds(
-  pbp_2023,
-  "sacrifice-bunt-analysis/data/pbp_2023.rds"
+  sac_bunts_all,
+  "sacrifice-bunt-analysis/data/sac_bunts_all.rds"
 )
 
+# -----------------------------------------------------------------------------
+# Build inning IDs ====
+# -----------------------------------------------------------------------------
+
+sac_bunts_all <- sac_bunts_all |>
+  mutate(
+    inning_id = paste(
+      game_pk,
+      about.inning,
+      about.halfInning
+    )
+  )
+
+# -----------------------------------------------------------------------------
+# Calculate inning-ending scores ====
+# -----------------------------------------------------------------------------
+
+inning_final_scores <- sac_bunts_all |>
+  group_by(inning_id) |>
+  summarise(
+    final_away_score = max(result.awayScore, na.rm = TRUE),
+    final_home_score = max(result.homeScore, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# -----------------------------------------------------------------------------
+# Join inning-ending scores ====
+# -----------------------------------------------------------------------------
+
+sac_bunts_all <- sac_bunts_all |>
+  left_join(
+    inning_final_scores,
+    by = "inning_id"
+  )
+
+# -----------------------------------------------------------------------------
+# Runs scored after bunt ====
+# -----------------------------------------------------------------------------
+
+sac_bunts_all <- sac_bunts_all |>
+  mutate(
+    
+    batting_team_runs_after_bunt = case_when(
+      
+      about.halfInning == "top" ~
+        final_away_score - result.awayScore,
+      
+      about.halfInning == "bottom" ~
+        final_home_score - result.homeScore
+    ),
+    
+    successful_bunt = batting_team_runs_after_bunt >= 1
+  )
+
+# -----------------------------------------------------------------------------
+# Create analysis variables ====
+# -----------------------------------------------------------------------------
+
+sac_bunts_all <- sac_bunts_all |>
+  mutate(
+    
+    inning_bucket = if_else(
+      about.inning >= 7,
+      "Late (7+)",
+      "Early/Mid"
+    ),
+    
+    outs_bucket = paste0(
+      count.outs.start,
+      " Outs"
+    ),
+    
+    score_diff = case_when(
+      
+      about.halfInning == "top" ~
+        result.awayScore - result.homeScore,
+      
+      about.halfInning == "bottom" ~
+        result.homeScore - result.awayScore
+    ),
+    
+    score_bucket = case_when(
+      score_diff == 0 ~ "Tied",
+      abs(score_diff) == 1 ~ "1 Run Game",
+      TRUE ~ "2+ Run Game"
+    )
+  )
+
+# -----------------------------------------------------------------------------
+# Example summaries ====
+# -----------------------------------------------------------------------------
+
+# Overall success rate --------------------------------------------------------
+
+sac_bunts_all |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n()
+  )
+
+# Success by outs -------------------------------------------------------------
+
+sac_bunts_all |>
+  group_by(outs_bucket) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  )
+
+# Success by inning bucket ----------------------------------------------------
+
+sac_bunts_all |>
+  group_by(inning_bucket) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  )
+
+# Success by score situation --------------------------------------------------
+
+sac_bunts_all |>
+  group_by(score_bucket) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  )
+
+# Combined situational analysis -----------------------------------------------
+
+sac_bunts_all |>
+  group_by(
+    inning_bucket,
+    outs_bucket,
+    score_bucket
+  ) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  ) |>
+  arrange(desc(success_rate))
 
 
 
 
 
 
+# =============================================================================
+# Sacrifice Bunt Historical Data Pull ####
+# =============================================================================
+
+library(tidyverse)
+library(baseballr)
+library(furrr)
+library(progressr)
+
+# -----------------------------------------------------------------------------
+# Parallel processing setup
+# -----------------------------------------------------------------------------
+
+plan(multisession, workers = 4)
+
+handlers(global = TRUE)
+
+# -----------------------------------------------------------------------------
+# Create folders
+# -----------------------------------------------------------------------------
+
+dir.create(
+  "sacrifice-bunt-analysis/data",
+  recursive = TRUE,
+  showWarnings = FALSE
+)
+
+# -----------------------------------------------------------------------------
+# Safe PBP pull
+# -----------------------------------------------------------------------------
+
+safe_pull <- function(game_id) {
+  
+  tryCatch(
+    
+    mlb_pbp(game_id),
+    
+    error = function(e) {
+      message(paste("FAILED:", game_id))
+      return(NULL)
+    }
+  )
+}
+
+# -----------------------------------------------------------------------------
+# Pull ONLY innings containing sacrifice bunts
+# -----------------------------------------------------------------------------
+
+pull_bunt_innings <- function(game_id) {
+  
+  message(paste("Pulling game:", game_id))
+  
+  pbp <- safe_pull(game_id)
+  
+  if (is.null(pbp)) {
+    return(NULL)
+  }
+  
+  # Keep only completed AB events ---------------------------------------------
+  
+  pbp_clean <- pbp |>
+    filter(last.pitch.of.ab == "true")
+  
+  # Identify innings containing sac bunts -------------------------------------
+  
+  bunt_innings <- pbp_clean |>
+    filter(result.eventType == "sac_bunt") |>
+    transmute(
+      inning_id = paste(
+        game_pk,
+        about.inning,
+        about.halfInning
+      )
+    ) |>
+    distinct()
+  
+  # If no bunt innings exist, return NULL -------------------------------------
+  
+  if (nrow(bunt_innings) == 0) {
+    return(NULL)
+  }
+  
+  # Keep ALL plays from bunt innings ------------------------------------------
+  
+  pbp_clean |>
+    mutate(
+      inning_id = paste(
+        game_pk,
+        about.inning,
+        about.halfInning
+      )
+    ) |>
+    semi_join(
+      bunt_innings,
+      by = "inning_id"
+    )
+}
+
+# -----------------------------------------------------------------------------
+# Pull one month of data
+# -----------------------------------------------------------------------------
+
+get_month_bunt_data <- function(start_date, end_date, label) {
+  
+  # Pull games ----------------------------------------------------------------
+  
+  games <- map_dfr(
+    seq(
+      as.Date(start_date),
+      as.Date(end_date),
+      by = "day"
+    ),
+    
+    ~ mlb_game_pks(
+      date = .x,
+      level_ids = c(1)
+    )
+  )
+  
+  # Clean game IDs ------------------------------------------------------------
+  
+  game_ids <- games |>
+    filter(!is.na(game_pk)) |>
+    distinct(game_pk) |>
+    pull(game_pk)
+  
+  # Pull bunt innings with progress bar ---------------------------------------
+  
+  with_progress({
+    
+    month_data <- future_map_dfr(
+      game_ids,
+      pull_bunt_innings
+    )
+  })
+  
+  # Save monthly chunk --------------------------------------------------------
+  
+  write_rds(
+    month_data,
+    paste0(
+      "sacrifice-bunt-analysis/data/",
+      label,
+      ".rds"
+    )
+  )
+  
+  return(month_data)
+}
+
+# =============================================================================
+# EXAMPLE MONTH PULL
+# =============================================================================
+
+bunt_data_2023_04 <- get_month_bunt_data(
+  start_date = "2023-04-01",
+  end_date = "2023-04-30",
+  label = "bunt_data_2023_04"
+)
+
+# =============================================================================
+# COMBINE MONTHS LATER
+# =============================================================================
+
+# Example:
+#
+# bunt_data_all <- bind_rows(
+#   bunt_data_2023_04,
+#   bunt_data_2023_05,
+#   bunt_data_2023_06
+# )
+
+# =============================================================================
+# SAC BUNT ANALYSIS PIPELINE
+# =============================================================================
+
+# Keep only sac bunt events ---------------------------------------------------
+
+sac_bunts <- bunt_data_2023_04 |>
+  filter(result.eventType == "sac_bunt")
+
+# Calculate inning-ending scores ----------------------------------------------
+
+inning_final_scores <- bunt_data_2023_04 |>
+  group_by(inning_id) |>
+  summarise(
+    final_away_score = max(result.awayScore, na.rm = TRUE),
+    final_home_score = max(result.homeScore, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Join inning-ending scores ---------------------------------------------------
+
+sac_bunts <- sac_bunts |>
+  left_join(
+    inning_final_scores,
+    by = "inning_id"
+  )
+
+# Runs scored after bunt ------------------------------------------------------
+
+sac_bunts <- sac_bunts |>
+  mutate(
+    
+    batting_team_runs_after_bunt = case_when(
+      
+      about.halfInning == "top" ~
+        final_away_score - result.awayScore,
+      
+      about.halfInning == "bottom" ~
+        final_home_score - result.homeScore
+    ),
+    
+    successful_bunt = batting_team_runs_after_bunt >= 1
+  )
+
+# Analysis variables ----------------------------------------------------------
+
+sac_bunts <- sac_bunts |>
+  mutate(
+    
+    inning_bucket = if_else(
+      about.inning >= 7,
+      "Late (7+)",
+      "Early/Mid"
+    ),
+    
+    outs_bucket = paste0(
+      count.outs.start,
+      " Outs"
+    ),
+    
+    score_diff = case_when(
+      
+      about.halfInning == "top" ~
+        result.awayScore - result.homeScore,
+      
+      about.halfInning == "bottom" ~
+        result.homeScore - result.awayScore
+    ),
+    
+    score_bucket = case_when(
+      score_diff == 0 ~ "Tied",
+      abs(score_diff) == 1 ~ "1 Run Game",
+      TRUE ~ "2+ Run Game"
+    )
+  )
+
+# =============================================================================
+# EXAMPLE SUMMARIES
+# =============================================================================
+
+# Overall success rate --------------------------------------------------------
+
+sac_bunts |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n()
+  )
+
+# Outs before bunt ------------------------------------------------------------
+
+sac_bunts |>
+  group_by(outs_bucket) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  )
+
+# Inning bucket ---------------------------------------------------------------
+
+sac_bunts |>
+  group_by(inning_bucket) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  )
+
+# Score situation -------------------------------------------------------------
+
+sac_bunts |>
+  group_by(score_bucket) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  )
+
+# Combined situational analysis -----------------------------------------------
+
+sac_bunts |>
+  group_by(
+    inning_bucket,
+    outs_bucket,
+    score_bucket
+  ) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  ) |>
+  arrange(desc(success_rate))
 
 
 
 
 
 
+# =============================================================================
+# Historical MLB Sacrifice Bunt Data Pull (2023–2026)
+# =============================================================================
 
+library(tidyverse)
+library(baseballr)
+library(furrr)
+library(progressr)
 
+# -----------------------------------------------------------------------------
+# Parallel processing setup
+# -----------------------------------------------------------------------------
 
+plan(multisession, workers = 3)
 
+handlers(global = TRUE)
+
+# -----------------------------------------------------------------------------
+# Create folders
+# -----------------------------------------------------------------------------
+
+dir.create(
+  "sacrifice-bunt-analysis/data",
+  recursive = TRUE,
+  showWarnings = FALSE
+)
+
+# -----------------------------------------------------------------------------
+# Safe PBP pull
+# -----------------------------------------------------------------------------
+
+safe_pull <- function(game_id) {
+  
+  tryCatch(
+    
+    mlb_pbp(game_id),
+    
+    error = function(e) {
+      message(paste("FAILED GAME:", game_id))
+      return(NULL)
+    }
+  )
+}
+
+# -----------------------------------------------------------------------------
+# Pull all completed AB events from innings containing sac bunts
+# -----------------------------------------------------------------------------
+
+pull_bunt_innings <- function(game_id) {
+  
+  message(paste("Pulling game:", game_id))
+  
+  pbp <- safe_pull(game_id)
+  
+  if (is.null(pbp)) {
+    return(NULL)
+  }
+  
+  # Keep completed AB events only ---------------------------------------------
+  
+  pbp_clean <- pbp |>
+    filter(last.pitch.of.ab == "true")
+  
+  # Identify innings containing sac bunts -------------------------------------
+  
+  bunt_innings <- pbp_clean |>
+    filter(result.eventType == "sac_bunt") |>
+    transmute(
+      inning_id = paste(
+        game_pk,
+        about.inning,
+        about.halfInning
+      )
+    ) |>
+    distinct()
+  
+  # Skip games with no sac bunts ----------------------------------------------
+  
+  if (nrow(bunt_innings) == 0) {
+    return(NULL)
+  }
+  
+  # Keep ALL plays from bunt innings ------------------------------------------
+  
+  pbp_clean |>
+    mutate(
+      inning_id = paste(
+        game_pk,
+        about.inning,
+        about.halfInning
+      )
+    ) |>
+    semi_join(
+      bunt_innings,
+      by = "inning_id"
+    )
+}
+
+# -----------------------------------------------------------------------------
+# Pull one month of data
+# -----------------------------------------------------------------------------
+
+get_month_bunt_data <- function(start_date, end_date, label) {
+  
+  message("===================================================")
+  message(paste("STARTING:", label))
+  message("===================================================")
+  
+  start_time <- Sys.time()
+  
+  # Pull game schedule --------------------------------------------------------
+  
+  games <- map_dfr(
+    seq(
+      as.Date(start_date),
+      as.Date(end_date),
+      by = "day"
+    ),
+    
+    ~ mlb_game_pks(
+      date = .x,
+      level_ids = c(1)
+    )
+  )
+  
+  # Clean game IDs ------------------------------------------------------------
+  
+  game_ids <- games |>
+    filter(!is.na(game_pk)) |>
+    distinct(game_pk) |>
+    pull(game_pk)
+  
+  message(paste("Games found:", length(game_ids)))
+  
+  # Pull data -----------------------------------------------------------------
+  
+  with_progress({
+    
+    month_data <- future_map_dfr(
+      game_ids,
+      pull_bunt_innings,
+      .options = furrr_options(seed = TRUE)
+    )
+  })
+  
+  # Save monthly chunk --------------------------------------------------------
+  
+  save_path <- paste0(
+    "sacrifice-bunt-analysis/data/",
+    label,
+    ".rds"
+  )
+  
+  write_rds(
+    month_data,
+    save_path
+  )
+  
+  message(paste("SAVED:", save_path))
+  
+  message(
+    paste(
+      "Minutes elapsed:",
+      round(
+        difftime(
+          Sys.time(),
+          start_time,
+          units = "mins"
+        ),
+        2
+      )
+    )
+  )
+  
+  return(month_data)
+}
+
+# =============================================================================
+# Monthly pull schedule
+# =============================================================================
+
+months <- tribble(
+  ~start_date, ~end_date, ~label,
+  
+  "2023-04-01", "2023-04-30", "bunt_data_2023_04",
+  "2023-05-01", "2023-05-31", "bunt_data_2023_05",
+  "2023-06-01", "2023-06-30", "bunt_data_2023_06",
+  "2023-07-01", "2023-07-31", "bunt_data_2023_07",
+  "2023-08-01", "2023-08-31", "bunt_data_2023_08",
+  "2023-09-01", "2023-09-30", "bunt_data_2023_09",
+
+  "2024-04-01", "2024-04-30", "bunt_data_2024_04",
+  "2024-05-01", "2024-05-31", "bunt_data_2024_05",
+  "2024-06-01", "2024-06-30", "bunt_data_2024_06",
+  "2024-07-01", "2024-07-31", "bunt_data_2024_07",
+  "2024-08-01", "2024-08-31", "bunt_data_2024_08",
+  "2024-09-01", "2024-09-30", "bunt_data_2024_09",
+
+  "2025-04-01", "2025-04-30", "bunt_data_2025_04",
+  "2025-05-01", "2025-05-31", "bunt_data_2025_05",
+  "2025-06-01", "2025-06-30", "bunt_data_2025_06",
+  "2025-07-01", "2025-07-31", "bunt_data_2025_07",
+  "2025-08-01", "2025-08-31", "bunt_data_2025_08",
+  "2025-09-01", "2025-09-30", "bunt_data_2025_09",
+
+  "2026-04-01", "2026-04-30", "bunt_data_2026_04",
+  "2026-05-01", "2026-05-31", "bunt_data_2026_05"
+)
+
+# =============================================================================
+# Run all monthly pulls automatically
+# =============================================================================
+
+for(i in 1:nrow(months)) {
+  
+  current_start <- months$start_date[i]
+  current_end <- months$end_date[i]
+  current_label <- months$label[i]
+  
+  tryCatch(
+    
+    {
+      
+      get_month_bunt_data(
+        start_date = current_start,
+        end_date = current_end,
+        label = current_label
+      )
+      
+      message(paste("COMPLETED:", current_label))
+    },
+    
+    error = function(e) {
+      
+      message(paste("FAILED MONTH:", current_label))
+      message(e)
+    }
+  )
+}
+
+# =============================================================================
+# Combine all monthly files
+# =============================================================================
+
+all_files <- list.files(
+  "sacrifice-bunt-analysis/data",
+  full.names = TRUE
+)
+
+bunt_data_all <- map_dfr(
+  all_files,
+  read_rds
+)
+
+# =============================================================================
+# Save final combined dataset
+# =============================================================================
+
+write_rds(
+  bunt_data_all,
+  "sacrifice-bunt-analysis/data/bunt_data_all.rds"
+)
+
+message("ALL DATA PULLS COMPLETE")
 
 
 
