@@ -3,6 +3,9 @@
 
 library(tidyverse)
 library(baseballr)
+library(furrr)
+library(progressr)
+library(scales)
 
 # ============================================================================
 # EXPLORATION / VALIDATION ####
@@ -318,11 +321,6 @@ ggplot(
 # Historical MLB Play-by-Play Data Pull (2023–2026) ###########################
 # =============================================================================
 
-library(tidyverse)
-library(baseballr)
-library(furrr)
-library(progressr)
-
 # -----------------------------------------------------------------------------
 # Parallel processing setup
 # -----------------------------------------------------------------------------
@@ -547,6 +545,417 @@ write_rds(
 message("ALL DATA PULLS COMPLETE")
 
 
+
+
+# =============================================================================
+# Sacrifice bunt dataset
+# =============================================================================
+
+sac_bunts_all <- pbp_all |>
+  filter(result.eventType == "sac_bunt")
+
+# =============================================================================
+# Create inning ID
+# =============================================================================
+
+pbp_all <- pbp_all |>
+  mutate(
+    inning_id = paste(
+      game_pk,
+      about.inning,
+      about.halfInning
+    )
+  )
+
+sac_bunts_all <- sac_bunts_all |>
+  mutate(
+    inning_id = paste(
+      game_pk,
+      about.inning,
+      about.halfInning
+    )
+  )
+
+# =============================================================================
+# Final inning scores
+# =============================================================================
+
+inning_final_scores <- pbp_all |>
+  group_by(inning_id) |>
+  summarise(
+    
+    final_away_score = max(
+      result.awayScore,
+      na.rm = TRUE
+    ),
+    
+    final_home_score = max(
+      result.homeScore,
+      na.rm = TRUE
+    ),
+    
+    .groups = "drop"
+  )
+
+# =============================================================================
+# Join inning-ending scores
+# =============================================================================
+
+sac_bunts_all <- sac_bunts_all |>
+  left_join(
+    inning_final_scores,
+    by = "inning_id"
+  )
+
+# =============================================================================
+# Runs scored after bunt
+# =============================================================================
+
+sac_bunts_all <- sac_bunts_all |>
+  mutate(
+    
+    batting_team_runs_after_bunt = case_when(
+      
+      about.halfInning == "top" ~
+        final_away_score - result.awayScore,
+      
+      about.halfInning == "bottom" ~
+        final_home_score - result.homeScore
+    ),
+    
+    successful_bunt = batting_team_runs_after_bunt >= 1
+  )
+
+# =============================================================================
+# Situation variables
+# =============================================================================
+
+sac_bunts_all <- sac_bunts_all |>
+  mutate(
+    
+    inning_bucket = case_when(
+      about.inning <= 3 ~ "Early",
+      about.inning <= 6 ~ "Middle",
+      TRUE ~ "Late"
+    ),
+    
+    late_game = about.inning >= 7,
+    
+    outs_bucket = case_when(
+      count.outs.start == 0 ~ "0 Outs",
+      count.outs.start == 1 ~ "1 Out"
+    ),
+    
+    score_diff = case_when(
+      
+      about.halfInning == "top" ~
+        result.awayScore - result.homeScore,
+      
+      about.halfInning == "bottom" ~
+        result.homeScore - result.awayScore
+    ),
+    
+    score_bucket = case_when(
+      score_diff == 0 ~ "Tied",
+      abs(score_diff) == 1 ~ "1 Run Game",
+      TRUE ~ "2+ Run Game"
+    ),
+    
+    runner_on_first =
+      !is.na(matchup.postOnFirst.fullName),
+    
+    runner_on_second =
+      !is.na(matchup.postOnSecond.fullName),
+    
+    runner_on_third =
+      !is.na(matchup.postOnThird.fullName)
+  )
+
+# =============================================================================
+# Initial summaries
+# =============================================================================
+
+# Overall bunt success --------------------------------------------------------
+
+sac_bunts_all |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n()
+  )
+
+# Outs before bunt ------------------------------------------------------------
+
+sac_bunts_all |>
+  group_by(outs_bucket) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  ) |>
+  arrange(desc(success_rate))
+
+# Early vs late innings -------------------------------------------------------
+
+sac_bunts_all |>
+  group_by(inning_bucket) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  )
+
+# Score situation -------------------------------------------------------------
+
+sac_bunts_all |>
+  group_by(score_bucket) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  )
+
+# Combined situations ---------------------------------------------------------
+
+sac_bunts_all |>
+  group_by(
+    outs_bucket,
+    inning_bucket,
+    score_bucket
+  ) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  ) |>
+  filter(n >= 20) |>
+  arrange(desc(success_rate))
+
+
+# =============================================================================
+# Baserunner configurations
+# =============================================================================
+
+sac_bunts_all <- sac_bunts_all |>
+  mutate(
+    
+    base_state = case_when(
+      
+      runner_on_first &
+        !runner_on_second &
+        !runner_on_third ~
+        "1st Only",
+      
+      !runner_on_first &
+        runner_on_second &
+        !runner_on_third ~
+        "2nd Only",
+      
+      !runner_on_first &
+        !runner_on_second &
+        runner_on_third ~
+        "3rd Only",
+      
+      runner_on_first &
+        runner_on_second &
+        !runner_on_third ~
+        "1st + 2nd",
+      
+      runner_on_first &
+        !runner_on_second &
+        runner_on_third ~
+        "1st + 3rd",
+      
+      !runner_on_first &
+        runner_on_second &
+        runner_on_third ~
+        "2nd + 3rd",
+      
+      runner_on_first &
+        runner_on_second &
+        runner_on_third ~
+        "Bases Loaded",
+      
+      TRUE ~
+        "Other"
+    )
+  )
+
+# =============================================================================
+# Overall bunt success by baserunner situation
+# =============================================================================
+
+sac_bunts_all |>
+  group_by(base_state) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  ) |>
+  arrange(desc(success_rate))
+
+# =============================================================================
+# Baserunner situation + outs
+# =============================================================================
+
+sac_bunts_all |>
+  group_by(
+    base_state,
+    outs_bucket
+  ) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  ) |>
+  filter(n >= 20) |>
+  arrange(desc(success_rate))
+
+# =============================================================================
+# Baserunner situation + inning
+# =============================================================================
+
+sac_bunts_all |>
+  group_by(
+    base_state,
+    inning_bucket
+  ) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  ) |>
+  filter(n >= 20) |>
+  arrange(desc(success_rate))
+
+# =============================================================================
+# BEST bunt situations
+# =============================================================================
+
+best_bunt_situations <- sac_bunts_all |>
+  group_by(
+    base_state,
+    outs_bucket,
+    inning_bucket,
+    score_bucket
+  ) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  ) |>
+  filter(n >= 15) |>
+  arrange(desc(success_rate))
+
+best_bunt_situations
+
+# =============================================================================
+# Most common bunt situations
+# =============================================================================
+
+sac_bunts_all |>
+  count(
+    base_state,
+    outs_bucket,
+    inning_bucket,
+    score_bucket,
+    sort = TRUE
+  )
+
+
+# =============================================================================
+# BEST BUNT SITUATIONS DATA
+# =============================================================================
+
+best_bunt_situations <- sac_bunts_all |>
+  group_by(
+    base_state,
+    outs_bucket,
+    inning_bucket,
+    score_bucket
+  ) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  ) |>
+  filter(n >= 15) |>
+  arrange(desc(success_rate)) |>
+  mutate(
+    
+    situation_label = paste(
+      base_state,
+      "|",
+      outs_bucket,
+      "|",
+      inning_bucket,
+      "|",
+      score_bucket
+    ),
+    
+    success_pct = success_rate * 100
+  )
+
+# =============================================================================
+# HORIZONTAL BAR CHART
+# =============================================================================
+
+ggplot(
+  best_bunt_situations,
+  
+  aes(
+    x = success_pct,
+    y = reorder(
+      situation_label,
+      success_pct
+    ),
+    fill = success_pct
+  )
+) +
+  
+  geom_col() +
+  
+  geom_text(
+    aes(
+      label = paste0(
+        round(success_pct, 1),
+        "%  (n=",
+        n,
+        ")"
+      )
+    ),
+    
+    hjust = -0.1,
+    size = 3
+  ) +
+  
+  scale_x_continuous(
+    limits = c(0, 85),
+    labels = label_percent(scale = 1)
+  ) +
+  
+  labs(
+    title = "Most Successful MLB Sacrifice Bunt Situations Since 2023",
+    
+    subtitle = "Success = team scored later in the inning",
+    
+    x = "Success Rate",
+    y = NULL,
+    
+    caption = "Source: MLB play-by-play data via baseballr"
+  ) +
+  
+  theme_minimal(base_size = 12) +
+  
+  theme(
+    legend.position = "none",
+    
+    plot.title = element_text(
+      face = "bold",
+      size = 16
+    ),
+    
+    axis.text.y = element_text(size = 9)
+  )
 
 
 
