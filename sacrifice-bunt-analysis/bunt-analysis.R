@@ -958,5 +958,138 @@ ggplot(
   )
 
 
+# =============================================================================
+# Simplified bunt situations
+# =============================================================================
 
+simple_bunt_situations <- sac_bunts_all |>
+  group_by(
+    base_state,
+    outs_bucket
+  ) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    n = n(),
+    .groups = "drop"
+  ) |>
+  filter(n >= 20) |>
+  mutate(
+    
+    success_pct = success_rate * 100,
+    
+    situation_label = paste(
+      toupper(base_state),
+      "•",
+      toupper(outs_bucket)
+    )
+  ) |>
+  arrange(desc(success_rate))
+
+# =============================================================================
+# Plot
+# =============================================================================
+
+ggplot(
+  simple_bunt_situations,
+  
+  aes(
+    x = success_pct,
+    
+    y = reorder(
+      situation_label,
+      success_pct
+    ),
+    
+    fill = success_pct
+  )
+) +
+  
+  geom_col(
+    width = 0.72
+  ) +
+  
+  # Success percentage --------------------------------------------------------
+
+geom_text(
+  aes(
+    label = paste0(
+      round(success_pct, 1),
+      "%"
+    )
+  ),
+  
+  hjust = -0.15,
+  size = 5,
+  fontface = "bold"
+) +
+  
+  # Sample size ---------------------------------------------------------------
+
+geom_text(
+  aes(
+    label = paste0(
+      "n = ",
+      n
+    )
+  ),
+  
+  hjust = 1.15,
+  color = "white",
+  size = 3.2,
+  fontface = "bold"
+) +
+  
+  scale_x_continuous(
+    limits = c(0, 80),
+    labels = label_percent(scale = 1)
+  ) +
+  
+  scale_fill_gradient(
+    low = "#355CFF",
+    high = "#FFC857"
+  ) +
+  
+  labs(
+    title = "WHEN MLB TEAMS STILL BUNT",
+    
+    subtitle = paste(
+      "Modern MLB sacrifice bunt success rates since 2023",
+      "\nSuccess = team scored later in the inning"
+    ),
+    
+    x = NULL,
+    y = NULL,
+    
+    caption = "Source: MLB play-by-play data via baseballr"
+  ) +
+  
+  theme_minimal(base_size = 14) +
+  
+  theme(
+    
+    legend.position = "none",
+    
+    panel.grid.major.y = element_blank(),
+    
+    panel.grid.minor = element_blank(),
+    
+    plot.title = element_text(
+      face = "bold",
+      size = 24
+    ),
+    
+    plot.subtitle = element_text(
+      size = 12,
+      color = "gray40"
+    ),
+    
+    axis.text.y = element_text(
+      size = 11,
+      face = "bold"
+    ),
+    
+    axis.text.x = element_text(
+      size = 10
+    )
+  )
 
