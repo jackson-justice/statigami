@@ -15,6 +15,7 @@
 # Local data files
 # =============================================================================
 
+**/data/raw/
 
 # Common data file types
 *.tsv
@@ -90,5 +91,3 @@ Thumbs.db
 po/*~
 
 
-
-**/data/raw/
