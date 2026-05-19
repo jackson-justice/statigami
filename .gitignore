@@ -15,8 +15,6 @@
 # Local data files
 # =============================================================================
 
-# Ignore any data folder anywhere in the repo
-**/data/
 
 # Common data file types
 *.tsv
