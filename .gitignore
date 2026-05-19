@@ -15,7 +15,9 @@
 # Local data files
 # =============================================================================
 
+
 **/data/raw/
+
 
 # Common data file types
 *.tsv
@@ -89,5 +91,4 @@ rsconnect/
 .DS_Store
 Thumbs.db
 po/*~
-
 
