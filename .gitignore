@@ -21,7 +21,6 @@
 
 # Common data file types
 *.tsv
-*.rds
 *.rda
 *.RData
 *.parquet
