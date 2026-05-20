@@ -50,6 +50,7 @@ Projects from this repository are often turned into short-form content:
 
 - [TikTok (@statigami)](https://www.tiktok.com/@statigami)
 - [Instagram (@statigami)](https://www.instagram.com/statigami/)
+- [YouTube (@statigami)](https://www.youtube.com/channel/UCovIx4LQSTwP5FV87i7FihA)
 
 The goal is to make data intuitive, engaging, and easy to understand.
 
