@@ -550,7 +550,7 @@ message("ALL DATA PULLS COMPLETE")
 # Sacrifice bunt dataset
 # =============================================================================
 
-sac_bunts_all <- pbp_all |>
+sac_bunts_2023_2026 <- pbp_all |>
   filter(result.eventType == "sac_bunt")
 
 # =============================================================================
@@ -566,7 +566,7 @@ pbp_all <- pbp_all |>
     )
   )
 
-sac_bunts_all <- sac_bunts_all |>
+sac_bunts_2023_2026 <- sac_bunts_2023_2026 |>
   mutate(
     inning_id = paste(
       game_pk,
@@ -600,7 +600,7 @@ inning_final_scores <- pbp_all |>
 # Join inning-ending scores
 # =============================================================================
 
-sac_bunts_all <- sac_bunts_all |>
+sac_bunts_2023_2026 <- sac_bunts_2023_2026 |>
   left_join(
     inning_final_scores,
     by = "inning_id"
@@ -610,7 +610,7 @@ sac_bunts_all <- sac_bunts_all |>
 # Runs scored after bunt
 # =============================================================================
 
-sac_bunts_all <- sac_bunts_all |>
+sac_bunts_2023_2026 <- sac_bunts_2023_2026 |>
   mutate(
     
     batting_team_runs_after_bunt = case_when(
@@ -629,7 +629,7 @@ sac_bunts_all <- sac_bunts_all |>
 # Situation variables
 # =============================================================================
 
-sac_bunts_all <- sac_bunts_all |>
+sac_bunts_2023_2026 <- sac_bunts_2023_2026 |>
   mutate(
     
     inning_bucket = case_when(
@@ -676,7 +676,7 @@ sac_bunts_all <- sac_bunts_all |>
 
 # Overall bunt success --------------------------------------------------------
 
-sac_bunts_all |>
+sac_bunts_2023_2026 |>
   summarise(
     success_rate = mean(successful_bunt),
     n = n()
@@ -684,7 +684,7 @@ sac_bunts_all |>
 
 # Outs before bunt ------------------------------------------------------------
 
-sac_bunts_all |>
+sac_bunts_2023_2026 |>
   group_by(outs_bucket) |>
   summarise(
     success_rate = mean(successful_bunt),
@@ -695,7 +695,7 @@ sac_bunts_all |>
 
 # Early vs late innings -------------------------------------------------------
 
-sac_bunts_all |>
+sac_bunts_2023_2026 |>
   group_by(inning_bucket) |>
   summarise(
     success_rate = mean(successful_bunt),
@@ -705,7 +705,7 @@ sac_bunts_all |>
 
 # Score situation -------------------------------------------------------------
 
-sac_bunts_all |>
+sac_bunts_2023_2026 |>
   group_by(score_bucket) |>
   summarise(
     success_rate = mean(successful_bunt),
@@ -715,7 +715,7 @@ sac_bunts_all |>
 
 # Combined situations ---------------------------------------------------------
 
-sac_bunts_all |>
+sac_bunts_2023_2026 |>
   group_by(
     outs_bucket,
     inning_bucket,
@@ -734,7 +734,7 @@ sac_bunts_all |>
 # Baserunner configurations
 # =============================================================================
 
-sac_bunts_all <- sac_bunts_all |>
+sac_bunts_2023_2026 <- sac_bunts_2023_2026 |>
   mutate(
     
     base_state = case_when(
@@ -783,7 +783,7 @@ sac_bunts_all <- sac_bunts_all |>
 # Overall bunt success by baserunner situation
 # =============================================================================
 
-sac_bunts_all |>
+sac_bunts_2023_2026 |>
   group_by(base_state) |>
   summarise(
     success_rate = mean(successful_bunt),
@@ -796,7 +796,7 @@ sac_bunts_all |>
 # Baserunner situation + outs
 # =============================================================================
 
-sac_bunts_all |>
+sac_bunts_2023_2026 |>
   group_by(
     base_state,
     outs_bucket
@@ -813,7 +813,7 @@ sac_bunts_all |>
 # Baserunner situation + inning
 # =============================================================================
 
-sac_bunts_all |>
+sac_bunts_2023_2026 |>
   group_by(
     base_state,
     inning_bucket
@@ -830,7 +830,7 @@ sac_bunts_all |>
 # BEST bunt situations
 # =============================================================================
 
-best_bunt_situations <- sac_bunts_all |>
+best_bunt_situations <- sac_bunts_2023_2026 |>
   group_by(
     base_state,
     outs_bucket,
@@ -851,7 +851,7 @@ best_bunt_situations
 # Most common bunt situations
 # =============================================================================
 
-sac_bunts_all |>
+sac_bunts_2023_2026 |>
   count(
     base_state,
     outs_bucket,
@@ -865,7 +865,7 @@ sac_bunts_all |>
 # BEST BUNT SITUATIONS DATA
 # =============================================================================
 
-best_bunt_situations <- sac_bunts_all |>
+best_bunt_situations <- sac_bunts_2023_2026 |>
   group_by(
     base_state,
     outs_bucket,
@@ -877,7 +877,7 @@ best_bunt_situations <- sac_bunts_all |>
     n = n(),
     .groups = "drop"
   ) |>
-  filter(n >= 15) |>
+  # filter(n >= 15) |>
   arrange(desc(success_rate)) |>
   mutate(
     
@@ -961,7 +961,7 @@ ggplot(
 # Simplified bunt situations
 # =============================================================================
 
-simple_bunt_situations <- sac_bunts_all |>
+simple_bunt_situations <- sac_bunts_2023_2026 |>
   group_by(
     base_state,
     outs_bucket
@@ -1091,4 +1091,6 @@ geom_text(
       size = 10
     )
   )
+
+
 
