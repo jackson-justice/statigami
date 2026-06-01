@@ -1093,4 +1093,125 @@ geom_text(
   )
 
 
+# Video 2 #####################################################################
+
+best_bunt_situations |>
+  filter(n >= 20) |>
+  select(
+    base_state,
+    outs_bucket,
+    inning_bucket,
+    score_bucket,
+    success_pct,
+    n
+  ) |>
+  arrange(desc(success_pct))
+
+
+bunt_frequency <-
+  sac_bunts_2023_2026 |>
+  count(
+    base_state,
+    outs_bucket,
+    inning_bucket,
+    score_bucket,
+    name = "n_bunts"
+  )
+
+bunt_success <-
+  sac_bunts_2023_2026 |>
+  group_by(
+    base_state,
+    outs_bucket,
+    inning_bucket,
+    score_bucket
+  ) |>
+  summarise(
+    success_rate = mean(successful_bunt),
+    .groups = "drop"
+  )
+
+bunt_summary <-
+  bunt_frequency |>
+  left_join(
+    bunt_success,
+    by = c(
+      "base_state",
+      "outs_bucket",
+      "inning_bucket",
+      "score_bucket"
+    )
+  ) |>
+  filter(n_bunts >= 15) |>
+  arrange(desc(success_rate))
+
+bunt_summary |>
+  mutate(
+    success_pct = round(success_rate * 100, 1)
+  ) |>
+  select(
+    base_state,
+    outs_bucket,
+    inning_bucket,
+    score_bucket,
+    n_bunts,
+    success_pct
+  )
+
+sac_bunts_2023_2026 |>
+  group_by(base_state) |>
+  summarise(
+    success_pct = round(mean(successful_bunt) * 100, 1),
+    n_bunts = n(),
+    .groups = "drop"
+  ) |>
+  arrange(desc(success_pct))
+
+sac_bunts_2023_2026 |> 
+  count(base_state, sort = TRUE)
+
+sac_bunts_2023_2026 |>
+  count(inning_bucket, sort = TRUE)
+
+sac_bunts_2023_2026 |>
+  count(score_bucket, sort = TRUE)
+
+sac_bunts_2023_2026 |>
+  count(base_state, outs_bucket, sort = TRUE)
+
+sac_bunts_2023_2026 |>
+  count(base_state, score_bucket, sort = TRUE) |> 
+  print(n = Inf)
+
+sac_bunts_2023_2026 |>
+  count(base_state, inning_bucket, sort = TRUE) |>
+  print(n = Inf)
+
+sac_bunts_2023_2026 |>
+  count(base_state, inning_bucket, score_bucket, outs_bucket, sort = TRUE) |>
+  print(n = Inf)
+
+sac_bunts_2023_2026 |>
+  filter(
+    base_state %in% c(
+      "2nd Only",
+      "2nd + 3rd"
+    )
+  ) |>
+  group_by(base_state, outs_bucket) |>
+  summarise(
+    success_pct = round(mean(successful_bunt) * 100, 1),
+    n = n(),
+    .groups = "drop"
+  )
+
+sac_bunts_2023_2026 |>
+  count(base_state, sort = TRUE) |>
+  mutate(
+    pct = round(n / sum(n) * 100, 1)
+  )
+
+
+
+
 
