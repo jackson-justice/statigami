@@ -22,6 +22,9 @@ Sports are the main playground, but Statigami can also include health, behavior,
 
 ## Projects
 
+### [NFL Championship Trajectories](./nfl-championship-trajectories)
+How much does an NFL team's record at each point in the season tell you about its Super Bowl chances?
+
 ### [When MLB Still Bunts](./sacrifice-bunt-analysis)
 Exploring when and why MLB teams still use the sacrifice bunt in modern baseball.
 
