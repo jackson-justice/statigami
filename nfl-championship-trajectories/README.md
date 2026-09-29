@@ -83,14 +83,29 @@ source("nfl-championship-trajectories/analysis.R")
 
 Requires `tidyverse`.
 
+## Weekly update
+
+Every Tuesday during the season, after Monday Night Football:
+
+```r
+source("nfl-championship-trajectories/weekly_update.R")
+```
+
+It re-downloads the current season's scores, then compares every team's record with every team since 1999 that had the same record after the same number of games. It prints a ready-to-post summary (title and playoff odds by record, unbeaten teams, the Graveyard, the champion-floor watch) and saves a team-by-team table to `data/weekly/<season>_week<NN>.csv`. Run `analysis.R` first; the weekly script reads its outputs.
+
+Title and playoff odds are smoothed with isotonic regression on losses: the raw rate for each record, pooled with its neighbours wherever a record with more losses would otherwise rank higher. With only 27 champions, raw rates are noisy (7-1 teams have won more often than 8-0 teams), and a logistic curve overstates the extremes.
+
 ## Project structure
 
 ```text
 nfl-championship-trajectories/
 ├── analysis.R
+├── weekly_update.R
 ├── README.md
 ├── data/
-│   ├── raw/games.csv            (downloaded, git-ignored)
+│   ├── raw/                     (downloads, git-ignored)
+│   ├── weekly/                  (one table per week)
+│   ├── record_outcomes_by_games.csv
 │   └── team_week_records.csv
 └── figures/
 ```

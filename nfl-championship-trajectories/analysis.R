@@ -302,3 +302,89 @@ all_starts |>
 start_records |>
   filter(sb_champion, start != "2-0") |>
   select(season, team, start, final_wins, final_losses, final_ties)
+
+
+# =============================================================================
+# 7. Championship outcomes by record after N games
+# =============================================================================
+# For every games-played count (1 through 16, or 17 from 2021) and every
+# record reached at that point: how many teams got there, and how many went
+# on to win the Super Bowl or make the playoffs.
+#
+# Notes on the denominators:
+#   - games_played == 17 exists only for 2021+ (158 team-seasons).
+#   - games_played == 16 is the final record for 1999-2020 but one game
+#     short of it for 2021+ (and final for 2022 BUF/CIN).
+
+record_outcomes <- panel |>
+  filter(!is_bye) |>
+  group_by(games_played, record, wins, losses, ties) |>
+  summarise(
+    teams = n(),
+    champions = sum(sb_champion),
+    playoff_teams = sum(made_playoffs),
+    champion_seasons = paste(
+      season[sb_champion], team[sb_champion],
+      collapse = ", "
+    ),
+    .groups = "drop"
+  ) |>
+  group_by(games_played) |>
+  mutate(
+    share_of_teams = teams / sum(teams),
+    share_of_champions = champions / sum(champions)
+  ) |>
+  ungroup() |>
+  mutate(
+    champion_rate = champions / teams,
+    lift_vs_baseline = champion_rate / baseline_rate,
+    playoff_rate = playoff_teams / teams
+  ) |>
+  arrange(games_played, desc(wins), losses) |>
+  relocate(champion_seasons, .after = last_col())
+
+write_csv(
+  record_outcomes,
+  file.path(project_dir, "data", "record_outcomes_by_games.csv")
+)
+
+# The "champion floor": most losses any eventual champion had after N games,
+# and how many teams were already past it.
+champion_floor <- panel |>
+  filter(!is_bye) |>
+  group_by(games_played) |>
+  summarise(
+    teams = n(),
+    floor_losses = max(losses[sb_champion]),
+    floor_champions = paste(
+      unique(paste(season, team, record)[sb_champion &
+                                           losses == floor_losses]),
+      collapse = "; "
+    ),
+    teams_past_floor = sum(losses > floor_losses),
+    .groups = "drop"
+  ) |>
+  mutate(share_past_floor = teams_past_floor / teams)
+
+champion_floor
+
+# Common records (15+ teams) that have never produced a champion, keeping
+# only the best such record at each point in the season
+record_outcomes |>
+  filter(champions == 0, teams >= 15) |>
+  group_by(games_played) |>
+  slice_max(wins, n = 1) |>
+  ungroup() |>
+  select(games_played, record, teams, playoff_teams, playoff_rate)
+
+# Records that produced a champion, but less often than the 3.1% baseline
+record_outcomes |>
+  filter(champions > 0, champion_rate < baseline_rate) |>
+  select(games_played, record, teams, champions, champion_rate,
+         champion_seasons)
+
+# Unbeaten teams: title odds by length of the streak
+record_outcomes |>
+  filter(losses == 0, ties == 0) |>
+  select(games_played, record, teams, champions, champion_rate,
+         lift_vs_baseline)
