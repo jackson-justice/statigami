@@ -75,8 +75,8 @@ Before the October 25 games, rank tight ends or teams by **projected production 
 - [x] Decide whether the predictive stretch goal is feasible before Sunday.
   - **Decision: skipped.** No detectable NTED effect on usage, so an NTED-adjusted forecast would reduce to each TE's normal baseline plus noise.
 - [x] Case studies (replaces the forecast): George Kittle's NTED games vs his own seasons, and the TEs with the strongest NTED records, benchmarked against what random games from their own seasons would produce (figures 05-06).
-- [ ] Create article-ready figures and write the Quarto article. Framing: the day does not change TE usage; then individual stories, with luck made explicit.
-- [ ] Verify citation/data attribution and publication constraints; publish with clearly disclosed sources.
+- [x] Create article-ready figures and write the Quarto article. Framing: the day does not change TE usage; then individual stories, with luck made explicit.
+- [x] Verify citation/data attribution and publication constraints; publish with clearly disclosed sources.
 - [ ] Optional after Sunday: add 2026 NTED as one more season of evidence (no pregame forecast to audit).
 
 **Time priority:** If pressed for time, finish the historical descriptive article with strong visuals first. A simple, clearly labeled forecast is better than a complicated unvalidated model.
@@ -137,7 +137,7 @@ The article should **reference or copy generated figures at render time** rather
 ## Questions to resolve after the first data audit
 
 1.  Does the weekly player data accurately capture zero-target TEs, or should play-by-play/participation data supplement it?
-    - **Answer (data audit):** No. A weekly stats row exists only when a player records some stat, so ~22–27% of TE games with offensive snaps have no row at all. Snap counts (`load_snap_counts`) now supply participation, and season roster positions replace the static `position` label.
+    - **Answer (data audit):** No. A weekly stats row exists only when a player records some stat, so \~22–27% of TE games with offensive snaps have no row at all. Snap counts (`load_snap_counts`) now supply participation, and season roster positions replace the static `position` label.
 2.  Is TE **target share** or **production above baseline** the strongest single headline result?
 3.  For the 2026 preview, is a team-unit ranking more stable and interpretable than an individual-TE ranking?
 4.  Should the first article be historical-only, with a separate 2026 forecast/social post, if time is limited?
