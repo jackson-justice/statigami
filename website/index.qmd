@@ -94,7 +94,7 @@ listing:
 ::: {.column-screen .sg-band .sg-about-strip}
 ```{=html}
 <div class="sg-wrap sg-about-grid">
-  <img class="sg-avatar" src="assets/brand/favicon.svg" alt="">
+  <img class="sg-avatar" src="assets/brand/mark-circle.svg" alt="">
   <div>
     <div class="sg-eyebrow">// Who's asking</div>
     <p class="sg-about-quote">“I want to make things that I would read.”</p>

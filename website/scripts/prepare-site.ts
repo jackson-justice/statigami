@@ -5,7 +5,8 @@
 //    so articles reference figures without duplicating them in git.
 // 2. Builds assets/brand/ (generated, git-ignored) from the brand folder:
 //    _brand.scss (the design tokens as CSS custom properties, plus the few
-//    Bootstrap defaults that need literal values), logo.svg and favicon.svg.
+//    Bootstrap defaults that need literal values), mark.svg (navbar logo)
+//    and mark-circle.svg (favicon and home page avatar).
 //    Without the brand folder, neutral stand-ins are written so the site
 //    still renders.
 //
@@ -82,10 +83,12 @@ const hasBrand = await exists(tokensCss);
 const t = hasBrand ? await readTokens(tokensCss) : neutralTokens;
 
 // Logo: the bare mark with its grid and connector drawn in paper (it uses
-// currentColor, which an <img> can't inherit)
+// currentColor, which an <img> can't inherit), cropped to the mark so it
+// fills its box in the navbar
 const logo = hasBrand
   ? (await Deno.readTextFile(`${brandDir}/statigami-ds/assets/statigami-mark.svg`))
     .replaceAll("currentColor", t["paper"])
+    .replace('viewBox="0 0 100 100"', 'viewBox="12 12 76 76"')
   : '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"></svg>\n';
 // Also as a CSS token, since stylesheet url() paths can't point into the site
 const logoUri = `data:image/svg+xml;base64,${btoa(logo)}`;
@@ -118,16 +121,14 @@ const scss = [
   "}",
 ];
 await Deno.writeTextFile(`${outDir}/_brand.scss`, scss.join("\n") + "\n");
-await Deno.writeTextFile(`${outDir}/logo.svg`, logo);
+await Deno.writeTextFile(`${outDir}/mark.svg`, logo);
 
-// The circle mark as favicon
+// The circle mark (favicon and home page avatar), without its ./STATIGAMI label
 if (hasBrand) {
-  await Deno.copyFile(
-    `${brandDir}/statigami-ds/assets/statigami-mark-circle.svg`,
-    `${outDir}/favicon.svg`,
-  );
+  const circle = await Deno.readTextFile(`${brandDir}/statigami-ds/assets/statigami-mark-circle.svg`);
+  await Deno.writeTextFile(`${outDir}/mark-circle.svg`, circle.replace(/\s*<text[\s\S]*?<\/text>/, ""));
   console.log(`Brand styles built from ${tokensCss}`);
 } else {
-  await Deno.writeTextFile(`${outDir}/favicon.svg`, logo);
+  await Deno.writeTextFile(`${outDir}/mark-circle.svg`, logo);
   console.log("Brand folder not found; using neutral site styles");
 }

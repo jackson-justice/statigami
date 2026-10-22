@@ -12,11 +12,11 @@ website:
   draft-mode: gone
   description: "Sports stats, folded into stories."
   site-url: https://jackson-justice.github.io/statigami/
-  favicon: assets/brand/favicon.svg
+  favicon: assets/brand/mark-circle.svg
   open-graph: true
   twitter-card: true
   navbar:
-    logo: assets/brand/logo.svg
+    logo: assets/brand/mark.svg
     logo-alt: "Statigami logo"
     left:
       - href: articles.qmd

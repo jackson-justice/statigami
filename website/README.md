@@ -18,7 +18,7 @@ Quarto ships with Positron and RStudio; on Positron's terminal, `quarto` may nee
 `scripts/prepare-site.ts` runs first (Quarto pre-render) and generates three git-ignored things, so none of them need to be copied between computers:
 
 - `articles/figures/<project>/`: copied from each project's `figures/`. Re-run the project's `analysis.R` first if the figures changed.
-- `assets/brand/`: the design tokens (as CSS custom properties), navbar logo and favicon, built from the repo's `brand/` folder (or `STATIGAMI_BRAND_DIR`).
+- `assets/brand/`: the design tokens (as CSS custom properties), navbar logo, and the circle logo used as favicon and avatar, built from the repo's `brand/` folder (or `STATIGAMI_BRAND_DIR`).
 - `_site/`: the rendered site.
 
 If the build prints **"Brand folder not found; using neutral site styles"**, the brand files are missing (or `STATIGAMI_BRAND_DIR` points somewhere wrong). The site still renders, just without brand styling and logo.

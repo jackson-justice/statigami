@@ -179,15 +179,15 @@ a {
   .navbar-brand {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     text-decoration: none;
-    img { max-height: 36px; height: 36px; width: 36px; }
+    img { max-height: 48px; height: 48px; width: 48px; }
   }
   .navbar-title {
     color: var(--sg-paper);
-    font-size: 21px;
+    font-size: 28px;
     font-weight: 600;
-    letter-spacing: -0.6px;
+    letter-spacing: -0.8px;
   }
   .navbar-nav { gap: 4px; margin-left: 12px; }
   .nav-link {
@@ -968,6 +968,8 @@ nav#TOC {
   .sg-feature-figure { border-left: none; border-top: 1px solid var(--sg-rule-ink); }
   .navbar .navbar-nav { margin-left: 0; }
   .navbar-collapse { padding-top: 8px; }
+  .navbar .navbar-brand img { height: 40px; width: 40px; }
+  .navbar .navbar-title { font-size: 24px; }
 }
 
 @media (max-width: 767.98px) {
@@ -980,7 +982,6 @@ nav#TOC {
   .sg-archive-arrow { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
   .sg-about-grid { grid-template-columns: 1fr; }
   .sg-avatar { width: 96px; height: 96px; }
-  .sg-about-grid { grid-template-columns: 1fr; }
   .nav-footer { flex-direction: column; align-items: flex-start; }
   .nav-footer .nav-footer-left, .nav-footer .nav-footer-center, .nav-footer .nav-footer-right { justify-content: flex-start; text-align: left; }
   .sg-plot-axes { display: none; }
