@@ -7,6 +7,9 @@ project:
 
 website:
   title: "Statigami"
+  # Articles with `draft: true` are not published at all (Quarto's default,
+  # "unlinked", would still publish the page at its URL)
+  draft-mode: gone
   description: "Sports stats, folded into stories."
   navbar:
     logo: assets/brand/logo.svg
