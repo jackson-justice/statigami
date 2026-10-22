@@ -643,6 +643,8 @@ nav#TOC {
   padding: clamp(56px, 8vw, 96px) 0;
   border-bottom: 1px solid var(--sg-rule-ink);
 }
+// The last band sits on the footer, which has its own top rule
+#quarto-document-content > .sg-band:last-child { border-bottom: none; }
 
 .sg-section-head {
   display: flex;
@@ -824,32 +826,6 @@ nav#TOC {
   color: var(--sg-fg-on-ink-2);
 }
 
-// About strip
-.sg-about-strip { border-bottom: none; }
-.sg-about-grid {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: clamp(24px, 5vw, 56px);
-  align-items: center;
-  > div { max-width: 720px; }
-}
-.sg-avatar {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  display: block;
-  box-shadow: 0 0 0 1px var(--sg-rule-ink), 0 0 0 10px var(--sg-ink-2);
-  margin: 10px;
-}
-.sg-about-quote {
-  font-size: clamp(26px, 3.2vw, 38px);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-  color: var(--sg-paper);
-  margin: 0 0 24px;
-}
-
 // -----------------------------------------------------------------------------
 // Articles archive
 // -----------------------------------------------------------------------------
@@ -973,8 +949,6 @@ nav#TOC {
   .sg-archive-num { display: none; }
   .sg-archive-meta { grid-column: 1; grid-row: 2; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px; }
   .sg-archive-arrow { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
-  .sg-about-grid { grid-template-columns: 1fr; }
-  .sg-avatar { width: 96px; height: 96px; }
   .nav-footer { flex-direction: column; align-items: flex-start; }
   .nav-footer .nav-footer-left, .nav-footer .nav-footer-center, .nav-footer .nav-footer-right { justify-content: flex-start; text-align: left; }
   .sg-plot-axes { display: none; }
