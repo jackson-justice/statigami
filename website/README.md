@@ -16,7 +16,7 @@ need its full path if it isn't on your PATH.
 
 ## What happens on every render
 
-`scripts/prepare-site.R` runs first (Quarto pre-render) and generates three
+`scripts/prepare-site.ts` runs first (Quarto pre-render) and generates three
 git-ignored things, so none of them need to be copied between computers:
 
 - `articles/figures/<project>/`: copied from each project's `figures/`.
@@ -31,7 +31,7 @@ wrong). The site still renders, just without brand styling and logo.
 
 ## Adding an article
 
-1. Add the project folder name to `article_projects` in
-   `scripts/prepare-site.R`.
+1. Add the project folder name to `articleProjects` in
+   `scripts/prepare-site.ts`.
 2. Create `articles/<project>.qmd` and reference figures as
    `figures/<project>/<file>.png`.

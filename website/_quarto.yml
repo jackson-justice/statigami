@@ -3,7 +3,7 @@ project:
   output-dir: _site
   # Copies figures from project folders and builds the brand
   # styles/logo (generated, git-ignored) before every render
-  pre-render: scripts/prepare-site.R
+  pre-render: scripts/prepare-site.ts
 
 website:
   title: "Statigami"

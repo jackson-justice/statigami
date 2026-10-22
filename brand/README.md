@@ -99,7 +99,7 @@ if (has_brand) source(brand_file)
 ## Quarto website
 
 - **Charts:** articles include the PNGs that analysis scripts save to each project's `figures/`; they do not re-run brand code.
-- **Styles and logo:** `website/scripts/prepare-site.R` builds `website/assets/brand/` (a few tokens as SCSS, plus the navbar logo) from this folder on every render. Don't edit those generated files.
+- **Styles and logo:** `website/scripts/prepare-site.ts` builds `website/assets/brand/` (a few tokens as SCSS, plus the navbar logo) from this folder on every render. Don't edit those generated files.
 - **Fonts:** the site loads IBM Plex Sans and Mono from Google Fonts. Do not copy the TTFs into `website/`.
 
 ------------------------------------------------------------------------
