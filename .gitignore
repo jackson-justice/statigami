@@ -90,4 +90,5 @@ rsconnect/
 .DS_Store
 Thumbs.db
 po/*~
+.vscode/
 
