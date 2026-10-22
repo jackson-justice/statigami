@@ -1,17 +1,24 @@
 [
   {
-    "objectID": "articles.html",
-    "href": "articles.html",
-    "title": "Articles",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Statigami",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nCategories\n\n\n\n\n\n\n\n\nOct 23, 2026\n\n\nDo tight ends play better on National Tight Ends Day?\n\n\nNFL\n\n\n\n\n\n\nNo matching items"
+    "text": "I’m a sports fan, but I’m also a statistician. And I often find myself thinking about both sides of the story.\nI’ll be watching a football game, celebrating a touchdown, and at the same time wondering how much that touchdown actually means. Is my team really playing that well? Or is this just something that happens sometimes?\nThat’s kind of how my brain works.\nI love the excitement of sports. The big plays, the upsets, the games that make you think something unbelievable is happening. But I also like looking at the numbers and asking whether they tell the same story.\nThat’s where Statigami comes in.\nInspired by Scorigami, Statigami started as a fun idea to explore interesting and unusual patterns in sports. I created a GitHub repository, started asking questions, and began turning some of those questions into data projects.\nSome ideas come from watching games on TV. Others come from being at the ballpark and noticing something I want to investigate.\nI’m not always trying to prove a point. Most of the time, I’m just curious."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Statigami",
-    "section": "",
-    "text": "Do tight ends play better on National Tight Ends Day?\n\n\nSeven seasons of data say the holiday doesn’t change how teams use their tight ends. It has still produced some great games.\n\n\n\n\n\nOct 23, 2026\n\n15 min\n\n\n\n\nNo matching items"
+    "objectID": "about.html#why-i-share-it",
+    "href": "about.html#why-i-share-it",
+    "title": "About Statigami",
+    "section": "Why I share it",
+    "text": "Why I share it\nI grew up in a family that loves watching and talking about sports. Some of my favorite parts of being a fan are the conversations about what happened, why it happened, and what might happen next.\nStatigami is another way for me to have those conversations.\nI enjoy reading sports articles that go beyond the final score, especially ones that uncover something interesting in the data. And I figure there are probably other people who enjoy those stories too.\nNot every analysis needs to solve a business problem or lead to some practical decision. Sometimes a question is worth exploring simply because it’s interesting.\nI want to make things that I would read.\nAnd if other people enjoy them too, even better."
+  },
+  {
+    "objectID": "about.html#a-little-about-me",
+    "href": "about.html#a-little-about-me",
+    "title": "About Statigami",
+    "section": "A little about me",
+    "text": "A little about me\nI’m Jackson, a Statistics: Data Science student at Brigham Young University.\nI enjoy statistics, programming, and finding creative ways to use data to answer questions. Statigami is a personal project where I can bring those interests together with my love of sports.\nIt’s also a place for me to experiment, learn new things, and share what I discover along the way.\nI’m still figuring out exactly what Statigami will become. For now, I’m just having fun asking questions and seeing where the data takes me."
   },
   {
     "objectID": "articles/national-tight-ends-day.html",
@@ -89,5 +96,19 @@
     "title": "Do tight ends play better on National Tight Ends Day?",
     "section": "Data and methods",
     "text": "Data and methods\n\n\n\n\n\n\nNoteData, definitions and limitations\n\n\n\n\n\nData. Weekly player stats, schedules, snap counts and rosters from nflverse via the nflreadr R package, used under CC BY 4.0. Snap counts originally from Pro Football Reference. Regular season only, 2019-2025.\nNTED games. Games played on the fourth Sunday of October, matched on the actual game date. Thursday and Monday games in the same NFL week are excluded from the main analysis and tested separately.\nWho counts as a tight end. The team’s roster position for that season (some players change positions over their careers). Taysom Hill is counted as a tight end.\nGames played vs missed. Weekly stats only include players who recorded a stat, so snap counts are used to identify everyone who played. A tight end who played but was not targeted counts as zero targets; a tight end who did not play is left out rather than counted as zero.\nUncertainty. 95% intervals come from a bootstrap that resamples whole games. The “random Sunday” comparisons draw one ordinary Sunday per season, 10,000 times.\nLimitations. Seven seasons is a small sample, and this is observational: it can show whether NTED looks different, not why. Touchdowns are too rare to analyze on their own.\nCode: national-tight-ends-day/analysis.R."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Statigami",
+    "section": "",
+    "text": "Data projects on the strange, surprising and unusual corners of sports, from a statistician who can’t stop asking whether the numbers tell the same story. More about Statigami →\n\n\n\n\n\n\n\n\n\nDo tight ends play better on National Tight Ends Day?\n\n\nSeven seasons of data say the holiday doesn’t change how teams use their tight ends. It has still produced some great games.\n\n\n\n\n\nOct 23, 2026\n\n15 min\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "articles.html",
+    "href": "articles.html",
+    "title": "Articles",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nCategories\n\n\n\n\n\n\n\n\nOct 23, 2026\n\n\nDo tight ends play better on National Tight Ends Day?\n\n\nNFL\n\n\n\n\n\n\nNo matching items"
   }
 ]
