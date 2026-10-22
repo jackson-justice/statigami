@@ -65,12 +65,12 @@ Before the October 25 games, rank tight ends or teams by **projected production 
 
 ## Analysis sequence and MVP
 
-- [ ] Create the project directory and save this plan.
-- [ ] Acquire 2019–2025 player-level weekly data and game schedules with R.
-- [ ] Flag exact NTED Sundays for each year; verify counts, game dates and joins.
-- [ ] Check TE participation, missing rows, and position definitions.
-- [ ] Build team-game position-group aggregates and targets/receiving-yard shares.
-- [ ] Produce three initial views: NTED vs other Sundays, within-TE baseline differences, and team TE target-share differences.
+- [x] Create the project directory and save this plan.
+- [x] Acquire 2019–2025 player-level weekly data and game schedules with R.
+- [x] Flag exact NTED Sundays for each year; verify counts, game dates and joins.
+- [x] Check TE participation, missing rows, and position definitions.
+- [x] Build team-game position-group aggregates and targets/receiving-yard shares.
+- [x] Produce three initial views: NTED vs other Sundays, within-TE baseline differences, and team TE target-share differences.
 - [ ] Add opponent/team/season sensitivity checks only if they would materially change interpretation.
 - [ ] Decide whether the predictive stretch goal is feasible before Sunday.
 - [ ] Create article-ready figures and write the Quarto article.
@@ -135,6 +135,7 @@ The article should **reference or copy generated figures at render time** rather
 ## Questions to resolve after the first data audit
 
 1.  Does the weekly player data accurately capture zero-target TEs, or should play-by-play/participation data supplement it?
+    - **Answer (data audit):** No. A weekly stats row exists only when a player records some stat, so ~22–27% of TE games with offensive snaps have no row at all. Snap counts (`load_snap_counts`) now supply participation, and season roster positions replace the static `position` label.
 2.  Is TE **target share** or **production above baseline** the strongest single headline result?
 3.  For the 2026 preview, is a team-unit ranking more stable and interpretable than an individual-TE ranking?
 4.  Should the first article be historical-only, with a separate 2026 forecast/social post, if time is limited?
