@@ -4,6 +4,7 @@ subtitle: "Seven seasons of data say the holiday doesn't change how teams use th
 author: "Jackson Justice"
 date: 2026-10-23
 categories: [NFL]
+draft: true   # remove when the article is final; drafts are not published
 description: "NTED vs every other Sunday, 2019-2025: team usage, individual tight ends, George Kittle, and the players who look like NTED specialists."
 ---
 
