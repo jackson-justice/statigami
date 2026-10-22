@@ -18,6 +18,9 @@
 
 **/data/raw/
 
+# Private brand assets (logo, colors, style guide)
+brand/
+
 
 # Common data file types
 *.tsv
