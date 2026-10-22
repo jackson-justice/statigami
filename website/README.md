@@ -21,14 +21,13 @@ git-ignored things, so none of them need to be copied between computers:
 
 - `articles/figures/<project>/`: copied from each project's `figures/`.
   Re-run the project's `analysis.R` first if the figures changed.
-- `assets/brand/`: site styles and navbar logo, built from the private
-  `brand/` folder at the repo root (or `STATIGAMI_BRAND_DIR`).
+- `assets/brand/`: site styles and navbar logo, built from the repo's
+  `brand/` folder (or `STATIGAMI_BRAND_DIR`).
 - `_site/`: the rendered site.
 
 If the build prints **"Brand folder not found; using neutral site styles"**,
-the private `brand/` folder isn't on this computer. The site still renders,
-just without brand styling and logo. Put `brand/` in the repo root (or set
-`STATIGAMI_BRAND_DIR`) and render again.
+the brand files are missing (or `STATIGAMI_BRAND_DIR` points somewhere
+wrong). The site still renders, just without brand styling and logo.
 
 ## Adding an article
 

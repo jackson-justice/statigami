@@ -81,3 +81,9 @@ Not every analysis becomes content. Some projects exist simply to explore an int
 ## About
 
 Statigami is an ongoing personal project by Jackson Justice, a Statistics: Data Science student at BYU interested in sports analytics, statistical modeling, machine learning, and data storytelling.
+
+## License
+
+The code in this repository is available under the [MIT License](./LICENSE).
+
+The Statigami name, logo and visual identity (in [`brand/`](./brand)) are **not** covered by the MIT License. All rights reserved; see [`brand/LICENSE.md`](./brand/LICENSE.md).

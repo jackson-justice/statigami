@@ -3,7 +3,7 @@
 #
 # 1. Copies each project's generated figures into articles/figures/<project>/
 #    so articles reference figures without duplicating them in git.
-# 2. Builds assets/brand/ from the private brand folder (git-ignored):
+# 2. Builds assets/brand/ (generated, git-ignored) from the brand folder:
 #    _brand.scss (a handful of design tokens) and logo.svg. Without the
 #    brand folder, a neutral fallback is written so the site still renders.
 #

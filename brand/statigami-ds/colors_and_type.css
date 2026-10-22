@@ -1,0 +1,106 @@
+/* Statigami — Design tokens
+ *
+ * Single source of truth for the C9 (analytics-lab × heatmap) brand.
+ * Import this file and consume vars; do not redefine values inline.
+ *
+ *   <link rel="stylesheet" href="/colors_and_type.css">
+ *   color: var(--sg-cobalt);  font: var(--sg-h1);
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ── Palette ────────────────────────────────────────────────
+   * Ink + Paper are the only base surfaces. Cobalt → Magenta → Amber
+   * is a *sequential* heat ramp — use them in order, not as decoration.
+   * Cool maps to "rare / cold / baseline"; hot to "extreme / outlier".
+   */
+  --sg-ink:        #10142B;   /* deepest surface (dark mode bg, on-paper text) */
+  --sg-ink-2:      #1A1F3D;   /* one step lighter — cards on ink */
+  --sg-ink-3:      #2A2F4D;   /* hairline borders on ink */
+
+  --sg-paper:      #FAF5EC;   /* default light surface */
+  --sg-paper-2:    #F2EBDC;   /* cards on paper, alt rows */
+  --sg-paper-3:    #E5DCC6;   /* hairline borders on paper */
+
+  --sg-cobalt:     #1B3FAE;   /* heat · cool   (baseline / rare) */
+  --sg-magenta:    #E83A8A;   /* heat · mid    (notable / inflection) */
+  --sg-amber:      #F2B33C;   /* heat · hot    (extreme / hero) */
+
+  /* Tints — used sparingly, mostly for tag backgrounds + chart fills. */
+  --sg-cobalt-10:  #E0E5F4;
+  --sg-magenta-10: #FBE0EC;
+  --sg-amber-10:   #FCEED1;
+
+  /* Semantic */
+  --sg-fg-1:       var(--sg-ink);                /* primary text on paper */
+  --sg-fg-2:       rgba(16, 20, 43, 0.65);       /* secondary */
+  --sg-fg-3:       rgba(16, 20, 43, 0.45);       /* tertiary / labels */
+  --sg-fg-on-ink:  var(--sg-paper);
+  --sg-fg-on-ink-2:rgba(250, 245, 236, 0.65);
+  --sg-fg-on-ink-3:rgba(250, 245, 236, 0.40);
+
+  --sg-rule:       rgba(16, 20, 43, 0.12);       /* hairlines on paper */
+  --sg-rule-ink:   rgba(250, 245, 236, 0.14);    /* hairlines on ink */
+
+  --sg-grid:       rgba(16, 20, 43, 0.08);       /* the C9 coordinate grid on paper */
+  --sg-grid-ink:   rgba(250, 245, 236, 0.10);    /* same grid on ink */
+
+  /* ── Type ──────────────────────────────────────────────────── */
+  --sg-sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --sg-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Type roles. Plex Sans 600 is the workhorse display weight; Plex Mono
+     does *all* metadata, labels, byline tags, captions, timestamps. */
+  --sg-display:  600 64px/1.02 var(--sg-sans);   letter-spacing: -2px;
+  --sg-h1:       600 44px/1.05 var(--sg-sans);
+  --sg-h2:       600 30px/1.15 var(--sg-sans);
+  --sg-h3:       600 22px/1.25 var(--sg-sans);
+  --sg-eyebrow:  500 11px/1.20 var(--sg-mono);   /* UPPERCASE, letter-spacing 2px */
+  --sg-body:     400 17px/1.55 var(--sg-sans);
+  --sg-body-sm:  400 14px/1.50 var(--sg-sans);
+  --sg-mono-tag: 500 11px/1.10 var(--sg-mono);   /* the `// stat` tag style */
+  --sg-mono-md:  400 13px/1.40 var(--sg-mono);
+  --sg-caption:  400 12px/1.35 var(--sg-mono);
+
+  /* ── Spacing / radii / motion ──────────────────────────────── */
+  --sg-r-sharp:  2px;     /* default — Statigami is a *flat-corner* brand */
+  --sg-r-pill:   999px;   /* mono-tag chips only */
+  --sg-r-soft:   8px;     /* exceptional cases — menus, modals */
+
+  --sg-s-1: 4px;  --sg-s-2: 8px;  --sg-s-3: 12px; --sg-s-4: 16px;
+  --sg-s-5: 24px; --sg-s-6: 32px; --sg-s-7: 48px; --sg-s-8: 64px;
+
+  --sg-shadow-card: 0 1px 3px rgba(16,20,43,.08), 0 4px 16px rgba(16,20,43,.06);
+  --sg-shadow-lift: 0 12px 40px rgba(16,20,43,.16);
+
+  --sg-ease:     cubic-bezier(.2, .7, .3, 1);
+  --sg-dur-fast: 120ms;
+  --sg-dur-med:  220ms;
+}
+
+/* Mono eyebrow / tag helper — used everywhere */
+.sg-eyebrow {
+  font: var(--sg-eyebrow);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--sg-fg-3);
+}
+.sg-mono-tag {
+  font: var(--sg-mono-tag);
+  letter-spacing: 1.4px;
+  padding: 3px 8px;
+}
+
+/* The signature heatmap tag-row. Three chips, butted edge-to-edge, no gap. */
+.sg-heat-tags { display: inline-flex; }
+.sg-heat-tags > * {
+  font: var(--sg-mono-tag);
+  letter-spacing: 1.4px;
+  padding: 4px 10px;
+  color: var(--sg-paper);
+  white-space: nowrap;
+}
+.sg-heat-tags > :nth-child(1) { background: var(--sg-cobalt); }
+.sg-heat-tags > :nth-child(2) { background: var(--sg-magenta); }
+.sg-heat-tags > :nth-child(3) { background: var(--sg-amber); color: var(--sg-ink); }

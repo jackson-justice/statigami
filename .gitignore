@@ -18,8 +18,17 @@
 
 **/data/raw/
 
-# Private brand assets (logo, colors, style guide)
-brand/
+# Brand: only what the chart and site builds use is committed (see
+# brand/LICENSE.md: the name, logo and visual identity are not MIT-licensed).
+# The rest of the design system stays local.
+brand/statigami-ds/README.md
+brand/statigami-ds/SETUP.md
+brand/statigami-ds/SKILL.md
+brand/statigami-ds/preview/
+brand/statigami-ds/ui_kits/
+brand/statigami-ds/slides/
+brand/statigami-ds/IBM_Plex_Sans/*VariableFont*
+brand/statigami-ds/IBM_Plex_Sans/static/*Condensed*
 
 
 # Common data file types

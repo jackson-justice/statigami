@@ -621,7 +621,7 @@ summary(team_te_units$target_share) |> print()
 figures_dir <- file.path(project_dir, "figures")
 dir.create(figures_dir, showWarnings = FALSE)
 
-# Chart styling uses the private Statigami brand (brand/, git-ignored) when it
+# Chart styling uses the Statigami brand (brand/, see brand/LICENSE.md) when it
 # is available, and a neutral palette otherwise, so the public repo still runs.
 # See brand/README.md for STATIGAMI_BRAND_DIR.
 brand_file <- file.path(Sys.getenv("STATIGAMI_BRAND_DIR", "brand"), "R", "theme_statigami.R")
