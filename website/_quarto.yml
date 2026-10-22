@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: _site
+  # Copies figures from project folders and (if available) the private brand
+  # styles/logo into git-ignored locations before every render
+  pre-render: scripts/prepare-site.R
+
+website:
+  title: "Statigami"
+  description: "Sports stats, folded into stories."
+  navbar:
+    logo: assets/brand/logo.svg
+    left:
+      - href: index.qmd
+        text: Home
+      - href: articles.qmd
+        text: Articles
+
+format:
+  html:
+    theme:
+      - cosmo
+      - assets/brand/_brand.scss
+    toc: true
+    toc-title: "Contents"
+    fig-cap-location: bottom
+    link-external-newwindow: true

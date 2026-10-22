@@ -1,0 +1,11 @@
+---
+title: "Statigami"
+subtitle: "Sports stats, folded into stories."
+listing:
+  contents: articles/*.qmd
+  sort: "date desc"
+  type: default
+  categories: false
+  fields: [date, title, subtitle, reading-time]
+toc: false
+---

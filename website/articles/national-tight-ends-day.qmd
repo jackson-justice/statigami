@@ -1,0 +1,143 @@
+---
+title: "Do tight ends play better on National Tight Ends Day?"
+subtitle: "Seven seasons of data say the holiday doesn't change how teams use their tight ends. It has still produced some great games."
+author: "Jackson Justice"
+date: 2026-10-23
+categories: [NFL]
+description: "NTED vs every other Sunday, 2019-2025: team usage, individual tight ends, George Kittle, and the players who look like NTED specialists."
+---
+
+<!--
+DRAFT NOTES (remove before publishing)
+- Every number below comes from national-tight-ends-day/analysis.R
+  (sections 6-8) and data/sensitivity_summary.csv. If the analysis is
+  re-run with new data, re-check the numbers in this file.
+- "YOUR TAKE" comments mark where your own reactions belong. They are
+  invisible on the rendered page. Replace them with your words (spoken
+  notes are fine; they get edited for flow, not rewritten).
+-->
+
+`// NFL · 2019-2025 · 84 NTED games · N=493 tight end games`
+
+The NFL has a holiday for tight ends. Every year on the fourth Sunday of October, the league celebrates National Tight Ends Day. So here is the obvious question: do tight ends actually play better that day?
+
+Short answer: no. Teams don't throw to their tight ends any more than usual on NTED. But the day has produced some huge individual games, and a few tight ends have records on it that look almost too good. Most of that is what chance alone would produce.
+
+<!-- YOUR TAKE: a line or two on why you wanted to look at this. -->
+
+## What National Tight Ends Day is
+
+According to the [San Francisco 49ers](https://www.49ers.com/news/george-kittle-national-tight-end-day), the name was born in Week 2 of 2018, when 49ers tight end Garrett Celek caught an 11-yard touchdown from Jimmy Garoppolo against Detroit, and it was Garoppolo who coined it. The NFL then made the fourth Sunday of October the official date. The [Pro Football Hall of Fame](https://www.profootballhof.com/news/celebrating-hall-of-fame-tight-ends-on-national-tight-ends-day) marks October 27, 2019 as the first official league-wide National Tight Ends Day.
+
+That gives seven official NTEDs to study: 2019 through 2025.
+
+## How this was measured
+
+The comparison that matters is not "tight ends on NTED vs tight ends in general". Tight ends' share of the passing game has been rising: from 20.8% of team targets in 2019 to 23.9% in 2025. So every NTED is compared with **other Sundays in the same season**.
+
+- **NTED games** are games played on the NTED Sunday itself: 84 games over seven seasons. Thursday and Monday games in the same NFL week are left out (they are checked separately below).
+- **Team usage** is a team's tight end share of its targets: every tight end counted, backups included.
+- **Individual tight ends** are compared with their own average on other Sundays that season, for the same team, using only games they actually played. A game a player missed is never counted as a zero.
+
+## Teams don't throw to tight ends more on NTED
+
+![League-wide share of team targets on every Sunday of each regular season, by position group. The NTED Sunday (gold) sits inside the normal spread of ordinary Sundays (blue) every year.](figures/national-tight-ends-day/01_nted_vs_other_sundays.png){fig-alt="Dot plot with three panels (tight ends, wide receivers, running backs). For each season 2019-2025, blue dots show the league-wide share of team targets on each ordinary Sunday and a gold dot shows NTED. NTED falls inside the cloud of ordinary Sundays every season, sometimes near the top and sometimes near the bottom."}
+
+On a league-wide basis, the tight end share of targets on NTED averaged almost exactly what a typical Sunday produced (−0.04 percentage points vs the median Sunday). NTED was above the median Sunday in three of seven seasons. In 2024 it ranked second of 18 Sundays; in 2025 it ranked last.
+
+![Each team's tight end share of targets on NTED minus its share on its other Sundays that season. Season averages (gold) sit close to zero.](figures/national-tight-ends-day/03_team_te_share_change.png){fig-alt="Dot plot by season. Each blue dot is one team's change in tight end target share on NTED compared with its other Sundays, ranging from about minus 20 to plus 20 points. Gold season averages sit between about minus 3 and plus 4 points, with no consistent direction."}
+
+Team by team, the picture is the same. Across 168 team games on NTED, the tight end share of targets was **0.4 points higher** than each team's own baseline, with a 95% interval of −0.8 to +1.5 points. 51% of teams were above their baseline: a coin flip.
+
+<!-- YOUR TAKE: reaction to the "it's basically a coin flip" result. -->
+
+## Individual tight ends: same targets, a few more yards
+
+![Distribution of each tight end's NTED targets and receiving yards minus his own average on other Sundays that season. Bars shade from blue (below baseline) to gold (above).](figures/national-tight-ends-day/02_te_vs_own_baseline.png){fig-alt="Two histograms. The top shows targets compared with each player's baseline, centered on zero. The bottom shows receiving yards compared with baseline, peaked just below zero with a long tail to the right reaching above 100 yards."}
+
+Across 493 tight end games, NTED targets were exactly in line with each player's normal workload (−0.01 per game). Receiving yards were slightly higher: **about 2 yards per player** above baseline (95% interval: 0.3 to 3.7).
+
+That yardage bump is the one result in this analysis that looks unusual, so it gets a closer look below.
+
+## Reality check: what if every Sunday were NTED?
+
+The strongest test is a placebo: run the exact same comparison for every ordinary Sunday, as if each one were National Tight Ends Day, and see whether the real NTED stands out.
+
+![Average change in team tight end target share for every Sunday of each season. NTED (gold) lands anywhere from near the top to dead last.](figures/national-tight-ends-day/04_placebo_every_sunday.png){fig-alt="Dot plot with one row per season. Each blue dot is an ordinary Sunday's average change in team tight end target share; the gold dot is NTED. NTED is near the right edge in 2024, near the left edge in 2025, and in the middle in other years."}
+
+For team usage it doesn't. A random set of seven ordinary Sundays, one per season, matches or beats NTED **40% of the time**.
+
+For receiving yards, the real NTED does look unusual at first: only 2% of random Sunday sets match its average. But that average leans on three huge games:
+
+| NTED tight end yards vs own baseline | NTED value | Random Sunday sets as high |
+|---|---|---|
+| Average, all games | +1.9 yds | 2% |
+| Average, without the three biggest games | +1.1 yds | 11% |
+| Median tight end | −1.8 yds | 17% |
+
+Take out Travis Kelce's 179 yards in 2023, Kyle Pitts's 163 in 2021 and Tucker Kraft's 143 in 2025, and NTED looks like any other Sunday. The typical tight end actually gains a little *less* than usual on NTED. With about ten measures tested, one standing out is roughly what chance alone would produce.
+
+The result also holds when NTED is compared only with nearby Sundays (within three weeks), when Thursday and Monday games of NTED week are included, when each opponent's usual tight end defense is accounted for, and when any single season is left out.
+
+<!-- YOUR TAKE: what you make of the yards result. Fun quirk? Coincidence? -->
+
+## Case study: George Kittle
+
+![George Kittle's receiving yards in every game he played, 2019-2025. NTED games are gold; the line marks his season average.](figures/national-tight-ends-day/05_kittle_nted.png){fig-alt="Dot plot by season of George Kittle's receiving yards in every game. Gold NTED dots sit above his season average in 2019, 2022 and 2024, and below it in 2020 and 2025. In 2021 he did not play on NTED. In 2023 the 49ers played on the Monday of NTED week, shown as a hollow gold circle above his average."}
+
+| Season | Opponent | Game | Yards | His usual | Rank among his games |
+|---|---|---|---|---|---|
+| 2019 | vs CAR | NTED Sunday | 86 | 74 | 4th of 14 |
+| 2020 | at NE | NTED Sunday | 55 | 83 | 5th of 8 |
+| 2021 | vs IND | Did not play | | | |
+| 2022 | vs KC | NTED Sunday | 98, 1 TD | 48 | 2nd of 15 |
+| 2023 | at MIN | Monday of NTED week | 78 | 63 | 6th of 16 |
+| 2024 | vs DAL | NTED Sunday | 128, 1 TD | 70 | 2nd of 15 |
+| 2025 | at HOU | NTED Sunday | 43, 1 TD | 59 | 7th of 11 |
+
+Across his five NTED Sundays, Kittle has averaged 82 receiving yards against 67 in his usual games those seasons, with a touchdown in each of his last three NTED Sundays. Random games from the same seasons would produce a record that strong about 1 time in 10: a genuinely good run, but not one that rules out luck.
+
+Two oddities: he did not play on NTED in 2021, and in 2023 the 49ers played on Monday night, so Kittle's NTED-week game was not on National Tight Ends Day itself.
+
+<!-- YOUR TAKE: the Kittle story. What stands out to you in his chart? -->
+
+## The NTED standouts, and the luck behind them
+
+![Average NTED receiving yards vs usual games in the same seasons, for the ten tight ends with the strongest NTED records plus George Kittle.](figures/national-tight-ends-day/06_nted_standouts.png){fig-alt="Dumbbell chart. For eleven tight ends, a blue dot shows usual receiving yards per game and a gold dot shows average NTED receiving yards. Every gold dot is to the right of its blue dot; the largest gaps are Tucker Kraft and Kyle Pitts, each around 74 NTED yards against roughly 37 and 44 usual."}
+
+Among the 28 receiving tight ends with at least three NTEDs (and at least three targets in a usual game), a few have remarkable records:
+
+- **Hayden Hurst**: above his usual yards in all three of his NTEDs.
+- **Cade Otton**: above his usual in all four.
+- **Logan Thomas**: three for three.
+- **Kyle Pitts**: four of five, averaging 74 NTED yards against 44 in his usual games.
+
+Here is the catch. Give 28 players a handful of games each, and some will string together great ones by chance. About three of these 28 would be expected to post an NTED record this strong by luck alone. Four did.
+
+<!-- YOUR TAKE: favorite NTED performance or player story. -->
+
+## So, do tight ends play better on National Tight Ends Day?
+
+Not in any way the data can detect. Across seven seasons, teams gave their tight ends the same share of the passing game on NTED as on any other Sunday, and individual tight ends saw the same number of targets. A small bump in receiving yards traces back to a few outstanding games rather than a league-wide pattern.
+
+What NTED does have is stories: Kelce's 179 yards, Pitts's 163, Kittle's 128, and a handful of players who seem to show up every fourth Sunday of October. They are worth celebrating. They just aren't caused by the calendar.
+
+<!-- YOUR TAKE: closing thought, and anything to watch for this Sunday. -->
+
+## Data and methods
+
+::: {.callout-note collapse="true" title="Data, definitions and limitations"}
+**Data.** Weekly player stats, schedules, snap counts and rosters from [nflverse](https://nflverse.nflverse.com/) via the [nflreadr](https://nflreadr.nflverse.com/) R package. Regular season only, 2019-2025.
+
+**NTED games.** Games played on the fourth Sunday of October, matched on the actual game date. Thursday and Monday games in the same NFL week are excluded from the main analysis and tested separately.
+
+**Who counts as a tight end.** The team's roster position for that season (some players change positions over their careers). Taysom Hill is counted as a tight end.
+
+**Games played vs missed.** Weekly stats only include players who recorded a stat, so snap counts are used to identify everyone who played. A tight end who played but was not targeted counts as zero targets; a tight end who did not play is left out rather than counted as zero.
+
+**Uncertainty.** 95% intervals come from a bootstrap that resamples whole games. The "random Sunday" comparisons draw one ordinary Sunday per season, 10,000 times.
+
+**Limitations.** Seven seasons is a small sample, and this is observational: it can show whether NTED looks different, not why. Touchdowns are too rare to analyze on their own.
+
+Code: [national-tight-ends-day/analysis.R](https://github.com/jackson-justice/statigami/tree/main/national-tight-ends-day).
+:::

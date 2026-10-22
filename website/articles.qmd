@@ -1,0 +1,9 @@
+---
+title: "Articles"
+listing:
+  contents: articles/*.qmd
+  sort: "date desc"
+  type: table
+  fields: [date, title, categories]
+toc: false
+---
