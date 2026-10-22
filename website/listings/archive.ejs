@@ -1,0 +1,32 @@
+<%
+// Articles page: one row per article, newest first
+// Titles may mark one accent word with *asterisks* (rendered amber italic).
+// Quarto listing templates use lodash tags: "equals" outputs raw HTML, "dash" escapes.
+const accent = (text) => {
+  const m = (text || "").match(/^(.*?)\*([^*]+)\*(.*)$/);
+  return m ? `${escape(m[1])}<em>${escape(m[2])}</em>${escape(m[3])}` : escape(text || "");
+};
+const escape = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+%>
+
+```{=html}
+<ol class="sg-archive">
+<% items.forEach((item, i) => { %>
+  <li>
+    <a class="sg-archive-row" href="<%- item.path %>">
+      <span class="sg-archive-num"><%= String(items.length - i).padStart(2, "0") %></span>
+      <span class="sg-archive-main">
+        <span class="sg-archive-title"><%= accent(item.title) %></span>
+        <% if (item.subtitle) { %><span class="sg-archive-dek"><%= item.subtitle %></span><% } %>
+      </span>
+      <span class="sg-archive-meta">
+        <% for (const c of item.categories || []) { %><span class="sg-chip">// <%= c %></span><% } %>
+        <span><%= item.date %></span>
+        <span><%= item["reading-time"] || "" %></span>
+      </span>
+      <span class="sg-archive-arrow" aria-hidden="true">→</span>
+    </a>
+  </li>
+<% }) %>
+</ol>
+```

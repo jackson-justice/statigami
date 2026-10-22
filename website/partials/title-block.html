@@ -1,0 +1,25 @@
+<header id="title-block-header" class="quarto-title-block sg-title-block$if(quarto-template-params.banner-header-class)$ $quarto-template-params.banner-header-class$$endif$">
+  <div class="quarto-title-banner">
+    <div class="quarto-title column-body">
+      <div class="sg-kicker">
+        $if(categories)$<span class="sg-kicker-cat">// $for(categories)$$categories$$sep$ · $endfor$</span>$endif$
+        $if(eyebrow)$<span class="sg-kicker-cat">// $eyebrow$</span>$endif$
+        $if(date)$<span class="sg-kicker-date">$date$</span>$endif$
+      </div>
+      $if(title)$<h1 class="title">$title$</h1>$endif$
+      $if(subtitle)$
+      <p class="subtitle lead">$subtitle$</p>
+      $endif$
+      $if(by-author)$
+      <p class="sg-byline">By $for(by-author)$$it.name.literal$$sep$, $endfor$</p>
+      $endif$
+      $if(facts)$
+      <dl class="sg-facts">
+        $for(facts)$
+        <div><dt>// $it.label$</dt><dd>$it.value$</dd></div>
+        $endfor$
+      </dl>
+      $endif$
+    </div>
+  </div>
+</header>

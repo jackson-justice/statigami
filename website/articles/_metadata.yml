@@ -1,0 +1,2 @@
+# Shared by every article: turns on the article layout and reading-progress bar
+body-classes: sg-article

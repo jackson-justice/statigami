@@ -1,9 +1,11 @@
 ---
 title: "Articles"
+subtitle: "Every Statigami article, newest first."
+eyebrow: "Archive"
 listing:
   contents: articles/*.qmd
   sort: "date desc"
-  type: table
-  fields: [date, title, categories]
+  template: listings/archive.ejs
+  fields: [title, subtitle, date, categories, reading-time]
 toc: false
 ---

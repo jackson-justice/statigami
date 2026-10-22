@@ -4,8 +4,10 @@
 // 1. Copies each project's generated figures into articles/figures/<project>/
 //    so articles reference figures without duplicating them in git.
 // 2. Builds assets/brand/ (generated, git-ignored) from the brand folder:
-//    _brand.scss (a handful of design tokens) and logo.svg. Without the
-//    brand folder, a neutral fallback is written so the site still renders.
+//    _brand.scss (the design tokens as CSS custom properties, plus the few
+//    Bootstrap defaults that need literal values), logo.svg and favicon.svg.
+//    Without the brand folder, neutral stand-ins are written so the site
+//    still renders.
 //
 // Runs from the website/ directory with Quarto's bundled Deno, so building
 // the site needs nothing installed beyond Quarto.
@@ -50,52 +52,82 @@ const tokensCss = `${brandDir}/statigami-ds/colors_and_type.css`;
 const outDir = "assets/brand";
 await Deno.mkdir(outDir, { recursive: true });
 
+// Every `--sg-*` color and font token in the design system's :root block
 const readTokens = async (path: string): Promise<Record<string, string>> => {
   const css = await Deno.readTextFile(path);
+  const root = css.match(/:root\s*\{([\s\S]*?)\n\}/)?.[1] ?? "";
   const tokens: Record<string, string> = {};
-  for (const match of css.matchAll(/--sg-([a-z0-9-]+):\s*(#[0-9A-Fa-f]{6})/g)) {
-    tokens[match[1]] = match[2];
+  for (const match of root.matchAll(/--sg-([a-z0-9-]+):\s*([^;]+);/g)) {
+    tokens[match[1]] = match[2].trim();
   }
   return tokens;
 };
 
-let scss: string[];
+// Neutral stand-ins for the tokens the site styles use, so the site still
+// renders (unbranded) without the brand folder
+const neutralTokens: Record<string, string> = {
+  "ink": "#1a1a1a", "ink-2": "#262626", "ink-3": "#3a3a3a",
+  "paper": "#f5f5f5", "paper-2": "#e8e8e8", "paper-3": "#d4d4d4",
+  "cobalt": "#5b6b8c", "magenta": "#a0a0a0", "amber": "#d0d0d0",
+  "fg-1": "#1a1a1a", "fg-2": "rgba(26, 26, 26, 0.65)", "fg-3": "rgba(26, 26, 26, 0.45)",
+  "fg-on-ink": "#f5f5f5", "fg-on-ink-2": "rgba(245, 245, 245, 0.65)",
+  "fg-on-ink-3": "rgba(245, 245, 245, 0.40)",
+  "rule": "rgba(26, 26, 26, 0.12)", "rule-ink": "rgba(245, 245, 245, 0.14)",
+  "sans": "system-ui, sans-serif", "mono": "ui-monospace, monospace",
+  "shadow-lift": "0 12px 40px rgba(0, 0, 0, .3)",
+  "ease": "cubic-bezier(.2, .7, .3, 1)",
+};
 
-if (await exists(tokensCss)) {
-  const t = await readTokens(tokensCss);
-  scss = [
-    "/*-- scss:defaults --*/",
-    "@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap');",
-    `$body-bg: ${t["paper"]};`,
-    `$body-color: ${t["ink"]};`,
-    `$link-color: ${t["cobalt"]};`,
-    `$navbar-bg: ${t["ink"]};`,
-    `$navbar-fg: ${t["paper"]};`,
-    `$footer-bg: ${t["paper-2"]};`,
-    "$font-family-sans-serif: 'IBM Plex Sans', system-ui, sans-serif;",
-    "$font-family-monospace: 'IBM Plex Mono', ui-monospace, monospace;",
-    "$headings-font-weight: 600;",
-    "$border-radius: 2px;",
-    "",
-    "/*-- scss:rules --*/",
-    "// Metadata is mono (brand rule: mono for facts about facts)",
-    ".quarto-title-meta, figcaption, .listing-date, .listing-categories,",
-    ".quarto-category, .table { font-family: $font-family-monospace; }",
-    "h1, h2, h3 { letter-spacing: -0.5px; text-wrap: balance; }",
-    "p { text-wrap: pretty; }",
-  ];
+const hasBrand = await exists(tokensCss);
+const t = hasBrand ? await readTokens(tokensCss) : neutralTokens;
+
+// Logo: the bare mark with its grid and connector drawn in paper (it uses
+// currentColor, which an <img> can't inherit)
+const logo = hasBrand
+  ? (await Deno.readTextFile(`${brandDir}/statigami-ds/assets/statigami-mark.svg`))
+    .replaceAll("currentColor", t["paper"])
+  : '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"></svg>\n';
+// Also as a CSS token, since stylesheet url() paths can't point into the site
+const logoUri = `data:image/svg+xml;base64,${btoa(logo)}`;
+
+// Bootstrap defaults need literal values; everything else in
+// styles/statigami.scss reads the tokens as CSS custom properties
+const scss = [
+  "/*-- scss:defaults --*/",
+  hasBrand
+    ? "@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&display=swap');"
+    : "",
+  `$body-bg: ${t["ink"]};`,
+  `$body-color: ${t["paper"]};`,
+  `$link-color: ${t["paper"]};`,
+  `$headings-color: ${t["paper"]};`,
+  `$navbar-bg: ${t["ink"]};`,
+  `$navbar-fg: ${t["paper"]};`,
+  `$footer-bg: ${t["ink"]};`,
+  `$border-color: ${t["rule-ink"]};`,
+  `$code-color: ${t["paper"]};`,
+  `$font-family-sans-serif: ${t["sans"]};`,
+  `$font-family-monospace: ${t["mono"]};`,
+  "$headings-font-weight: 600;",
+  "$border-radius: 2px;",
+  "",
+  "/*-- scss:rules --*/",
+  ":root {",
+  ...Object.entries(t).map(([name, value]) => `  --sg-${name}: ${value};`),
+  `  --sg-logo: url("${logoUri}");`,
+  "}",
+];
+await Deno.writeTextFile(`${outDir}/_brand.scss`, scss.join("\n") + "\n");
+await Deno.writeTextFile(`${outDir}/logo.svg`, logo);
+
+// The circle mark as favicon
+if (hasBrand) {
   await Deno.copyFile(
     `${brandDir}/statigami-ds/assets/statigami-mark-circle.svg`,
-    `${outDir}/logo.svg`,
+    `${outDir}/favicon.svg`,
   );
   console.log(`Brand styles built from ${tokensCss}`);
 } else {
-  scss = ["/*-- scss:defaults --*/", "", "/*-- scss:rules --*/"];
-  await Deno.writeTextFile(
-    `${outDir}/logo.svg`,
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"></svg>\n',
-  );
+  await Deno.writeTextFile(`${outDir}/favicon.svg`, logo);
   console.log("Brand folder not found; using neutral site styles");
 }
-
-await Deno.writeTextFile(`${outDir}/_brand.scss`, scss.join("\n") + "\n");

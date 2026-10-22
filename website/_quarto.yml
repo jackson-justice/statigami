@@ -11,22 +11,44 @@ website:
   # "unlinked", would still publish the page at its URL)
   draft-mode: gone
   description: "Sports stats, folded into stories."
+  site-url: https://jackson-justice.github.io/statigami/
+  favicon: assets/brand/favicon.svg
+  open-graph: true
+  twitter-card: true
   navbar:
     logo: assets/brand/logo.svg
+    logo-alt: "Statigami logo"
     left:
-      - href: index.qmd
-        text: Home
       - href: articles.qmd
-        text: Articles
+        text: "// Articles"
       - href: about.qmd
-        text: About
+        text: "// About"
+  page-footer:
+    left: |
+      <span class="sg-footer-sig">./STATIGAMI</span>
+      <span class="sg-footer-tag">Sports stats, folded into stories.</span>
+    center: |
+      <span class="sg-triad"><span>// sports</span><span>// stats</span><span>// storytelling</span></span>
+    right:
+      - text: "// Articles"
+        href: articles.qmd
+      - text: "// About"
+        href: about.qmd
+      - text: "// GitHub"
+        href: https://github.com/jackson-justice/statigami
 
 format:
   html:
     theme:
       - cosmo
       - assets/brand/_brand.scss
+      - styles/statigami.scss
+    template-partials:
+      - partials/title-block.html
+    include-after-body: partials/after-body.html
+    title-block-banner: true
     toc: true
-    toc-title: "Contents"
+    toc-title: "// Contents"
     fig-cap-location: bottom
     link-external-newwindow: true
+    smooth-scroll: true

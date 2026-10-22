@@ -1,5 +1,7 @@
 ---
-title: "About Statigami"
+title: "About *Statigami*"
+subtitle: "A sports fan and a statistician, watching the same game."
+eyebrow: "About"
 toc: false
 ---
 
@@ -29,7 +31,9 @@ I enjoy reading sports articles that go beyond the final score, especially ones 
 
 Not every analysis needs to solve a business problem or lead to some practical decision. Sometimes a question is worth exploring simply because it's interesting.
 
-**I want to make things that I would read.**
+::: sg-pull
+I want to make things that I would read.
+:::
 
 And if other people enjoy them too, even better.
 

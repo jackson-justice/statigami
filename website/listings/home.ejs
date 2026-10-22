@@ -1,0 +1,87 @@
+<%
+// Home page listing: the newest article as a featured card, its key stat as
+// a big-number band, then any older articles as a grid of tiles.
+
+// Titles may mark one accent word with *asterisks* (rendered amber italic).
+// Quarto listing templates use lodash tags: "equals" outputs raw HTML, "dash" escapes.
+const accent = (text) => {
+  const m = (text || "").match(/^(.*?)\*([^*]+)\*(.*)$/);
+  return m ? `${escape(m[1])}<em>${escape(m[2])}</em>${escape(m[3])}` : escape(text || "");
+};
+const escape = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const kicker = (item) =>
+  [...(item.categories || []), item.date, item["reading-time"]].filter(Boolean).join(" · ");
+
+// Deterministic mini-scatter for tiles, seeded by title so it never changes
+const scatter = (seed, heat) => {
+  let h = 0;
+  for (const c of seed) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  const rand = (i) => { const s = Math.sin((h % 9973 + 1) * (i + 1) * 12.9898) * 43758.5453; return s - Math.floor(s); };
+  const dots = Array.from({ length: 9 }, (_, i) => {
+    const x = 8 + i * 10.5 + rand(i) * 4, y = 52 - i * 5 - rand(i + 9) * 8;
+    return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.7" fill="var(--sg-${heat})" opacity="${(0.5 + i * 0.06).toFixed(2)}"/>`;
+  }).join("");
+  return `<svg viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><g class="sg-tile-grid"><line x1="0" y1="15" x2="100" y2="15"/><line x1="0" y1="30" x2="100" y2="30"/><line x1="0" y1="45" x2="100" y2="45"/><line x1="25" y1="0" x2="25" y2="60"/><line x1="50" y1="0" x2="50" y2="60"/><line x1="75" y1="0" x2="75" y2="60"/></g>${dots}</svg>`;
+};
+
+const [featured, ...rest] = items;
+const stat = featured && featured["key-stat"];
+%>
+
+```{=html}
+<% if (featured) { %>
+<a class="sg-feature" href="<%- featured.path %>">
+  <div class="sg-feature-text">
+    <span class="sg-kicker"><span class="sg-kicker-cat">// Latest</span><span><%= kicker(featured) %></span></span>
+    <h3 class="sg-feature-title no-anchor"><%= accent(featured.title) %></h3>
+    <% if (featured.subtitle) { %><p class="sg-feature-dek"><%= featured.subtitle %></p><% } %>
+    <% if (featured.facts) { %>
+    <dl class="sg-facts">
+      <% for (const f of featured.facts) { %><div><dt>// <%= f.label %></dt><dd><%= f.value %></dd></div><% } %>
+    </dl>
+    <% } %>
+    <span class="sg-cta">Read the article <span aria-hidden="true">→</span></span>
+  </div>
+  <% if (featured.image) { %>
+  <div class="sg-feature-figure">
+    <img src="<%- featured.image %>" alt="<%= featured['image-alt'] || '' %>" loading="lazy">
+  </div>
+  <% } %>
+</a>
+<% } %>
+
+<% if (stat) { %>
+<section class="sg-stat-band">
+  <div class="sg-eyebrow">// The number · from the latest article</div>
+  <div class="sg-stat-grid">
+    <div class="sg-stat-value"><%= stat.value %><span class="sg-stat-unit"><%= stat.unit %></span></div>
+    <div class="sg-stat-copy">
+      <p class="sg-stat-headline"><%= stat.headline %></p>
+      <p class="sg-stat-body"><%= stat.body %></p>
+      <% if (stat.source) { %><p class="sg-stat-source">// SOURCE · <%= stat.source %></p><% } %>
+      <a class="sg-stat-link" href="<%- featured.path %>">// See how it was measured →</a>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<% if (rest.length) { %>
+<section class="sg-more">
+  <div class="sg-section-head">
+    <div class="sg-eyebrow">// More articles</div>
+  </div>
+  <div class="sg-tiles">
+  <% rest.forEach((item, i) => { const heat = ["cobalt", "magenta", "amber"][i % 3]; %>
+    <a class="sg-tile" href="<%- item.path %>">
+      <div class="sg-tile-art">
+        <%= scatter(item.title || "", heat) %>
+        <span class="sg-tile-tag">// <%= (item.categories || ["Statigami"])[0] %></span>
+        <h3 class="sg-tile-title no-anchor"><%= accent(item.title) %></h3>
+      </div>
+      <div class="sg-tile-meta"><span><%= item.date %></span><span><%= item["reading-time"] || "" %></span></div>
+    </a>
+  <% }) %>
+  </div>
+</section>
+<% } %>
+```

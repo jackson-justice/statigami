@@ -1,19 +1,38 @@
 ---
-title: "Do tight ends play better on National Tight Ends Day?"
+title: "Do tight ends play *better* on National Tight Ends Day?"
 subtitle: "Seven seasons of data say the holiday doesn't change how teams use their tight ends. It has still produced some great games."
 author: "Jackson Justice"
 date: 2026-10-23
 categories: [NFL]
 description: "NTED vs every other Sunday, 2019-2025: team usage, individual tight ends, George Kittle, and the players who look like NTED specialists."
+image: figures/national-tight-ends-day/05_kittle_nted.png
+image-alt: "George Kittle's receiving yards in every game, 2019-2025, with his National Tight Ends Day games highlighted in gold."
+# Facts strip under the title (also shown on the home page card)
+facts:
+  - label: Seasons
+    value: "2019–25"
+  - label: NTED games
+    value: "84"
+  - label: Tight end games
+    value: "493"
+  - label: Verdict
+    value: "Just another Sunday"
+# The one number the home page features from this article
+key-stat:
+  value: "+0.4"
+  unit: "pts"
+  headline: "How much more teams threw to their tight ends on National Tight Ends Day."
+  body: "Across 168 team games, the tight end share of targets was 0.4 points above each team's own baseline, with a 95% interval of −0.8 to +1.5. 51% of teams were above their usual: a coin flip."
+  source: "nflverse via nflreadr · regular season 2019–2025"
 ---
-
-`// NFL · 2019-2025 · 84 NTED games · N=493 tight end games`
 
 The NFL has a holiday for tight ends. Every year on the fourth Sunday of October, the league celebrates National Tight Ends Day (NTED). So here is the obvious question: do tight ends actually play better that day?
 
 My favorite NFL player is George Kittle, and my favorite team is the San Francisco 49ers. Kittle has been a big part of popularizing National Tight Ends Day, and he's done a lot for tight ends off the field too: in 2021 he organized the first [Tight End University](https://www.49ers.com/news/george-kittle-travis-kelce-greg-olsen-tight-end-university-teu-nashville-nfl) in Nashville with Travis Kelce and Greg Olsen, an offseason get-together for tight ends from around the league. So with NTED coming up, I thought it'd be cool to see whether there's actually some correlation between the celebration and how tight ends play. Just for fun, see if it's actually a thing.
 
+::: sg-answer
 Short answer: not that I can find. Teams don't throw to their tight ends any more than usual on NTED. But the day has produced some huge individual games, and a few tight ends have records on it that look almost too good. Most of that looks like what chance alone would produce.
+:::
 
 ## What National Tight Ends Day is
 

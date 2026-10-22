@@ -1,15 +1,107 @@
 ---
-title: "Statigami"
-subtitle: "Sports stats, folded into stories."
+pagetitle: "Statigami · Sports stats, folded into stories"
+description: "Data projects on the strange, surprising and unusual corners of sports."
+page-layout: full
+toc: false
+body-classes: sg-home
 listing:
+  id: latest
   contents: articles/*.qmd
   sort: "date desc"
-  type: default
-  categories: false
-  fields: [date, title, subtitle, reading-time]
-toc: false
+  template: listings/home.ejs
+  fields: [title, subtitle, date, image, image-alt, categories, reading-time, facts, key-stat]
 ---
 
-Data projects on the strange, surprising and unusual corners of sports,
-from a statistician who can't stop asking whether the numbers tell the same story.
-[More about Statigami →](about.qmd)
+::: {.column-screen .sg-hero}
+```{=html}
+<div class="sg-wrap sg-hero-grid">
+  <div class="sg-hero-text">
+    <span class="sg-path">./STATIGAMI</span>
+    <h1 class="sg-display">Sports stats, <em>folded</em> into stories.</h1>
+    <p class="sg-hero-dek">Data projects on the strange, surprising and unusual corners of sports,
+    from a statistician who can't stop asking whether the numbers tell the same story.</p>
+    <div class="sg-hero-actions">
+      <a class="sg-btn sg-btn-primary" href="#latest-section">Read the latest</a>
+      <a class="sg-btn sg-btn-ghost" href="about.html">About Statigami</a>
+    </div>
+    <span class="sg-triad"><span>// sports</span><span>// stats</span><span>// storytelling</span></span>
+  </div>
+
+  <div class="sg-hero-plot" aria-hidden="true">
+    <div class="sg-plot-head"><span>./FIELD-NOTES / EVERY-QUESTION</span><span>N=1 · σ=CURIOUS</span></div>
+    <svg viewBox="0 0 400 290" preserveAspectRatio="xMidYMid meet">
+      <g class="sg-plot-grid">
+        <line x1="0" y1="50" x2="400" y2="50"/><line x1="0" y1="110" x2="400" y2="110"/>
+        <line x1="0" y1="170" x2="400" y2="170"/><line x1="0" y1="230" x2="400" y2="230"/>
+        <line x1="80" y1="10" x2="80" y2="280"/><line x1="160" y1="10" x2="160" y2="280"/>
+        <line x1="240" y1="10" x2="240" y2="280"/><line x1="320" y1="10" x2="320" y2="280"/>
+      </g>
+      <g class="sg-plot-noise">
+        <circle cx="44" cy="214" r="2.4"/><circle cx="70" cy="272" r="2.4"/><circle cx="96" cy="196" r="2.4"/>
+        <circle cx="124" cy="258" r="2.4"/><circle cx="150" cy="226" r="2.4"/><circle cx="132" cy="150" r="2.4"/>
+        <circle cx="176" cy="196" r="2.4"/><circle cx="206" cy="118" r="2.4"/><circle cx="222" cy="186" r="2.4"/>
+        <circle cx="252" cy="160" r="2.4"/><circle cx="276" cy="134" r="2.4"/><circle cx="296" cy="40" r="2.4"/>
+        <circle cx="306" cy="112" r="2.4"/><circle cx="338" cy="96" r="2.4"/><circle cx="372" cy="74" r="2.4"/>
+        <circle cx="58" cy="236" r="2.4"/><circle cx="270" cy="70" r="2.4"/><circle cx="196" cy="238" r="2.4"/>
+      </g>
+      <path class="sg-plot-curve" d="M30 262 C 100 248, 140 196, 178 158 S 222 150, 252 116 S 320 52, 362 40"/>
+      <g class="sg-plot-dots">
+        <circle cx="30" cy="262" r="6" fill="var(--sg-cobalt)"/>
+        <circle cx="62" cy="254" r="6" fill="var(--sg-cobalt)"/>
+        <circle cx="94" cy="242" r="6" fill="var(--sg-cobalt)"/>
+        <circle cx="122" cy="222" r="6" fill="var(--sg-cobalt)"/>
+        <circle cx="150" cy="190" r="6" fill="var(--sg-magenta)"/>
+        <circle cx="178" cy="158" r="6" fill="var(--sg-magenta)"/>
+        <circle cx="206" cy="150" r="6" fill="var(--sg-magenta)"/>
+        <circle cx="232" cy="140" r="6" fill="var(--sg-magenta)"/>
+        <circle cx="256" cy="112" r="6" fill="var(--sg-amber)"/>
+        <circle cx="290" cy="80" r="6" fill="var(--sg-amber)"/>
+        <circle cx="324" cy="56" r="6" fill="var(--sg-amber)"/>
+        <circle class="sg-plot-hero" cx="362" cy="40" r="9" fill="var(--sg-amber)"/>
+      </g>
+      <g class="sg-plot-labels">
+        <text x="40" y="282">the question</text>
+        <text x="190" y="176">the hunch</text>
+        <text x="352" y="20" text-anchor="end">the answer</text>
+      </g>
+    </svg>
+    <div class="sg-plot-foot">
+      <span>COOL</span><i class="c"></i><i class="m"></i><i class="a"></i><span>HOT</span>
+      <span class="sg-plot-axes">X · TIME WATCHING&nbsp;&nbsp; Y · QUESTIONS ASKED</span>
+    </div>
+  </div>
+</div>
+```
+:::
+
+::::: {#latest-section .column-screen .sg-band}
+:::: sg-wrap
+```{=html}
+  <div class="sg-section-head">
+    <div>
+      <div class="sg-eyebrow">// Latest article</div>
+      <h2 class="sg-h-section no-anchor">Every article starts with a question.</h2>
+    </div>
+    <a class="sg-link-tag" href="articles.html">// All articles →</a>
+  </div>
+```
+
+::: {#latest}
+:::
+::::
+:::::
+
+::: {.column-screen .sg-band .sg-about-strip}
+```{=html}
+<div class="sg-wrap sg-about-grid">
+  <img class="sg-avatar" src="assets/brand/favicon.svg" alt="">
+  <div>
+    <div class="sg-eyebrow">// Who's asking</div>
+    <p class="sg-about-quote">“I want to make things that I would read.”</p>
+    <p class="sg-about-body">I'm Jackson, a Statistics: Data Science student at BYU and a lifelong sports fan.
+    Statigami is where I chase the questions I can't stop thinking about mid-game.</p>
+    <a class="sg-link-tag" href="about.html">// More about Statigami →</a>
+  </div>
+</div>
+```
+:::
