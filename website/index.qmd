@@ -98,8 +98,6 @@ listing:
   <div>
     <div class="sg-eyebrow">// Who's asking</div>
     <p class="sg-about-quote">“I want to make things that I would read.”</p>
-    <p class="sg-about-body">I'm Jackson, a Statistics: Data Science student at BYU and a lifelong sports fan.
-    Statigami is where I chase the questions I can't stop thinking about mid-game.</p>
     <a class="sg-link-tag" href="about.html">// More about Statigami →</a>
   </div>
 </div>
