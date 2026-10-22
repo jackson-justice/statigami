@@ -1,0 +1,44 @@
+---
+title: "About Statigami"
+toc: false
+---
+
+I'm a sports fan, but I'm also a statistician. And I often find myself thinking about both sides of the story.
+
+I'll be watching a football game, celebrating a touchdown, and at the same time wondering how much that touchdown actually means. Is my team really playing that well? Or is this just something that happens sometimes?
+
+That's kind of how my brain works.
+
+I love the excitement of sports. The big plays, the upsets, the games that make you think something unbelievable is happening. But I also like looking at the numbers and asking whether they tell the same story.
+
+That's where Statigami comes in.
+
+Inspired by *Scorigami*, Statigami started as a fun idea to explore interesting and unusual patterns in sports. I created a GitHub repository, started asking questions, and began turning some of those questions into data projects.
+
+Some ideas come from watching games on TV. Others come from being at the ballpark and noticing something I want to investigate.
+
+I'm not always trying to prove a point. Most of the time, I'm just curious.
+
+## Why I share it
+
+I grew up in a family that loves watching and talking about sports. Some of my favorite parts of being a fan are the conversations about what happened, why it happened, and what might happen next.
+
+Statigami is another way for me to have those conversations.
+
+I enjoy reading sports articles that go beyond the final score, especially ones that uncover something interesting in the data. And I figure there are probably other people who enjoy those stories too.
+
+Not every analysis needs to solve a business problem or lead to some practical decision. Sometimes a question is worth exploring simply because it's interesting.
+
+**I want to make things that I would read.**
+
+And if other people enjoy them too, even better.
+
+## A little about me
+
+I'm Jackson, a Statistics: Data Science student at Brigham Young University.
+
+I enjoy statistics, programming, and finding creative ways to use data to answer questions. Statigami is a personal project where I can bring those interests together with my love of sports.
+
+It's also a place for me to experiment, learn new things, and share what I discover along the way.
+
+I'm still figuring out exactly what Statigami will become. For now, I'm just having fun asking questions and seeing where the data takes me.

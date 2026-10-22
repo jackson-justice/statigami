@@ -9,3 +9,7 @@ listing:
   fields: [date, title, subtitle, reading-time]
 toc: false
 ---
+
+Data projects on the strange, surprising and unusual corners of sports,
+from a statistician who can't stop asking whether the numbers tell the same story.
+[More about Statigami →](about.qmd)

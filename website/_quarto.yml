@@ -18,6 +18,8 @@ website:
         text: Home
       - href: articles.qmd
         text: Articles
+      - href: about.qmd
+        text: About
 
 format:
   html:
