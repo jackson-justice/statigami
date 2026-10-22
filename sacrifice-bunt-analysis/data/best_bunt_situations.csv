@@ -1,0 +1,105 @@
+base_state,outs_bucket,inning_bucket,score_bucket,success_rate,n,situation_label,success_pct
+1st + 2nd,1 Out,Early,2+ Run Game,1,1,1st + 2nd | 1 Out | Early | 2+ Run Game,100
+1st + 3rd,0 Outs,Late,2+ Run Game,1,2,1st + 3rd | 0 Outs | Late | 2+ Run Game,100
+1st + 3rd,1 Out,Middle,2+ Run Game,1,1,1st + 3rd | 1 Out | Middle | 2+ Run Game,100
+1st Only,0 Outs,Middle,2+ Run Game,1,1,1st Only | 0 Outs | Middle | 2+ Run Game,100
+2nd + 3rd,1 Out,Early,1 Run Game,1,1,2nd + 3rd | 1 Out | Early | 1 Run Game,100
+2nd + 3rd,1 Out,Middle,2+ Run Game,1,4,2nd + 3rd | 1 Out | Middle | 2+ Run Game,100
+3rd Only,1 Out,Early,1 Run Game,1,1,3rd Only | 1 Out | Early | 1 Run Game,100
+Bases Loaded,0 Outs,Middle,Tied,1,3,Bases Loaded | 0 Outs | Middle | Tied,100
+Bases Loaded,1 Out,Early,1 Run Game,1,1,Bases Loaded | 1 Out | Early | 1 Run Game,100
+Bases Loaded,1 Out,Late,Tied,1,1,Bases Loaded | 1 Out | Late | Tied,100
+Bases Loaded,1 Out,Middle,Tied,1,1,Bases Loaded | 1 Out | Middle | Tied,100
+Bases Loaded,0 Outs,Early,2+ Run Game,0.875,8,Bases Loaded | 0 Outs | Early | 2+ Run Game,87.5
+1st + 2nd,1 Out,Late,2+ Run Game,0.75,4,1st + 2nd | 1 Out | Late | 2+ Run Game,75
+1st + 3rd,0 Outs,Early,Tied,0.75,4,1st + 3rd | 0 Outs | Early | Tied,75
+2nd + 3rd,0 Outs,Late,Tied,0.75,24,2nd + 3rd | 0 Outs | Late | Tied,75
+Bases Loaded,0 Outs,Middle,2+ Run Game,0.75,8,Bases Loaded | 0 Outs | Middle | 2+ Run Game,75
+2nd + 3rd,0 Outs,Early,Tied,0.7272727272727273,22,2nd + 3rd | 0 Outs | Early | Tied,72.72727272727273
+Bases Loaded,0 Outs,Early,1 Run Game,0.7142857142857143,7,Bases Loaded | 0 Outs | Early | 1 Run Game,71.42857142857143
+3rd Only,0 Outs,Early,Tied,0.7058823529411765,17,3rd Only | 0 Outs | Early | Tied,70.58823529411765
+2nd + 3rd,0 Outs,Early,1 Run Game,0.6842105263157895,19,2nd + 3rd | 0 Outs | Early | 1 Run Game,68.42105263157895
+1st + 3rd,0 Outs,Early,1 Run Game,0.6666666666666666,9,1st + 3rd | 0 Outs | Early | 1 Run Game,66.66666666666666
+1st + 3rd,0 Outs,Early,2+ Run Game,0.6666666666666666,3,1st + 3rd | 0 Outs | Early | 2+ Run Game,66.66666666666666
+1st + 3rd,0 Outs,Middle,1 Run Game,0.6666666666666666,3,1st + 3rd | 0 Outs | Middle | 1 Run Game,66.66666666666666
+2nd + 3rd,0 Outs,Late,1 Run Game,0.6666666666666666,24,2nd + 3rd | 0 Outs | Late | 1 Run Game,66.66666666666666
+2nd + 3rd,0 Outs,Late,2+ Run Game,0.6666666666666666,30,2nd + 3rd | 0 Outs | Late | 2+ Run Game,66.66666666666666
+Bases Loaded,0 Outs,Early,Tied,0.6666666666666666,9,Bases Loaded | 0 Outs | Early | Tied,66.66666666666666
+Bases Loaded,0 Outs,Late,2+ Run Game,0.6666666666666666,3,Bases Loaded | 0 Outs | Late | 2+ Run Game,66.66666666666666
+3rd Only,0 Outs,Late,1 Run Game,0.6153846153846154,13,3rd Only | 0 Outs | Late | 1 Run Game,61.53846153846154
+2nd + 3rd,0 Outs,Middle,Tied,0.6086956521739131,23,2nd + 3rd | 0 Outs | Middle | Tied,60.86956521739131
+2nd + 3rd,0 Outs,Early,2+ Run Game,0.6,15,2nd + 3rd | 0 Outs | Early | 2+ Run Game,60
+Bases Loaded,0 Outs,Middle,1 Run Game,0.6,5,Bases Loaded | 0 Outs | Middle | 1 Run Game,60
+3rd Only,0 Outs,Early,1 Run Game,0.5833333333333334,12,3rd Only | 0 Outs | Early | 1 Run Game,58.333333333333336
+2nd + 3rd,0 Outs,Middle,1 Run Game,0.5714285714285714,28,2nd + 3rd | 0 Outs | Middle | 1 Run Game,57.14285714285714
+2nd + 3rd,0 Outs,Middle,2+ Run Game,0.5675675675675675,37,2nd + 3rd | 0 Outs | Middle | 2+ Run Game,56.75675675675676
+1st + 2nd,0 Outs,Early,2+ Run Game,0.5555555555555556,9,1st + 2nd | 0 Outs | Early | 2+ Run Game,55.55555555555556
+1st + 3rd,0 Outs,Late,1 Run Game,0.5555555555555556,9,1st + 3rd | 0 Outs | Late | 1 Run Game,55.55555555555556
+3rd Only,0 Outs,Middle,2+ Run Game,0.5454545454545454,22,3rd Only | 0 Outs | Middle | 2+ Run Game,54.54545454545454
+1st + 2nd,0 Outs,Middle,2+ Run Game,0.5333333333333333,15,1st + 2nd | 0 Outs | Middle | 2+ Run Game,53.333333333333336
+3rd Only,0 Outs,Middle,Tied,0.5294117647058824,17,3rd Only | 0 Outs | Middle | Tied,52.94117647058824
+1st + 3rd,0 Outs,Middle,2+ Run Game,0.5,12,1st + 3rd | 0 Outs | Middle | 2+ Run Game,50
+3rd Only,0 Outs,Late,Tied,0.5,6,3rd Only | 0 Outs | Late | Tied,50
+3rd Only,0 Outs,Middle,1 Run Game,0.47368421052631576,19,3rd Only | 0 Outs | Middle | 1 Run Game,47.368421052631575
+1st + 2nd,0 Outs,Middle,Tied,0.45454545454545453,11,1st + 2nd | 0 Outs | Middle | Tied,45.45454545454545
+2nd Only,0 Outs,Late,Tied,0.4146341463414634,41,2nd Only | 0 Outs | Late | Tied,41.46341463414634
+1st + 2nd,0 Outs,Early,Tied,0.4117647058823529,17,1st + 2nd | 0 Outs | Early | Tied,41.17647058823529
+2nd Only,1 Out,Early,1 Run Game,0.4,5,2nd Only | 1 Out | Early | 1 Run Game,40
+2nd Only,0 Outs,Middle,Tied,0.391304347826087,23,2nd Only | 0 Outs | Middle | Tied,39.130434782608695
+2nd Only,0 Outs,Late,2+ Run Game,0.3888888888888889,36,2nd Only | 0 Outs | Late | 2+ Run Game,38.88888888888889
+1st + 2nd,0 Outs,Late,1 Run Game,0.3333333333333333,15,1st + 2nd | 0 Outs | Late | 1 Run Game,33.33333333333333
+1st + 2nd,0 Outs,Late,2+ Run Game,0.3333333333333333,12,1st + 2nd | 0 Outs | Late | 2+ Run Game,33.33333333333333
+1st + 2nd,1 Out,Middle,1 Run Game,0.3333333333333333,3,1st + 2nd | 1 Out | Middle | 1 Run Game,33.33333333333333
+1st Only,1 Out,Middle,2+ Run Game,0.3333333333333333,3,1st Only | 1 Out | Middle | 2+ Run Game,33.33333333333333
+Bases Loaded,0 Outs,Late,1 Run Game,0.3333333333333333,3,Bases Loaded | 0 Outs | Late | 1 Run Game,33.33333333333333
+2nd Only,0 Outs,Early,Tied,0.3181818181818182,22,2nd Only | 0 Outs | Early | Tied,31.818181818181817
+1st + 2nd,0 Outs,Late,Tied,0.3076923076923077,13,1st + 2nd | 0 Outs | Late | Tied,30.76923076923077
+1st + 2nd,0 Outs,Middle,1 Run Game,0.3076923076923077,13,1st + 2nd | 0 Outs | Middle | 1 Run Game,30.76923076923077
+2nd Only,1 Out,Middle,1 Run Game,0.3,10,2nd Only | 1 Out | Middle | 1 Run Game,30
+2nd Only,0 Outs,Middle,2+ Run Game,0.28125,32,2nd Only | 0 Outs | Middle | 2+ Run Game,28.125
+2nd Only,0 Outs,Middle,1 Run Game,0.2777777777777778,36,2nd Only | 0 Outs | Middle | 1 Run Game,27.77777777777778
+2nd Only,0 Outs,Late,1 Run Game,0.2727272727272727,55,2nd Only | 0 Outs | Late | 1 Run Game,27.27272727272727
+3rd Only,0 Outs,Late,2+ Run Game,0.2727272727272727,11,3rd Only | 0 Outs | Late | 2+ Run Game,27.27272727272727
+2nd Only,0 Outs,Early,1 Run Game,0.2631578947368421,19,2nd Only | 0 Outs | Early | 1 Run Game,26.31578947368421
+1st + 3rd,0 Outs,Late,Tied,0.25,4,1st + 3rd | 0 Outs | Late | Tied,25
+1st + 2nd,1 Out,Middle,2+ Run Game,0.23076923076923078,13,1st + 2nd | 1 Out | Middle | 2+ Run Game,23.076923076923077
+1st + 2nd,0 Outs,Early,1 Run Game,0.2,10,1st + 2nd | 0 Outs | Early | 1 Run Game,20
+2nd Only,0 Outs,Early,2+ Run Game,0.2,10,2nd Only | 0 Outs | Early | 2+ Run Game,20
+3rd Only,0 Outs,Early,2+ Run Game,0.2,5,3rd Only | 0 Outs | Early | 2+ Run Game,20
+2nd Only,1 Out,Late,1 Run Game,0.16666666666666666,6,2nd Only | 1 Out | Late | 1 Run Game,16.666666666666664
+2nd Only,1 Out,Late,2+ Run Game,0.16666666666666666,6,2nd Only | 1 Out | Late | 2+ Run Game,16.666666666666664
+Bases Loaded,0 Outs,Late,Tied,0.14285714285714285,7,Bases Loaded | 0 Outs | Late | Tied,14.285714285714285
+2nd Only,1 Out,Early,Tied,0.1111111111111111,9,2nd Only | 1 Out | Early | Tied,11.11111111111111
+2nd Only,1 Out,Middle,2+ Run Game,0.07692307692307693,13,2nd Only | 1 Out | Middle | 2+ Run Game,7.6923076923076925
+1st + 2nd,1 Out,Early,1 Run Game,0,2,1st + 2nd | 1 Out | Early | 1 Run Game,0
+1st + 2nd,1 Out,Early,Tied,0,1,1st + 2nd | 1 Out | Early | Tied,0
+1st + 2nd,1 Out,Late,1 Run Game,0,2,1st + 2nd | 1 Out | Late | 1 Run Game,0
+1st + 2nd,1 Out,Late,Tied,0,1,1st + 2nd | 1 Out | Late | Tied,0
+1st + 2nd,1 Out,Middle,Tied,0,2,1st + 2nd | 1 Out | Middle | Tied,0
+1st + 3rd,0 Outs,Middle,Tied,0,1,1st + 3rd | 0 Outs | Middle | Tied,0
+1st + 3rd,1 Out,Early,2+ Run Game,0,1,1st + 3rd | 1 Out | Early | 2+ Run Game,0
+1st + 3rd,1 Out,Late,2+ Run Game,0,1,1st + 3rd | 1 Out | Late | 2+ Run Game,0
+1st + 3rd,1 Out,Middle,Tied,0,1,1st + 3rd | 1 Out | Middle | Tied,0
+1st Only,0 Outs,Early,1 Run Game,0,1,1st Only | 0 Outs | Early | 1 Run Game,0
+1st Only,0 Outs,Middle,1 Run Game,0,1,1st Only | 0 Outs | Middle | 1 Run Game,0
+1st Only,1 Out,Late,1 Run Game,0,1,1st Only | 1 Out | Late | 1 Run Game,0
+1st Only,1 Out,Late,2+ Run Game,0,3,1st Only | 1 Out | Late | 2+ Run Game,0
+1st Only,1 Out,Middle,1 Run Game,0,1,1st Only | 1 Out | Middle | 1 Run Game,0
+2nd + 3rd,1 Out,Early,Tied,0,3,2nd + 3rd | 1 Out | Early | Tied,0
+2nd + 3rd,1 Out,Late,1 Run Game,0,1,2nd + 3rd | 1 Out | Late | 1 Run Game,0
+2nd + 3rd,1 Out,Late,2+ Run Game,0,1,2nd + 3rd | 1 Out | Late | 2+ Run Game,0
+2nd + 3rd,1 Out,Late,Tied,0,1,2nd + 3rd | 1 Out | Late | Tied,0
+2nd + 3rd,1 Out,Middle,1 Run Game,0,1,2nd + 3rd | 1 Out | Middle | 1 Run Game,0
+2nd Only,1 Out,Early,2+ Run Game,0,7,2nd Only | 1 Out | Early | 2+ Run Game,0
+2nd Only,1 Out,Middle,Tied,0,3,2nd Only | 1 Out | Middle | Tied,0
+3rd Only,1 Out,Late,Tied,0,1,3rd Only | 1 Out | Late | Tied,0
+3rd Only,1 Out,Middle,2+ Run Game,0,1,3rd Only | 1 Out | Middle | 2+ Run Game,0
+Bases Loaded,1 Out,Early,2+ Run Game,0,2,Bases Loaded | 1 Out | Early | 2+ Run Game,0
+Bases Loaded,1 Out,Early,Tied,0,3,Bases Loaded | 1 Out | Early | Tied,0
+Bases Loaded,1 Out,Middle,1 Run Game,0,1,Bases Loaded | 1 Out | Middle | 1 Run Game,0
+Bases Loaded,1 Out,Middle,2+ Run Game,0,2,Bases Loaded | 1 Out | Middle | 2+ Run Game,0
+Other,1 Out,Early,2+ Run Game,0,1,Other | 1 Out | Early | 2+ Run Game,0
+Other,1 Out,Late,1 Run Game,0,1,Other | 1 Out | Late | 1 Run Game,0
+Other,1 Out,Late,2+ Run Game,0,3,Other | 1 Out | Late | 2+ Run Game,0
+Other,1 Out,Middle,1 Run Game,0,1,Other | 1 Out | Middle | 1 Run Game,0
+Other,1 Out,Middle,2+ Run Game,0,1,Other | 1 Out | Middle | 2+ Run Game,0
