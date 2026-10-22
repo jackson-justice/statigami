@@ -15,6 +15,10 @@
 #      team targets and receiving yards (incl. the full team TE unit)
 #   6. First views: NTED vs other Sundays, TEs vs their own baseline, and
 #      team TE target-share changes (saved to figures/)
+#   7. Sensitivity checks: nearby-Sunday and full-week baselines, opponent
+#      adjustment, leave-one-season-out, and an every-Sunday placebo
+#   8. Case studies: George Kittle on NTED, and the TEs with the strongest
+#      NTED records benchmarked against luck
 #
 # See NTED_PLAN.md for the full analysis plan.
 # Run from the statigami repo root (where statigami.Rproj lives).
@@ -617,35 +621,77 @@ summary(team_te_units$target_share) |> print()
 figures_dir <- file.path(project_dir, "figures")
 dir.create(figures_dir, showWarnings = FALSE)
 
-# Chart ink. No Statigami brand files exist yet, so this uses a neutral
-# palette: one blue highlight for NTED, gray for everything else.
-nted_blue <- "#2a78d6"
-baseline_gray <- "#898781"
-ink <- "#0b0b0b"
-ink_secondary <- "#52514e"
-gridline <- "#e1e0d9"
-surface <- "#fcfcfb"
+# Chart styling uses the private Statigami brand (brand/, git-ignored) when it
+# is available, and a neutral palette otherwise, so the public repo still runs.
+# See brand/README.md for STATIGAMI_BRAND_DIR.
+brand_file <- file.path(Sys.getenv("STATIGAMI_BRAND_DIR", "brand"), "R", "theme_statigami.R")
+has_brand <- file.exists(brand_file)
 
-theme_nted <- function() {
-  theme_minimal(base_size = 12) +
-    theme(
-      plot.background = element_rect(fill = surface, color = NA),
-      panel.grid.major = element_line(color = gridline, linewidth = 0.3),
-      panel.grid.minor = element_blank(),
-      plot.title = element_text(color = ink, face = "bold"),
-      plot.subtitle = element_text(color = ink_secondary),
-      plot.caption = element_text(color = ink_secondary, hjust = 0),
-      axis.text = element_text(color = ink_secondary),
-      axis.title = element_text(color = ink_secondary),
-      strip.text = element_text(color = ink, face = "bold", hjust = 0),
-      legend.position = "top",
-      legend.justification = "left",
-      legend.title = element_blank(),
-      legend.text = element_text(color = ink_secondary)
-    )
+if (has_brand) {
+  source(brand_file)
+  # Ink surface. Amber is the brand's hero color (NTED, averages); cobalt is
+  # its baseline color (every other Sunday / team). Cobalt is faint on ink
+  # (2.1:1), so cobalt points get a light ring.
+  highlight <- sg[["amber"]]
+  highlight_name <- "gold"
+  highlight_outline <- sg[["ink"]]
+  muted <- sg[["cobalt"]]
+  muted_name <- "blue"
+  muted_outline <- sg[["fg_on_ink_3"]]
+  ink <- sg[["fg_on_ink"]]
+  surface <- sg[["ink"]]
+  theme_nted <- function() theme_statigami("ink")
+  # Histogram bars shaded cool -> hot by difference from baseline
+  diff_fill_scale <- function(limit) {
+    scale_fill_gradientn(colours = statigami_heat(3), limits = c(-limit, limit),
+                         oob = scales::squish, guide = "none")
+  }
+} else {
+  highlight <- "#2a78d6"
+  highlight_name <- "blue"
+  highlight_outline <- "#fcfcfb"
+  muted <- "#898781"
+  muted_name <- "gray"
+  muted_outline <- "#fcfcfb"
+  diff_fill_scale <- function(limit) {
+    scale_fill_gradient(low = "#2a78d6", high = "#2a78d6", guide = "none")
+  }
+  ink <- "#0b0b0b"
+  surface <- "#fcfcfb"
+  ink_secondary <- "#52514e"
+
+  theme_nted <- function() {
+    theme_minimal(base_size = 12) +
+      theme(
+        plot.background = element_rect(fill = surface, color = NA),
+        panel.grid.major = element_line(color = "#e1e0d9", linewidth = 0.3),
+        panel.grid.minor = element_blank(),
+        plot.title = element_text(color = ink, face = "bold"),
+        plot.subtitle = element_text(color = ink_secondary),
+        plot.caption = element_text(color = ink_secondary, hjust = 0),
+        axis.text = element_text(color = ink_secondary),
+        axis.title = element_text(color = ink_secondary),
+        strip.text = element_text(color = ink, face = "bold", hjust = 0),
+        legend.position = "top",
+        legend.justification = "left",
+        legend.title = element_blank(),
+        legend.text = element_text(color = ink_secondary)
+      )
+  }
 }
 
-data_caption <- "Data: nflverse via nflreadr (weekly player stats, schedules, snap counts, rosters). Regular season, 2019-2025."
+save_figure <- function(plot, name, height) {
+  path <- file.path(figures_dir, name)
+  if (has_brand) {
+    # Brand fonts via ragg, plus the Statigami signature in the corner
+    save_statigami(plot, path, format = "article", surface = "ink", height = height)
+  } else {
+    ggsave(path, plot, device = ragg::agg_png,
+           width = 8, height = height, units = "in", dpi = 200, bg = surface)
+  }
+}
+
+data_caption <- "// SOURCE · nflverse via nflreadr · regular season 2019-2025"
 
 # Cluster bootstrap for a mean: resample whole games, so players or teams
 # from the same game are not treated as independent.
@@ -722,14 +768,16 @@ fig_league <- sunday_dates |>
   geom_point(
     data = \(d) filter(d, !is_nted),
     position = position_jitter(width = 0.15, height = 0, seed = 1),
-    shape = 21, color = surface, size = 2, stroke = 0.4
+    shape = 21, color = muted_outline, size = 2, stroke = 0.4
   ) +
   geom_point(data = \(d) filter(d, is_nted), shape = 21,
-             color = surface, size = 3.8, stroke = 0.8) +
+             color = highlight_outline, size = 3.8, stroke = 0.6) +
   facet_wrap(~position_group, ncol = 1, scales = "free_y") +
-  scale_fill_manual(values = c("National Tight Ends Day" = nted_blue,
-                               "Other Sundays" = baseline_gray)) +
-  guides(fill = guide_legend(override.aes = list(size = 3.5))) +
+  scale_fill_manual(values = c("National Tight Ends Day" = highlight,
+                               "Other Sundays" = muted)) +
+  guides(fill = guide_legend(override.aes = list(
+    size = 3.5, color = c(highlight_outline, muted_outline)
+  ))) +
   scale_y_continuous(labels = scales::label_percent(accuracy = 0.1)) +
   labs(
     title = "Share of team targets: NTED vs every other Sunday",
@@ -811,15 +859,20 @@ fig_te <- te_vs_baseline |>
   pivot_longer(-game_id, names_to = "metric", values_to = "diff") |>
   mutate(metric = factor(metric, levels = c("targets_diff", "yards_diff"),
                          labels = c("Targets vs own baseline", "Receiving yards vs own baseline"))) |>
+  # Bars shaded by their difference, scaled within each panel (targets and
+  # yards have different units), so color reads as "below / at / above"
   ggplot(aes(diff)) +
   geom_histogram(
     data = \(d) filter(d, metric == "Targets vs own baseline"),
-    binwidth = 1, center = 0, fill = nted_blue, color = surface, linewidth = 0.5
+    aes(fill = after_stat(x) / 4),
+    binwidth = 1, center = 0, color = surface, linewidth = 0.5
   ) +
   geom_histogram(
     data = \(d) filter(d, metric == "Receiving yards vs own baseline"),
-    binwidth = 10, center = 0, fill = nted_blue, color = surface, linewidth = 0.5
+    aes(fill = after_stat(x) / 50),
+    binwidth = 10, center = 0, color = surface, linewidth = 0.5
   ) +
+  diff_fill_scale(1) +
   geom_vline(xintercept = 0, color = ink, linewidth = 0.4) +
   facet_wrap(~metric, ncol = 1, scales = "free") +
   labs(
@@ -877,22 +930,489 @@ fig_team <- team_te_vs_baseline |>
   geom_hline(yintercept = 0, color = ink, linewidth = 0.4) +
   geom_point(
     position = position_jitter(width = 0.15, height = 0, seed = 1),
-    color = baseline_gray, alpha = 0.7, size = 1.8
+    shape = 21, fill = muted, color = muted_outline, size = 2, stroke = 0.4
   ) +
   geom_point(data = team_season_means, aes(y = mean_diff_pp),
-             shape = 21, fill = nted_blue, color = surface, size = 4, stroke = 0.8) +
+             shape = 21, fill = highlight, color = highlight_outline, size = 4, stroke = 0.6) +
   scale_y_continuous(labels = \(x) paste0(if_else(x > 0, "+", ""), x, " pts")) +
   labs(
     title = "Team TE target share on NTED vs each team's other Sundays",
-    subtitle = "Each gray dot is one team's NTED game; blue is the season average",
+    subtitle = paste0("Each ", muted_name, " dot is one team's NTED game; ",
+                      highlight_name, " is the season average"),
     x = NULL, y = "Change in TE share of team targets",
     caption = data_caption
   ) +
   theme_nted()
 
-ggsave(file.path(figures_dir, "01_nted_vs_other_sundays.png"), fig_league,
-       width = 8, height = 9, dpi = 200, bg = surface)
-ggsave(file.path(figures_dir, "02_te_vs_own_baseline.png"), fig_te,
-       width = 8, height = 7, dpi = 200, bg = surface)
-ggsave(file.path(figures_dir, "03_team_te_share_change.png"), fig_team,
-       width = 8, height = 5.5, dpi = 200, bg = surface)
+save_figure(fig_league, "01_nted_vs_other_sundays.png", height = 9)
+save_figure(fig_te, "02_te_vs_own_baseline.png", height = 7)
+save_figure(fig_team, "03_team_te_share_change.png", height = 5.5)
+
+
+# =============================================================================
+# 7. Sensitivity checks
+# =============================================================================
+# Does the "no clear NTED effect" reading survive other reasonable designs?
+#   A. Main: baseline = all other Sundays in the season (section 6)
+#   B. Nearby Sundays: baseline = other Sundays within 3 weeks of NTED
+#   C. Full NTED week: Thursday/Monday games of NTED week also count as NTED
+#   D. Opponent-adjusted: expected TE share also reflects the TE share the
+#      opponent allowed on other Sundays (team share only)
+#   E. Leave one season out
+#   F. Placebo: treat every other Sunday as if it were NTED
+
+nearby_weeks <- 3
+
+team_units <- team_te_units |>
+  left_join(select(nted_weeks, season, nted_week), by = "season") |>
+  mutate(weeks_from_nted = week - nted_week)
+
+te_units <- participation |>
+  filter(position_group == "TE", played_offense) |>
+  left_join(select(nted_weeks, season, nted_week), by = "season") |>
+  mutate(weeks_from_nted = week - nted_week)
+
+# Team TE target share on event games minus the team's pooled share on
+# baseline games in the same season
+team_share_diffs <- function(units, event, baseline) {
+  baseline_shares <- units[baseline, ] |>
+    group_by(season, team) |>
+    summarise(baseline_games = n(),
+              base_share = sum(targets) / sum(team_targets), .groups = "drop")
+  units[event, ] |>
+    inner_join(baseline_shares, by = c("season", "team")) |>
+    mutate(diff_pp = 100 * (target_share - base_share))
+}
+
+# Individual TE production on event games minus his average on baseline
+# games for the same team and season (games played only)
+te_diffs <- function(units, event, baseline, min_games) {
+  baselines <- units[baseline, ] |>
+    group_by(season, team, player_id) |>
+    summarise(baseline_games = n(), base_targets = mean(targets),
+              base_yards = mean(receiving_yards), .groups = "drop") |>
+    filter(baseline_games >= min_games)
+  units[event, ] |>
+    inner_join(baselines, by = c("season", "team", "player_id")) |>
+    mutate(targets_diff = targets - base_targets,
+           yards_diff = receiving_yards - base_yards)
+}
+
+is_other_sunday <- \(u) u$nted_category == "Other Sunday"
+is_nearby <- \(u) is_other_sunday(u) & abs(u$weeks_from_nted) <= nearby_weeks
+is_nted_week <- \(u) u$nted_category %in% c("NTED Sunday", "NTED week, other day")
+
+# 7a. Team TE target share under A-D ------------------------------------------
+team_specs <- list(
+  "A. Main (all other Sundays)" =
+    team_share_diffs(team_units, team_units$is_nted, is_other_sunday(team_units)),
+  "B. Nearby Sundays (+/- 3 weeks)" =
+    team_share_diffs(team_units, team_units$is_nted, is_nearby(team_units)),
+  "C. Full NTED week (incl. Thu/Mon)" =
+    team_share_diffs(team_units, is_nted_week(team_units), is_other_sunday(team_units))
+)
+
+# Main spec must reproduce section 6
+stopifnot(isTRUE(all.equal(mean(team_specs[[1]]$diff_pp),
+                           mean(team_te_vs_baseline$target_share_diff_pp))))
+
+# D. Opponent adjustment: expected share = team baseline + how far the
+# opponent's TE share allowed (other Sundays) sits from the league's
+game_opponents <- bind_rows(
+  transmute(reg_games, game_id, team = home_team, opponent = away_team),
+  transmute(reg_games, game_id, team = away_team, opponent = home_team)
+)
+
+te_share_allowed <- team_units |>
+  filter(nted_category == "Other Sunday") |>
+  left_join(game_opponents, by = c("game_id", "team")) |>
+  group_by(season, opponent) |>
+  summarise(allowed_share = sum(targets) / sum(team_targets), .groups = "drop")
+
+league_sunday_share <- team_units |>
+  filter(nted_category == "Other Sunday") |>
+  group_by(season) |>
+  summarise(league_share = sum(targets) / sum(team_targets), .groups = "drop")
+
+team_specs[["D. Opponent-adjusted"]] <- team_specs[[1]] |>
+  left_join(game_opponents, by = c("game_id", "team")) |>
+  left_join(te_share_allowed, by = c("season", "opponent")) |>
+  left_join(league_sunday_share, by = "season") |>
+  mutate(expected_share = base_share + (allowed_share - league_share),
+         diff_pp = 100 * (target_share - expected_share))
+stopifnot(!anyNA(team_specs[["D. Opponent-adjusted"]]$diff_pp))
+
+# 7b. Individual TEs under A-C -------------------------------------------------
+# Nearby baselines have fewer games, so they need only 2
+te_specs <- list(
+  "A. Main (all other Sundays)" =
+    te_diffs(te_units, te_units$is_nted, is_other_sunday(te_units), min_baseline_games),
+  "B. Nearby Sundays (+/- 3 weeks)" =
+    te_diffs(te_units, te_units$is_nted, is_nearby(te_units), 2),
+  "C. Full NTED week (incl. Thu/Mon)" =
+    te_diffs(te_units, is_nted_week(te_units), is_other_sunday(te_units), min_baseline_games)
+)
+stopifnot(nrow(te_specs[[1]]) == nrow(te_vs_baseline))
+
+# 7c. Summary table ------------------------------------------------------------
+summarise_spec <- function(d, col, metric) {
+  boot_mean_ci(d[[col]], d$game_id) |>
+    mutate(metric = metric, n = nrow(d), share_above = mean(d[[col]] > 0))
+}
+
+sensitivity <- bind_rows(
+  imap(team_specs, \(d, spec) summarise_spec(d, "diff_pp", "Team TE target share (pts)") |>
+         mutate(spec = spec)) |> list_rbind(),
+  imap(te_specs, \(d, spec) summarise_spec(d, "targets_diff", "TE targets per game") |>
+         mutate(spec = spec)) |> list_rbind(),
+  imap(te_specs, \(d, spec) summarise_spec(d, "yards_diff", "TE receiving yards per game") |>
+         mutate(spec = spec)) |> list_rbind()
+) |>
+  select(metric, spec, n, mean, ci_low, ci_high, share_above)
+
+sensitivity |>
+  mutate(across(c(mean, ci_low, ci_high, share_above), \(x) round(x, 2))) |>
+  print(n = Inf)
+
+write_csv(sensitivity, file.path(project_dir, "data", "sensitivity_summary.csv"))
+
+# 7d. Leave one season out (main spec) -----------------------------------------
+loso <- map_dfr(seasons, \(s) tibble(
+  season_left_out = s,
+  team_share_pp = mean(team_specs[[1]]$diff_pp[team_specs[[1]]$season != s]),
+  te_targets = mean(te_specs[[1]]$targets_diff[te_specs[[1]]$season != s]),
+  te_yards = mean(te_specs[[1]]$yards_diff[te_specs[[1]]$season != s])
+))
+print(loso)
+loso |>
+  summarise(across(-season_left_out, \(x) paste(round(min(x), 2), "to", round(max(x), 2)))) |>
+  print()
+
+# 7e. Placebo: every Sunday treated as if it were NTED --------------------------
+# For each Sunday, each team's TE share minus its share on all *other*
+# Sundays that season; then average across teams playing that day. NTED's
+# value equals the main spec.
+sunday_units <- team_units |>
+  filter(nted_category %in% c("NTED Sunday", "Other Sunday"))
+
+placebo_dates <- sunday_units |>
+  group_by(season, team) |>
+  mutate(base_share = (sum(targets) - targets) / (sum(team_targets) - team_targets)) |>
+  ungroup() |>
+  mutate(diff_pp = 100 * (target_share - base_share)) |>
+  group_by(season, gameday, is_nted) |>
+  summarise(team_games = n(), mean_diff_pp = mean(diff_pp), .groups = "drop") |>
+  filter(team_games >= min_team_games_per_date) |>
+  group_by(season) |>
+  mutate(rank = min_rank(desc(mean_diff_pp)), sundays = n()) |>
+  ungroup()
+
+placebo_dates |>
+  filter(is_nted) |>
+  transmute(season, mean_diff_pp = round(mean_diff_pp, 2),
+            rank = paste(rank, "of", sundays)) |>
+  print()
+
+# How often does one random ordinary Sunday per season average at least as
+# high as the seven NTEDs did?
+nted_avg <- mean(placebo_dates$mean_diff_pp[placebo_dates$is_nted])
+other_by_season <- split(placebo_dates$mean_diff_pp[!placebo_dates$is_nted],
+                         placebo_dates$season[!placebo_dates$is_nted])
+placebo_avgs <- replicate(10000, mean(map_dbl(other_by_season, \(x) sample(x, 1))))
+message("NTED average (7 seasons): ", round(nted_avg, 2), " pts; ",
+        round(100 * mean(placebo_avgs >= nted_avg)), "% of random Sunday sets match or beat it")
+
+# Same placebo for individual TE receiving yards, the one metric whose main
+# interval excluded zero. Baseline = the TE's other Sundays (3+ games).
+te_placebo_dates <- te_units |>
+  filter(nted_category %in% c("NTED Sunday", "Other Sunday")) |>
+  group_by(season, team, player_id) |>
+  mutate(other_games = n() - 1,
+         base_yards = (sum(receiving_yards) - receiving_yards) / other_games) |>
+  ungroup() |>
+  filter(other_games >= min_baseline_games) |>
+  mutate(yards_diff = receiving_yards - base_yards) |>
+  group_by(season, gameday, is_nted) |>
+  summarise(te_games = n(), mean_yards_diff = mean(yards_diff), .groups = "drop") |>
+  filter(te_games >= min_team_games_per_date)
+
+nted_yards_avg <- mean(te_placebo_dates$mean_yards_diff[te_placebo_dates$is_nted])
+te_other_by_season <- split(te_placebo_dates$mean_yards_diff[!te_placebo_dates$is_nted],
+                            te_placebo_dates$season[!te_placebo_dates$is_nted])
+te_placebo_avgs <- replicate(10000, mean(map_dbl(te_other_by_season, \(x) sample(x, 1))))
+message("NTED TE yards vs own baseline (7-season avg): ", round(nted_yards_avg, 2),
+        "; ", round(100 * mean(te_placebo_avgs >= nted_yards_avg)),
+        "% of random Sunday sets match or beat it")
+
+# Robustness of that yards result: is it a few huge games? Re-run the NTED
+# side without the three biggest NTED games, and with medians instead of means.
+te_placebo_rows <- te_units |>
+  filter(nted_category %in% c("NTED Sunday", "Other Sunday")) |>
+  group_by(season, team, player_id) |>
+  mutate(other_games = n() - 1,
+         base_yards = (sum(receiving_yards) - receiving_yards) / other_games) |>
+  ungroup() |>
+  filter(other_games >= min_baseline_games) |>
+  mutate(yards_diff = receiving_yards - base_yards)
+
+top_nted_games <- te_placebo_rows |>
+  filter(is_nted) |>
+  slice_max(yards_diff, n = 3)
+print(select(top_nted_games, season, team, player_name, receiving_yards, yards_diff))
+
+nted_yards_trimmed <- te_placebo_rows |>
+  filter(is_nted) |>
+  anti_join(top_nted_games, by = c("game_id", "player_id")) |>
+  group_by(season) |>
+  summarise(m = mean(yards_diff)) |>
+  pull(m) |>
+  mean()
+
+median_dates <- te_placebo_rows |>
+  group_by(season, gameday, is_nted) |>
+  summarise(te_games = n(), med = median(yards_diff), .groups = "drop") |>
+  filter(te_games >= min_team_games_per_date)
+nted_yards_median <- mean(median_dates$med[median_dates$is_nted])
+median_by_season <- split(median_dates$med[!median_dates$is_nted],
+                          median_dates$season[!median_dates$is_nted])
+median_placebo_avgs <- replicate(10000, mean(map_dbl(median_by_season, \(x) sample(x, 1))))
+
+tibble(
+  version = c("Mean, all NTED TE games", "Mean, top 3 NTED games removed",
+              "Median TE"),
+  nted_value = round(c(nted_yards_avg, nted_yards_trimmed, nted_yards_median), 2),
+  pct_random_sundays_as_high = round(100 * c(
+    mean(te_placebo_avgs >= nted_yards_avg),
+    mean(te_placebo_avgs >= nted_yards_trimmed),
+    mean(median_placebo_avgs >= nted_yards_median)
+  ))
+) |>
+  print()
+
+fig_placebo <- placebo_dates |>
+  mutate(sunday_type = if_else(is_nted, "National Tight Ends Day", "Other Sundays")) |>
+  ggplot(aes(mean_diff_pp, factor(season, levels = rev(seasons)), fill = sunday_type)) +
+  geom_vline(xintercept = 0, color = ink, linewidth = 0.4) +
+  geom_point(data = \(d) filter(d, !is_nted), shape = 21, color = muted_outline,
+             size = 2.4, stroke = 0.4,
+             position = position_jitter(width = 0, height = 0.12, seed = 1)) +
+  geom_point(data = \(d) filter(d, is_nted), shape = 21, color = highlight_outline,
+             size = 4.2, stroke = 0.6) +
+  scale_fill_manual(values = c("National Tight Ends Day" = highlight,
+                               "Other Sundays" = muted)) +
+  guides(fill = guide_legend(override.aes = list(
+    size = 3.5, color = c(highlight_outline, muted_outline)
+  ))) +
+  scale_x_continuous(labels = \(x) paste0(if_else(x > 0, "+", ""), x, " pts")) +
+  labs(
+    title = "If every Sunday were NTED, would the real one stand out?",
+    subtitle = paste0(
+      "Average change in team TE share of targets vs the rest of that season, for each Sunday\n",
+      "NTED ranks anywhere from near the top to dead last"
+    ),
+    x = "Average change in TE share of team targets", y = NULL,
+    caption = data_caption
+  ) +
+  theme_nted() +
+  theme(panel.grid.major.y = element_blank())
+
+save_figure(fig_placebo, "04_placebo_every_sunday.png", height = 6)
+
+
+# =============================================================================
+# 8. Case studies
+# =============================================================================
+# NTED does not change TE usage (sections 6-7), so individual NTED stories are
+# about players, not the holiday. These case studies compare each NTED game
+# with the same player's other games that season, and benchmark "NTED
+# specialists" against what random games from their own seasons would give.
+
+# Every game a TE played, with where it ranked among his other games that
+# season (team-season, so mid-season trades are separate). Percentile = share
+# of his other games with fewer yards (ties count half); 0.5 = a typical game.
+min_season_games <- 4
+
+te_game_ranks <- te_units |>
+  group_by(season, team, player_id) |>
+  filter(n() >= min_season_games) |>
+  mutate(
+    season_games = n(),
+    yards_pctile = map_dbl(seq_along(receiving_yards), \(i) {
+      others <- receiving_yards[-i]
+      mean(others < receiving_yards[i]) + 0.5 * mean(others == receiving_yards[i])
+    }),
+    yards_rank = min_rank(desc(receiving_yards)),
+    base_targets = (sum(targets) - targets) / (season_games - 1),
+    base_yards = (sum(receiving_yards) - receiving_yards) / (season_games - 1)
+  ) |>
+  ungroup()
+
+# 8a. George Kittle -------------------------------------------------------------
+kittle_id <- "00-0033288"
+stopifnot(unique(participation$player_name[participation$player_id == kittle_id]) == "George Kittle")
+
+sf_nted_games <- reg_games |>
+  filter(nted_category %in% c("NTED Sunday", "NTED week, other day"),
+         home_team == "SF" | away_team == "SF") |>
+  transmute(season, game_id, gameday, weekday, nted_category,
+            opponent = if_else(home_team == "SF", away_team, home_team))
+
+kittle_nted <- sf_nted_games |>
+  left_join(
+    te_game_ranks |> filter(player_id == kittle_id) |>
+      select(game_id, targets, receptions, receiving_yards, receiving_tds,
+             base_targets, base_yards, yards_rank, season_games, yards_pctile),
+    by = "game_id"
+  ) |>
+  mutate(status = case_when(
+    is.na(targets) ~ "Did not play",
+    nted_category == "NTED week, other day" ~ paste(weekday, "game (NTED week)"),
+    .default = "NTED Sunday"
+  ))
+
+kittle_nted |>
+  transmute(season, opponent, status, targets, receptions, receiving_yards,
+            receiving_tds, usual_targets = round(base_targets, 1),
+            usual_yards = round(base_yards, 1),
+            yards_rank = if_else(is.na(yards_rank), NA_character_,
+                                 paste(yards_rank, "of", season_games))) |>
+  print(width = Inf)
+
+kittle_games <- te_game_ranks |>
+  filter(player_id == kittle_id) |>
+  mutate(game_type = case_when(
+    is_nted ~ "NTED Sunday",
+    nted_category == "NTED week, other day" ~ "NTED week (Monday)",
+    .default = "Other games"
+  ))
+
+kittle_season_avg <- kittle_games |>
+  group_by(season) |>
+  summarise(avg_yards = mean(receiving_yards), .groups = "drop")
+
+# Place the "did not play" note in the biggest vertical gap of that season
+kittle_dnp <- kittle_nted |>
+  filter(status == "Did not play") |>
+  mutate(y = map_dbl(season, \(s) {
+    yards <- sort(c(0, kittle_games$receiving_yards[kittle_games$season == s]))
+    gap <- which.max(diff(yards))
+    mean(yards[gap + 0:1])
+  }))
+
+fig_kittle <- kittle_games |>
+  ggplot(aes(factor(season, levels = seasons), receiving_yards)) +
+  geom_point(
+    data = \(d) filter(d, game_type == "Other games"),
+    position = position_jitter(width = 0.15, height = 0, seed = 1),
+    shape = 21, fill = muted, color = muted_outline, size = 2.2, stroke = 0.4
+  ) +
+  geom_errorbar(data = kittle_season_avg,
+                aes(y = avg_yards, ymin = avg_yards, ymax = avg_yards),
+                width = 0.45, color = ink, linewidth = 0.5) +
+  geom_point(data = \(d) filter(d, game_type == "NTED week (Monday)"),
+             shape = 21, fill = surface, color = highlight, size = 4, stroke = 1.2) +
+  geom_point(data = \(d) filter(d, game_type == "NTED Sunday"),
+             shape = 21, fill = highlight, color = highlight_outline, size = 4.2, stroke = 0.6) +
+  geom_label(data = kittle_dnp, aes(x = factor(season, levels = seasons), y = y),
+             label = "NTED: did\nnot play", inherit.aes = FALSE,
+             family = if (has_brand) statigami_mono else "", size = 3,
+             color = ink, fill = surface, label.size = 0, lineheight = 0.9) +
+  scale_x_discrete(drop = FALSE) +
+  labs(
+    title = "George Kittle on National Tight Ends Day",
+    subtitle = paste0(
+      "Receiving yards in every game he played. Gold = NTED Sunday; hollow gold = Monday\n",
+      "game in NTED week (2023); line = his season average"
+    ),
+    x = NULL, y = "Receiving yards",
+    caption = data_caption
+  ) +
+  theme_nted()
+
+# 8b. Who has thrived on NTED? --------------------------------------------------
+# Receiving TEs (usual 3+ targets per game) with 3+ NTED Sundays. For each,
+# the chance a random game from each of the same seasons would rank as well:
+# with many players, a few will look like NTED specialists by luck alone.
+min_nted_games <- 3
+min_usual_targets <- 3
+
+nted_records <- te_game_ranks |>
+  filter(is_nted) |>
+  group_by(player_id, player_name) |>
+  summarise(
+    nted_games = n(),
+    usual_targets = mean(base_targets),
+    nted_yards = mean(receiving_yards),
+    usual_yards = mean(base_yards),
+    yards_diff = nted_yards - usual_yards,
+    avg_pctile = mean(yards_pctile),
+    above_usual = sum(receiving_yards > base_yards),
+    .groups = "drop"
+  ) |>
+  filter(nted_games >= min_nted_games, usual_targets >= min_usual_targets)
+
+# Null: replace each NTED game with a random game from that same team-season
+set.seed(2026)
+pctiles_by_season <- te_game_ranks |>
+  semi_join(filter(te_game_ranks, is_nted), by = c("season", "team", "player_id")) |>
+  group_by(player_id, season, team) |>
+  summarise(pctiles = list(yards_pctile), .groups = "drop")
+
+nted_records <- nted_records |>
+  mutate(chance_as_good = map2_dbl(player_id, avg_pctile, \(pid, observed) {
+    pools <- pctiles_by_season$pctiles[pctiles_by_season$player_id == pid]
+    sims <- replicate(5000, mean(map_dbl(pools, \(x) x[sample.int(length(x), 1)])))
+    mean(sims >= observed)
+  })) |>
+  arrange(desc(avg_pctile))
+
+nted_records |>
+  mutate(across(c(usual_targets, nted_yards, usual_yards, yards_diff), \(x) round(x, 1)),
+         avg_pctile = round(avg_pctile, 2), chance_as_good = round(chance_as_good, 3)) |>
+  print(n = Inf, width = Inf)
+
+message(
+  nrow(nted_records), " receiving TEs with ", min_nted_games, "+ NTED games; ",
+  sum(nted_records$chance_as_good < 0.10), " have an NTED record that random games ",
+  "would match < 10% of the time (about ", round(0.10 * nrow(nted_records), 1),
+  " expected by luck alone)"
+)
+
+# Dumbbell: the ten best NTED records by percentile, plus Kittle
+thrivers <- nted_records |>
+  slice_max(avg_pctile, n = 10) |>
+  bind_rows(filter(nted_records, player_id == kittle_id)) |>
+  distinct(player_id, .keep_all = TRUE) |>
+  mutate(label = paste0(player_name, "  (", above_usual, " of ", nted_games, " above usual)"),
+         label = fct_reorder(label, yards_diff))
+
+fig_thrivers <- thrivers |>
+  ggplot(aes(y = label)) +
+  geom_segment(aes(x = usual_yards, xend = nted_yards, yend = label),
+               color = muted_outline, linewidth = 0.8) +
+  geom_point(aes(x = usual_yards, fill = "Usual game that season"), shape = 21,
+             color = muted_outline, size = 3.2, stroke = 0.4) +
+  geom_point(aes(x = nted_yards, fill = "NTED average"), shape = 21,
+             color = highlight_outline, size = 3.8, stroke = 0.6) +
+  scale_fill_manual(values = c("NTED average" = highlight,
+                               "Usual game that season" = muted),
+                    breaks = c("NTED average", "Usual game that season")) +
+  guides(fill = guide_legend(override.aes = list(
+    size = 3.5, color = c(highlight_outline, muted_outline)
+  ))) +
+  labs(
+    title = "The NTED standouts",
+    subtitle = paste0(
+      "Average NTED receiving yards vs their usual game in the same seasons (ten best NTED\n",
+      "records of ", nrow(nted_records), " receiving TEs, plus George Kittle). By luck alone, about ",
+      round(0.10 * nrow(nted_records)), " of the ", nrow(nted_records), "\nwould post an NTED record ",
+      "this strong; ", sum(nted_records$chance_as_good < 0.10), " actually did"
+    ),
+    x = "Receiving yards per game", y = NULL,
+    caption = data_caption
+  ) +
+  theme_nted() +
+  theme(panel.grid.major.y = element_blank())
+
+save_figure(fig_kittle, "05_kittle_nted.png", height = 6)
+save_figure(fig_thrivers, "06_nted_standouts.png", height = 6.5)

@@ -71,11 +71,13 @@ Before the October 25 games, rank tight ends or teams by **projected production 
 - [x] Check TE participation, missing rows, and position definitions.
 - [x] Build team-game position-group aggregates and targets/receiving-yard shares.
 - [x] Produce three initial views: NTED vs other Sundays, within-TE baseline differences, and team TE target-share differences.
-- [ ] Add opponent/team/season sensitivity checks only if they would materially change interpretation.
-- [ ] Decide whether the predictive stretch goal is feasible before Sunday.
-- [ ] Create article-ready figures and write the Quarto article.
+- [x] Add opponent/team/season sensitivity checks only if they would materially change interpretation.
+- [x] Decide whether the predictive stretch goal is feasible before Sunday.
+  - **Decision: skipped.** No detectable NTED effect on usage, so an NTED-adjusted forecast would reduce to each TE's normal baseline plus noise.
+- [x] Case studies (replaces the forecast): George Kittle's NTED games vs his own seasons, and the TEs with the strongest NTED records, benchmarked against what random games from their own seasons would produce (figures 05-06).
+- [ ] Create article-ready figures and write the Quarto article. Framing: the day does not change TE usage; then individual stories, with luck made explicit.
 - [ ] Verify citation/data attribution and publication constraints; publish with clearly disclosed sources.
-- [ ] After Sunday: update with a 2026 postgame audit (do not rewrite the pregame forecasts).
+- [ ] Optional after Sunday: add 2026 NTED as one more season of evidence (no pregame forecast to audit).
 
 **Time priority:** If pressed for time, finish the historical descriptive article with strong visuals first. A simple, clearly labeled forecast is better than a complicated unvalidated model.
 
