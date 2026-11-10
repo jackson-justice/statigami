@@ -510,3 +510,210 @@ if (playoffs_started) {
 
 cat("\nSaved", basename(graveyard_dir), "tables for", current_season,
     "to", graveyard_dir, "\n")
+
+
+# =============================================================================
+# 7. Figures (full baseline), refreshed every run
+# =============================================================================
+
+source(file.path(project_dir, "chart_setup.R"))
+
+thresholds_primary <- thresholds |> filter(baseline == primary_baseline)
+history_seasons <- read_csv(file.path(data_dir, "team_week_records.csv"),
+                            show_col_types = FALSE, col_select = "season") |>
+  pull(season) |>
+  range()
+figure_caption <- sprintf(
+  "// SOURCE · nflverse · %d through week %d · floors from every team-season %d-%d",
+  current_season, completed_week, history_seasons[1], history_seasons[2]
+)
+tier_fill <- scale_fill_manual(values = tier_colors, breaks = tier_levels,
+                               drop = FALSE)
+
+# --- 7a. Every team's tier after every week ----------------------------------
+# One tile per team-week. Teams are sorted by their current tier and record,
+# so the Graveyard sits at the bottom. The letter is that week's result; a
+# faded tile is a bye (the tier carries over); a ring marks a team that left
+# the Graveyard because the floor stepped up at its next game.
+
+team_order <- tiers_wide |>
+  filter(week == completed_week) |>
+  arrange(tier_full, losses, desc(wins), team) |>
+  pull(team)
+
+tiles <- tiers_wide |>
+  mutate(
+    team = factor(team, levels = rev(team_order)),
+    tier_full = factor(tier_full, levels = tier_levels),
+    text_color = tier_text_color(tier_full)
+  )
+
+current_records <- tiles |>
+  filter(week == completed_week) |>
+  select(team, record, tier_full)
+
+fig_tiles <- ggplot(tiles, aes(week, team)) +
+  geom_tile(aes(fill = tier_full, alpha = !is_bye),
+            color = chart_surface, linewidth = 0.8) +
+  geom_tile(data = filter(tiles, movement_full == "left Graveyard"),
+            fill = NA, color = chart_fg, linewidth = 0.9,
+            width = 0.82, height = 0.82) +
+  geom_text(aes(label = coalesce(outcome, ""), color = text_color),
+            family = chart_mono, size = 2.6, fontface = "bold") +
+  geom_text(data = current_records,
+            aes(x = completed_week + 0.75, label = record),
+            family = chart_mono, size = 2.6, hjust = 0, color = chart_fg_2) +
+  tier_fill +
+  scale_color_identity() +
+  scale_alpha_manual(values = c(`TRUE` = 1, `FALSE` = 0.3), guide = "none") +
+  scale_x_continuous(breaks = seq_len(completed_week), position = "top",
+                     expand = expansion(add = c(0.5, 1.6))) +
+  scale_y_discrete(expand = expansion(add = 0.6)) +
+  labs(
+    title = "The Graveyard, week by week",
+    subtitle = sprintf(paste(
+      "Every team's tier after each week of %d, against floors set by 60",
+      "seasons of history.\nLetter = that week's result. Faded = bye.",
+      "Ring = left the Graveyard when the floor stepped up."
+    ), current_season),
+    x = NULL, y = NULL,
+    caption = figure_caption
+  ) +
+  theme_chart(grid = "none") +
+  theme(
+    legend.position = "top",
+    axis.text.y = element_text(family = chart_mono),
+    axis.ticks = element_blank()
+  )
+
+save_figure(fig_tiles, sprintf("02_tier_tiles_%d.png", current_season),
+            format = "article_tall", height = 9.5)
+
+# --- 7b. Loss paths against the floors --------------------------------------
+# Losses after each game for every team, on top of the three bands. Teams
+# that have been in the Graveyard are drawn in full; the rest are the faint
+# bundle. Paths sit on an integer lattice, so each team gets a small fixed
+# offset to keep the strands apart.
+
+y_max <- max(thresholds_primary$playoff_threshold) + 3
+
+graveyard_teams <- tiers_long |>
+  filter(baseline == primary_baseline, tier == "Graveyard") |>
+  distinct(team) |>
+  pull(team)
+
+paths <- panel_current |>
+  filter(!is_bye) |>
+  mutate(
+    team_index = as.integer(factor(team)),
+    x = games_played + ((team_index - 1) %/% 8 - 1.5) * 0.09,
+    y = losses + ((team_index - 1) %% 8 - 3.5) * 0.07,
+    highlighted = team %in% graveyard_teams
+  )
+
+# One label per endpoint: teams with the same record share a label
+path_ends <- paths |>
+  filter(highlighted) |>
+  slice_max(games_played, n = 1, by = team) |>
+  summarise(
+    x = max(x), y = mean(y),
+    label = paste(paste(team, collapse = ", "), first(record)),
+    .by = c(games_played, record)
+  )
+
+band_labels <- tibble(
+  tier = factor(tier_levels, levels = tier_levels),
+  y = c(
+    0.5,
+    with(thresholds_primary, mean(c(champion_threshold[17], playoff_threshold[17]))),
+    thresholds_primary$playoff_threshold[17] + 1.5
+  ),
+  label = toupper(tier_levels)
+)
+
+fig_paths <- ggplot() +
+  geom_rect(data = tier_bands(thresholds_primary, y_max),
+            aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = tier),
+            alpha = 0.22) +
+  geom_step(data = tier_steps(thresholds_primary, "champion_threshold"),
+            aes(x, y), direction = "hv", color = tier_colors[[2]],
+            linewidth = 0.6) +
+  geom_step(data = tier_steps(thresholds_primary, "playoff_threshold"),
+            aes(x, y), direction = "hv", color = tier_colors[[3]],
+            linewidth = 0.6) +
+  geom_text(data = band_labels, aes(x = 17.3, y = y, label = label, color = tier),
+            family = chart_mono, size = 2.5, hjust = 1, fontface = "bold") +
+  geom_line(data = filter(paths, !highlighted), aes(x, y, group = team),
+            color = chart_fg_3, linewidth = 0.4) +
+  geom_line(data = filter(paths, highlighted), aes(x, y, group = team),
+            color = chart_fg, linewidth = 1) +
+  geom_point(data = filter(paths, highlighted), aes(x, y),
+             color = chart_fg, size = 1.4) +
+  geom_text(data = path_ends, aes(x, y, label = label),
+            family = chart_mono, size = 2.7, hjust = 0, nudge_x = 0.3,
+            color = chart_fg) +
+  tier_fill +
+  guides(fill = guide_legend(override.aes = list(alpha = 1))) +
+  scale_color_manual(values = tier_colors, guide = "none") +
+  scale_x_continuous(breaks = 1:17) +
+  scale_y_continuous(breaks = seq(0, y_max, 2)) +
+  coord_cartesian(xlim = c(0.5, 17.5), ylim = c(-0.5, y_max + 0.5),
+                  expand = FALSE) +
+  labs(
+    title = "Three floors, and who has fallen through them",
+    subtitle = sprintf(paste(
+      "Losses after each game, %d through week %d. Lines: the most losses",
+      "any eventual\nchampion (lower) and any eventual playoff team (upper)",
+      "had at that point, 1966-2025.\nNobody above the upper line has ever",
+      "made the playoffs."
+    ), current_season, completed_week),
+    x = "Games played", y = "Losses",
+    caption = figure_caption
+  ) +
+  theme_chart(grid = "none") +
+  theme(legend.position = "top")
+
+save_figure(fig_paths, sprintf("03_loss_paths_%d.png", current_season),
+            format = "article", height = 5.5)
+
+# --- 7c. How many teams are in each tier -------------------------------------
+
+counts_plot <- tier_counts |>
+  filter(baseline == primary_baseline) |>
+  pivot_longer(c(championship_path, playoff_path, graveyard),
+               names_to = "tier", values_to = "teams") |>
+  mutate(
+    tier = factor(tier_levels[match(tier, c("championship_path", "playoff_path",
+                                             "graveyard"))], levels = tier_levels),
+    text_color = tier_text_color(tier),
+    # A one-team segment is too thin for a label
+    label = if_else(teams >= 2, as.character(teams), "")
+  ) |>
+  # Stack with the Graveyard at the bottom; label each segment at its middle
+  arrange(week, desc(tier)) |>
+  mutate(label_y = cumsum(teams) - teams / 2, .by = week)
+
+fig_counts <- ggplot(counts_plot, aes(factor(week), teams, fill = tier)) +
+  geom_col(color = chart_surface, linewidth = 0.7, width = 0.78) +
+  geom_text(aes(y = label_y, label = label, color = text_color),
+            family = chart_mono, size = 3, fontface = "bold") +
+  tier_fill +
+  scale_color_identity() +
+  scale_y_continuous(breaks = seq(0, 32, 8), expand = expansion(mult = c(0, 0.02))) +
+  labs(
+    title = "The Graveyard fills slowly",
+    subtitle = sprintf(paste(
+      "Teams in each tier after every completed week of %d. The floors rise",
+      "with games\nplayed, so a bad week can drop a team and a good week at",
+      "the right moment can\nlift one back out."
+    ), current_season),
+    x = "Week", y = "Teams",
+    caption = figure_caption
+  ) +
+  theme_chart(grid = "y") +
+  theme(legend.position = "top")
+
+save_figure(fig_counts, sprintf("04_tier_counts_%d.png", current_season),
+            format = "article")
+
+cat("Saved figures to", figures_dir, "\n")

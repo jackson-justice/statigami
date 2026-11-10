@@ -12,8 +12,8 @@ The starting point is a common claim: *roughly 60% of Super Bowl winners started
 - [x] Extended to the full Super Bowl era (1966–2025, 60 seasons)
 - [x] Loss thresholds by games played, for two baselines
 - [x] NFL Graveyard tiers for the 2026 season (backfilled weekly)
+- [x] Figures: the floors, and the 2026 tiers week by week
 - [ ] Week-by-week trajectories (champions vs. field)
-- [ ] Figures
 
 ## Two baselines
 
@@ -153,6 +153,17 @@ Columns of `2026_tiers.csv` (the `_full` and `_modern` suffixes give each baseli
 | `tiers_disagree` | TRUE where the two baselines put the team in different tiers |
 | `made_playoffs`, `sb_champion`, `breaks_threshold_*` | NA until the playoffs start; then whether the season's outcome contradicts the tier |
 
+**Figures** (`figures/`, Statigami ink surface; the tiers take the brand's heat ramp in order, cobalt → magenta → amber, so the Graveyard is always the hot color):
+
+| File | Made by | What it shows |
+|------------------------------------|------------|------------------------------------|
+| `01_loss_floors_1966_2025.png` | `analysis.R` §10 | The two floors as bands on games played × losses, with the 1992 Chargers, 1970 Bengals and the game-17 carry-forward annotated, and the two cells where the modern floor is lower |
+| `02_tier_tiles_<season>.png` | `graveyard_tiers.R` §7 | Every team's tier after every week, one tile per team-week, sorted so the Graveyard is at the bottom. Letter = result, faded = bye, ring = left the Graveyard |
+| `03_loss_paths_<season>.png` | `graveyard_tiers.R` §7 | Every team's losses by game on top of the bands; teams that have been in the Graveyard drawn in full, the rest as a faint bundle |
+| `04_tier_counts_<season>.png` | `graveyard_tiers.R` §7 | Teams in each tier by week, stacked |
+
+The current-season figures are rebuilt on every weekly run. `chart_setup.R` holds the shared brand setup (and a neutral fallback when `brand/` is missing), the tier colors, and the band/staircase helpers both scripts use.
+
 `graveyard_tiers.R` stops before saving if any of its 13 checks fail: thresholds never decrease and equal the raw maxima carried forward; every team has one row per completed week on both baselines, with a tier and a threshold; games + byes = weeks; records never decrease; every tier agrees with the thresholds when re-evaluated; downward moves happen only on a loss and upward moves only when the threshold stepped up without a loss; no move on a bye; the full tier is never worse than the modern one; and every saved `data/weekly/` table for the season shows the same records as the backfill.
 
 ## Data
@@ -236,7 +247,7 @@ source("nfl-championship-trajectories/validate_sources.R")  # optional
 source("nfl-championship-trajectories/graveyard_tiers.R")   # current-season tiers
 ```
 
-Requires `tidyverse`.
+Requires `tidyverse`. The figures also need `ragg`, `systemfonts` and `rsvg` for the brand fonts and logo (see `brand/README.md`).
 
 ## Weekly update
 
@@ -260,6 +271,7 @@ nfl-championship-trajectories/
 ├── validate_sources.R
 ├── graveyard_tiers.R            (current-season tiers; sourced by weekly_update.R)
 ├── weekly_update.R
+├── chart_setup.R                (brand setup and helpers shared by the figure code)
 ├── README.md
 ├── data/
 │   ├── raw/                     (downloads, git-ignored)
@@ -270,4 +282,8 @@ nfl-championship-trajectories/
 │   ├── record_outcomes_by_games.csv
 │   └── team_week_records.csv
 └── figures/
+    ├── 01_loss_floors_1966_2025.png
+    ├── 02_tier_tiles_2026.png
+    ├── 03_loss_paths_2026.png
+    └── 04_tier_counts_2026.png
 ```

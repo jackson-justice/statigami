@@ -654,3 +654,96 @@ loss_thresholds |>
     playoff_rate_on_playoff_path = playoff_path_playoffs / playoff_path
   ) |>
   print(n = Inf, width = Inf)
+
+
+# =============================================================================
+# 10. Figure: the two floors, 1966-2025
+# =============================================================================
+# The thresholds as bands on a games-played x losses chart, with the teams
+# that set the boundaries the modern baseline does not reach. The
+# current-season figures are in graveyard_tiers.R.
+
+source(file.path(project_dir, "chart_setup.R"))
+
+thresholds_full <- loss_thresholds |> filter(baseline == "full")
+thresholds_modern <- loss_thresholds |> filter(baseline == "modern")
+y_max <- max(thresholds_full$playoff_threshold) + 3
+
+# Where the modern baseline's playoff floor is lower (0-4 and 1-6)
+modern_gap <- thresholds_modern |>
+  select(games_played, modern = playoff_threshold) |>
+  inner_join(thresholds_full |> select(games_played, full = playoff_threshold),
+             by = "games_played") |>
+  filter(modern < full)
+
+# Notes sit in the empty parts of the chart, with a leader to the cell
+boundary_notes <- tribble(
+  ~x,   ~y,   ~hjust, ~x_cell, ~y_cell, ~label,
+  1.0,  11.2, 0,      4,       4.6,     "1992 Chargers: 0-4, then 11-5 and a division title.\nThe only 0-4 team ever to make the playoffs.",
+  8.2,  11.2, 0,      7,       6.6,     "1970 Bengals: 1-6, then seven straight wins. The only\nplayoff team with six losses after seven games.",
+  17.3, 4.4,  1,      17,      7.4,     "Carried forward from game 16: the 2011 Giants (7-7\nafter 14, then champions) never played a 17th game."
+)
+
+leaders <- boundary_notes |>
+  transmute(x = x_cell, y = if_else(hjust == 0, y - 0.9, y + 0.8),
+            xend = x_cell, yend = y_cell)
+
+band_labels <- tibble(
+  tier = factor(tier_levels, levels = tier_levels),
+  x = c(1, 17.3, 17.3),
+  hjust = c(0, 1, 1),
+  y = c(1, 8.5, thresholds_full$playoff_threshold[17] + 1.3),
+  label = toupper(tier_levels)
+)
+
+fig_floors <- ggplot() +
+  geom_rect(data = tier_bands(thresholds_full, y_max),
+            aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = tier),
+            alpha = 0.22) +
+  geom_step(data = tier_steps(thresholds_full, "champion_threshold"),
+            aes(x, y), direction = "hv", color = tier_colors[[2]],
+            linewidth = 0.7) +
+  geom_step(data = tier_steps(thresholds_full, "playoff_threshold"),
+            aes(x, y), direction = "hv", color = tier_colors[[3]],
+            linewidth = 0.7) +
+  # Modern baseline: the two cells where its playoff floor is one loss lower
+  geom_tile(data = modern_gap, aes(games_played, full),
+            fill = NA, color = chart_fg, linewidth = 0.6, linetype = "22",
+            width = 0.9, height = 0.9) +
+  geom_text(data = band_labels,
+            aes(x = x, y = y, label = label, color = tier, hjust = hjust),
+            family = chart_mono, size = 2.5, fontface = "bold") +
+  geom_segment(data = leaders, aes(x = x, y = y, xend = xend, yend = yend),
+               color = chart_fg_2, linewidth = 0.4) +
+  geom_text(data = boundary_notes,
+            aes(x = x, y = y, label = label, hjust = hjust),
+            family = chart_mono, size = 2.3, color = chart_fg_2,
+            lineheight = 1) +
+  scale_fill_manual(values = tier_colors, breaks = tier_levels) +
+  guides(fill = guide_legend(override.aes = list(alpha = 1))) +
+  scale_color_manual(values = tier_colors, guide = "none") +
+  scale_x_continuous(breaks = 1:17) +
+  scale_y_continuous(breaks = seq(0, y_max, 2)) +
+  coord_cartesian(xlim = c(0.5, 17.5), ylim = c(-0.5, y_max + 0.5),
+                  expand = FALSE) +
+  labs(
+    title = "Where the floors are",
+    subtitle = paste(
+      "The most losses any eventual Super Bowl champion (lower line) and any",
+      "eventual playoff\nteam (upper line) had after each number of games,",
+      "1966-2025. Dashed: since 1999 alone,\nthe playoff floor is a loss lower."
+    ),
+    x = "Games played", y = "Losses",
+    caption = sprintf(
+      "// SOURCE · nflverse (1999-) · FiveThirtyEight (1966-98) · %s team-seasons",
+      format(sum(thresholds_full$teams[thresholds_full$games_played == 1]),
+             big.mark = ",")
+    )
+  ) +
+  theme_chart(grid = "none") +
+  theme(legend.position = "top")
+
+save_figure(fig_floors, "01_loss_floors_1966_2025.png", format = "article",
+            height = 5.5)
+
+cat("Saved figure to", figures_dir, "\n")
