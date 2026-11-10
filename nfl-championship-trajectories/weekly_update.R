@@ -2,9 +2,9 @@
 # NFL Championship Trajectories: weekly update
 #
 # Run every Tuesday after Monday Night Football. For every team in the current
-# season, this script compares its record with every team since 1999 that had
-# the same record after the same number of games, then prints a ready-to-post
-# summary.
+# season, this script compares its record with every team in the historical
+# baseline that had the same record after the same number of games, then
+# prints a ready-to-post summary.
 #
 # Requires the outputs of analysis.R (run that first, once per offseason):
 #   data/team_week_records.csv
@@ -22,6 +22,10 @@ raw_dir <- file.path(data_dir, "raw")
 weekly_dir <- file.path(data_dir, "weekly")
 dir.create(raw_dir, recursive = TRUE, showWarnings = FALSE)
 dir.create(weekly_dir, recursive = TRUE, showWarnings = FALSE)
+
+# Which history to compare against (see analysis.R section 6):
+#   "modern" = 1999 on, "full" = the whole Super Bowl era (1966 on)
+history_baseline <- "modern"
 
 
 # =============================================================================
@@ -103,7 +107,7 @@ last_week <- record_through(team_results, completed_week - 1) |>
 
 
 # =============================================================================
-# 3. Historical reference (1999 through the last completed season)
+# 3. Historical reference (through the last completed season)
 # =============================================================================
 
 panel <- read_csv(
@@ -113,10 +117,12 @@ panel <- read_csv(
 record_outcomes <- read_csv(
   file.path(data_dir, "record_outcomes_by_games.csv"),
   show_col_types = FALSE
-)
+) |>
+  filter(baseline == history_baseline) |>
+  select(-baseline)
 
 history <- panel |>
-  filter(!is_bye) |>
+  filter(!is_bye, history_baseline == "full" | season >= 1999) |>
   mutate(loss_equiv = losses + 0.5 * ties)
 
 history_seasons <- paste(min(history$season), max(history$season), sep = "-")
@@ -212,7 +218,7 @@ team_report <- standings |>
     across(c(hist_teams, hist_champions, hist_playoff_teams), \(x)
       coalesce(x, 0L)),
     unbeaten = losses == 0 & ties == 0,
-    # No champion since 1999 ever had this many losses at this point
+    # No champion in the baseline ever had this many losses at this point
     past_floor = losses > floor_losses,
     at_floor = losses == floor_losses,
     # This exact record has never produced a champion (and is common enough
@@ -296,7 +302,8 @@ section(
 
 graveyard <- filter(team_report, past_floor)
 section(
-  "The Graveyard: no champion since 1999 was ever this far behind",
+  sprintf("The Graveyard: no champion since %s was ever this far behind",
+          min(history$season)),
   c(
     graveyard |>
       filter(prev_past_floor %in% FALSE) |>
