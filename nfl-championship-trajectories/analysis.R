@@ -606,7 +606,21 @@ loss_thresholds <- panel_baselines |>
       label[made_playoffs & losses == playoff_max_losses], collapse = "; "
     ),
     .groups = "drop"
-  )
+  ) |>
+  # The thresholds the tiers use (graveyard_tiers.R): the raw maxima, carried
+  # forward so they never decrease in games played. Without this a team could
+  # drop a tier by winning: the champion maximum falls from 7 losses at game
+  # 16 to 6 at game 17 because the 2011 Giants (7-7 after 14) never played a
+  # 17th game. That is the only cell the carry-forward changes, on either
+  # baseline. The raw columns and the tier counts above keep the raw values.
+  group_by(baseline) |>
+  arrange(games_played, .by_group = TRUE) |>
+  mutate(
+    champion_threshold = cummax(champion_max_losses),
+    playoff_threshold = cummax(playoff_max_losses)
+  ) |>
+  ungroup() |>
+  relocate(champion_threshold, playoff_threshold, .after = playoff_max_losses)
 
 write_csv(
   loss_thresholds,

@@ -1,0 +1,67 @@
+season,week,team,baseline,games_played,record,outcome,losses,from_tier,to_tier,movement,trigger,champion_threshold,playoff_threshold
+2026,3,HOU,full,3,0-3,L,3,Championship Path,Playoff Path,down to Playoff Path,loss,2,3
+2026,3,HOU,modern,3,0-3,L,3,Championship Path,Playoff Path,down to Playoff Path,loss,2,3
+2026,3,LAC,full,3,0-3,L,3,Championship Path,Playoff Path,down to Playoff Path,loss,2,3
+2026,3,LAC,modern,3,0-3,L,3,Championship Path,Playoff Path,down to Playoff Path,loss,2,3
+2026,3,MIA,full,3,0-3,L,3,Championship Path,Playoff Path,down to Playoff Path,loss,2,3
+2026,3,MIA,modern,3,0-3,L,3,Championship Path,Playoff Path,down to Playoff Path,loss,2,3
+2026,3,TB,full,3,0-3,L,3,Championship Path,Playoff Path,down to Playoff Path,loss,2,3
+2026,3,TB,modern,3,0-3,L,3,Championship Path,Playoff Path,down to Playoff Path,loss,2,3
+2026,3,TEN,full,3,0-3,L,3,Championship Path,Playoff Path,down to Playoff Path,loss,2,3
+2026,3,TEN,modern,3,0-3,L,3,Championship Path,Playoff Path,down to Playoff Path,loss,2,3
+2026,4,HOU,modern,4,0-4,L,4,Playoff Path,Graveyard,entered Graveyard,loss,3,3
+2026,4,LAC,modern,4,0-4,L,4,Playoff Path,Graveyard,entered Graveyard,loss,3,3
+2026,4,MIA,modern,4,0-4,L,4,Playoff Path,Graveyard,entered Graveyard,loss,3,3
+2026,4,TB,modern,4,0-4,L,4,Playoff Path,Graveyard,entered Graveyard,loss,3,3
+2026,4,TEN,modern,4,0-4,L,4,Playoff Path,Graveyard,entered Graveyard,loss,3,3
+2026,5,ARI,full,5,1-4,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,4
+2026,5,ARI,modern,5,1-4,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,4
+2026,5,HOU,modern,5,1-4,W,4,Graveyard,Playoff Path,left Graveyard,threshold stepped up,3,4
+2026,5,LAC,full,5,0-5,L,5,Playoff Path,Graveyard,entered Graveyard,loss,3,4
+2026,5,MIA,full,5,0-5,L,5,Playoff Path,Graveyard,entered Graveyard,loss,3,4
+2026,5,NO,full,5,1-4,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,4
+2026,5,NO,modern,5,1-4,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,4
+2026,5,TB,modern,5,1-4,W,4,Graveyard,Playoff Path,left Graveyard,threshold stepped up,3,4
+2026,5,TEN,full,5,0-5,L,5,Playoff Path,Graveyard,entered Graveyard,loss,3,4
+2026,6,ATL,full,6,2-4,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,5
+2026,6,ATL,modern,6,2-4,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,5
+2026,6,DAL,full,6,2-4,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,5
+2026,6,DAL,modern,6,2-4,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,5
+2026,6,IND,full,6,2-4,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,5
+2026,6,IND,modern,6,2-4,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,5
+2026,6,LA,full,6,2-4,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,5
+2026,6,LA,modern,6,2-4,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,5
+2026,6,NYJ,full,6,2-4,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,5
+2026,6,NYJ,modern,6,2-4,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,5
+2026,6,PHI,full,6,2-4,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,5
+2026,6,PHI,modern,6,2-4,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,5
+2026,6,TEN,full,6,1-5,W,5,Graveyard,Playoff Path,left Graveyard,threshold stepped up,3,5
+2026,6,TEN,modern,6,1-5,W,5,Graveyard,Playoff Path,left Graveyard,threshold stepped up,3,5
+2026,6,WAS,full,6,1-4-1,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,5
+2026,6,WAS,modern,6,1-4-1,L,4,Championship Path,Playoff Path,down to Playoff Path,loss,3,5
+2026,7,ATL,full,7,3-4,W,4,Playoff Path,Championship Path,up to Championship Path,threshold stepped up,4,6
+2026,7,ATL,modern,7,3-4,W,4,Playoff Path,Championship Path,up to Championship Path,threshold stepped up,4,5
+2026,7,DAL,full,7,3-4,W,4,Playoff Path,Championship Path,up to Championship Path,threshold stepped up,4,6
+2026,7,DAL,modern,7,3-4,W,4,Playoff Path,Championship Path,up to Championship Path,threshold stepped up,4,5
+2026,7,LA,full,7,3-4,W,4,Playoff Path,Championship Path,up to Championship Path,threshold stepped up,4,6
+2026,7,LA,modern,7,3-4,W,4,Playoff Path,Championship Path,up to Championship Path,threshold stepped up,4,5
+2026,7,MIA,full,6,1-5,W,5,Graveyard,Playoff Path,left Graveyard,threshold stepped up,3,5
+2026,7,MIA,modern,6,1-5,W,5,Graveyard,Playoff Path,left Graveyard,threshold stepped up,3,5
+2026,7,TEN,modern,7,1-6,L,6,Playoff Path,Graveyard,entered Graveyard,loss,4,5
+2026,8,ATL,full,8,3-5,L,5,Championship Path,Playoff Path,down to Playoff Path,loss,4,6
+2026,8,ATL,modern,8,3-5,L,5,Championship Path,Playoff Path,down to Playoff Path,loss,4,6
+2026,8,DAL,full,8,3-5,L,5,Championship Path,Playoff Path,down to Playoff Path,loss,4,6
+2026,8,DAL,modern,8,3-5,L,5,Championship Path,Playoff Path,down to Playoff Path,loss,4,6
+2026,8,MIA,modern,7,1-6,L,6,Playoff Path,Graveyard,entered Graveyard,loss,4,5
+2026,8,TEN,full,8,1-7,L,7,Playoff Path,Graveyard,entered Graveyard,loss,4,6
+2026,8,WAS,full,7,2-4-1,W,4,Playoff Path,Championship Path,up to Championship Path,threshold stepped up,4,6
+2026,8,WAS,modern,7,2-4-1,W,4,Playoff Path,Championship Path,up to Championship Path,threshold stepped up,4,5
+2026,9,BAL,full,9,4-5,L,5,Championship Path,Playoff Path,down to Playoff Path,loss,4,7
+2026,9,BAL,modern,9,4-5,L,5,Championship Path,Playoff Path,down to Playoff Path,loss,4,7
+2026,9,CAR,full,8,3-5,L,5,Championship Path,Playoff Path,down to Playoff Path,loss,4,6
+2026,9,CAR,modern,8,3-5,L,5,Championship Path,Playoff Path,down to Playoff Path,loss,4,6
+2026,9,LV,full,9,4-5,L,5,Championship Path,Playoff Path,down to Playoff Path,loss,4,7
+2026,9,LV,modern,9,4-5,L,5,Championship Path,Playoff Path,down to Playoff Path,loss,4,7
+2026,9,MIA,full,8,1-7,L,7,Playoff Path,Graveyard,entered Graveyard,loss,4,6
+2026,9,WAS,full,8,2-5-1,L,5,Championship Path,Playoff Path,down to Playoff Path,loss,4,6
+2026,9,WAS,modern,8,2-5-1,L,5,Championship Path,Playoff Path,down to Playoff Path,loss,4,6

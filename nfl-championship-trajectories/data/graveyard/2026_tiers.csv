@@ -1,0 +1,289 @@
+season,week,team,is_bye,opponent,home_away,outcome,games_played,wins,losses,ties,record,point_diff,champion_threshold_full,playoff_threshold_full,tier_full,prev_tier_full,movement_full,trigger_full,losses_past_playoff_full,weeks_in_tier_full,champion_threshold_modern,playoff_threshold_modern,tier_modern,prev_tier_modern,movement_modern,trigger_modern,losses_past_playoff_modern,weeks_in_tier_modern,tiers_disagree,made_playoffs,sb_champion,breaks_threshold_full,breaks_threshold_modern
+2026,1,ARI,FALSE,LAC,away,W,1,1,0,0,1-0,12,1,1,Championship Path,NA,none,NA,-1,1,1,1,Championship Path,NA,none,NA,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,ATL,FALSE,PIT,away,L,1,0,1,0,0-1,-7,1,1,Championship Path,NA,none,NA,0,1,1,1,Championship Path,NA,none,NA,0,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,BAL,FALSE,IND,away,W,1,1,0,0,1-0,18,1,1,Championship Path,NA,none,NA,-1,1,1,1,Championship Path,NA,none,NA,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,BUF,FALSE,HOU,away,W,1,1,0,0,1-0,5,1,1,Championship Path,NA,none,NA,-1,1,1,1,Championship Path,NA,none,NA,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,CAR,FALSE,CHI,home,L,1,0,1,0,0-1,-22,1,1,Championship Path,NA,none,NA,0,1,1,1,Championship Path,NA,none,NA,0,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,CHI,FALSE,CAR,away,W,1,1,0,0,1-0,22,1,1,Championship Path,NA,none,NA,-1,1,1,1,Championship Path,NA,none,NA,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,CIN,FALSE,TB,home,W,1,1,0,0,1-0,6,1,1,Championship Path,NA,none,NA,-1,1,1,1,Championship Path,NA,none,NA,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,CLE,FALSE,JAX,away,L,1,0,1,0,0-1,-24,1,1,Championship Path,NA,none,NA,0,1,1,1,Championship Path,NA,none,NA,0,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,DAL,FALSE,NYG,away,L,1,0,1,0,0-1,-8,1,1,Championship Path,NA,none,NA,0,1,1,1,Championship Path,NA,none,NA,0,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,DEN,FALSE,KC,away,L,1,0,1,0,0-1,-21,1,1,Championship Path,NA,none,NA,0,1,1,1,Championship Path,NA,none,NA,0,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,DET,FALSE,NO,home,W,1,1,0,0,1-0,1,1,1,Championship Path,NA,none,NA,-1,1,1,1,Championship Path,NA,none,NA,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,GB,FALSE,MIN,away,L,1,0,1,0,0-1,-17,1,1,Championship Path,NA,none,NA,0,1,1,1,Championship Path,NA,none,NA,0,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,HOU,FALSE,BUF,home,L,1,0,1,0,0-1,-5,1,1,Championship Path,NA,none,NA,0,1,1,1,Championship Path,NA,none,NA,0,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,IND,FALSE,BAL,home,L,1,0,1,0,0-1,-18,1,1,Championship Path,NA,none,NA,0,1,1,1,Championship Path,NA,none,NA,0,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,JAX,FALSE,CLE,home,W,1,1,0,0,1-0,24,1,1,Championship Path,NA,none,NA,-1,1,1,1,Championship Path,NA,none,NA,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,KC,FALSE,DEN,home,W,1,1,0,0,1-0,21,1,1,Championship Path,NA,none,NA,-1,1,1,1,Championship Path,NA,none,NA,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,LA,FALSE,SF,home,L,1,0,1,0,0-1,-20,1,1,Championship Path,NA,none,NA,0,1,1,1,Championship Path,NA,none,NA,0,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,LAC,FALSE,ARI,home,L,1,0,1,0,0-1,-12,1,1,Championship Path,NA,none,NA,0,1,1,1,Championship Path,NA,none,NA,0,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,LV,FALSE,MIA,home,W,1,1,0,0,1-0,14,1,1,Championship Path,NA,none,NA,-1,1,1,1,Championship Path,NA,none,NA,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,MIA,FALSE,LV,away,L,1,0,1,0,0-1,-14,1,1,Championship Path,NA,none,NA,0,1,1,1,Championship Path,NA,none,NA,0,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,MIN,FALSE,GB,home,W,1,1,0,0,1-0,17,1,1,Championship Path,NA,none,NA,-1,1,1,1,Championship Path,NA,none,NA,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,NE,FALSE,SEA,away,L,1,0,1,0,0-1,-3,1,1,Championship Path,NA,none,NA,0,1,1,1,Championship Path,NA,none,NA,0,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,NO,FALSE,DET,away,L,1,0,1,0,0-1,-1,1,1,Championship Path,NA,none,NA,0,1,1,1,Championship Path,NA,none,NA,0,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,NYG,FALSE,DAL,home,W,1,1,0,0,1-0,8,1,1,Championship Path,NA,none,NA,-1,1,1,1,Championship Path,NA,none,NA,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,NYJ,FALSE,TEN,away,W,1,1,0,0,1-0,13,1,1,Championship Path,NA,none,NA,-1,1,1,1,Championship Path,NA,none,NA,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,PHI,FALSE,WAS,home,W,1,1,0,0,1-0,2,1,1,Championship Path,NA,none,NA,-1,1,1,1,Championship Path,NA,none,NA,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,PIT,FALSE,ATL,home,W,1,1,0,0,1-0,7,1,1,Championship Path,NA,none,NA,-1,1,1,1,Championship Path,NA,none,NA,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,SEA,FALSE,NE,home,W,1,1,0,0,1-0,3,1,1,Championship Path,NA,none,NA,-1,1,1,1,Championship Path,NA,none,NA,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,SF,FALSE,LA,away,W,1,1,0,0,1-0,20,1,1,Championship Path,NA,none,NA,-1,1,1,1,Championship Path,NA,none,NA,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,TB,FALSE,CIN,away,L,1,0,1,0,0-1,-6,1,1,Championship Path,NA,none,NA,0,1,1,1,Championship Path,NA,none,NA,0,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,TEN,FALSE,NYJ,home,L,1,0,1,0,0-1,-13,1,1,Championship Path,NA,none,NA,0,1,1,1,Championship Path,NA,none,NA,0,1,FALSE,NA,NA,FALSE,FALSE
+2026,1,WAS,FALSE,PHI,away,L,1,0,1,0,0-1,-2,1,1,Championship Path,NA,none,NA,0,1,1,1,Championship Path,NA,none,NA,0,1,FALSE,NA,NA,FALSE,FALSE
+2026,2,ARI,FALSE,SEA,home,L,2,1,1,0,1-1,-12,2,2,Championship Path,Championship Path,none,NA,-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,ATL,FALSE,CAR,home,L,2,0,2,0,0-2,-38,2,2,Championship Path,Championship Path,none,NA,0,2,2,2,Championship Path,Championship Path,none,NA,0,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,BAL,FALSE,NO,home,L,2,1,1,0,1-1,11,2,2,Championship Path,Championship Path,none,NA,-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,BUF,FALSE,DET,home,W,2,2,0,0,2-0,15,2,2,Championship Path,Championship Path,none,NA,-2,2,2,2,Championship Path,Championship Path,none,NA,-2,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,CAR,FALSE,ATL,away,W,2,1,1,0,1-1,9,2,2,Championship Path,Championship Path,none,NA,-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,CHI,FALSE,MIN,home,L,2,1,1,0,1-1,16,2,2,Championship Path,Championship Path,none,NA,-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,CIN,FALSE,HOU,away,W,2,2,0,0,2-0,20,2,2,Championship Path,Championship Path,none,NA,-2,2,2,2,Championship Path,Championship Path,none,NA,-2,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,CLE,FALSE,TB,away,W,2,1,1,0,1-1,-20,2,2,Championship Path,Championship Path,none,NA,-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,DAL,FALSE,WAS,home,W,2,1,1,0,1-1,9,2,2,Championship Path,Championship Path,none,NA,-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,DEN,FALSE,JAX,home,W,2,1,1,0,1-1,-14,2,2,Championship Path,Championship Path,none,NA,-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,DET,FALSE,BUF,away,L,2,1,1,0,1-1,-9,2,2,Championship Path,Championship Path,none,NA,-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,GB,FALSE,NYJ,away,W,2,1,1,0,1-1,-14,2,2,Championship Path,Championship Path,none,NA,-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,HOU,FALSE,CIN,home,L,2,0,2,0,0-2,-19,2,2,Championship Path,Championship Path,none,NA,0,2,2,2,Championship Path,Championship Path,none,NA,0,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,IND,FALSE,KC,away,L,2,0,2,0,0-2,-21,2,2,Championship Path,Championship Path,none,NA,0,2,2,2,Championship Path,Championship Path,none,NA,0,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,JAX,FALSE,DEN,away,L,2,1,1,0,1-1,17,2,2,Championship Path,Championship Path,none,NA,-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,KC,FALSE,IND,home,W,2,2,0,0,2-0,24,2,2,Championship Path,Championship Path,none,NA,-2,2,2,2,Championship Path,Championship Path,none,NA,-2,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,LA,FALSE,NYG,home,W,2,1,1,0,1-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,LAC,FALSE,LV,home,L,2,0,2,0,0-2,-24,2,2,Championship Path,Championship Path,none,NA,0,2,2,2,Championship Path,Championship Path,none,NA,0,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,LV,FALSE,LAC,away,W,2,2,0,0,2-0,26,2,2,Championship Path,Championship Path,none,NA,-2,2,2,2,Championship Path,Championship Path,none,NA,-2,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,MIA,FALSE,SF,away,L,2,0,2,0,0-2,-36,2,2,Championship Path,Championship Path,none,NA,0,2,2,2,Championship Path,Championship Path,none,NA,0,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,MIN,FALSE,CHI,away,W,2,2,0,0,2-0,23,2,2,Championship Path,Championship Path,none,NA,-2,2,2,2,Championship Path,Championship Path,none,NA,-2,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,NE,FALSE,PIT,home,W,2,1,1,0,1-1,14,2,2,Championship Path,Championship Path,none,NA,-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,NO,FALSE,BAL,away,W,2,1,1,0,1-1,6,2,2,Championship Path,Championship Path,none,NA,-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,NYG,FALSE,LA,away,L,2,1,1,0,1-1,-14,2,2,Championship Path,Championship Path,none,NA,-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,NYJ,FALSE,GB,home,L,2,1,1,0,1-1,10,2,2,Championship Path,Championship Path,none,NA,-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,PHI,FALSE,TEN,away,W,2,2,0,0,2-0,6,2,2,Championship Path,Championship Path,none,NA,-2,2,2,2,Championship Path,Championship Path,none,NA,-2,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,PIT,FALSE,NE,away,L,2,1,1,0,1-1,-10,2,2,Championship Path,Championship Path,none,NA,-1,2,2,2,Championship Path,Championship Path,none,NA,-1,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,SEA,FALSE,ARI,away,W,2,2,0,0,2-0,27,2,2,Championship Path,Championship Path,none,NA,-2,2,2,2,Championship Path,Championship Path,none,NA,-2,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,SF,FALSE,MIA,home,W,2,2,0,0,2-0,42,2,2,Championship Path,Championship Path,none,NA,-2,2,2,2,Championship Path,Championship Path,none,NA,-2,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,TB,FALSE,CLE,home,L,2,0,2,0,0-2,-10,2,2,Championship Path,Championship Path,none,NA,0,2,2,2,Championship Path,Championship Path,none,NA,0,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,TEN,FALSE,PHI,home,L,2,0,2,0,0-2,-17,2,2,Championship Path,Championship Path,none,NA,0,2,2,2,Championship Path,Championship Path,none,NA,0,2,FALSE,NA,NA,FALSE,FALSE
+2026,2,WAS,FALSE,DAL,away,L,2,0,2,0,0-2,-19,2,2,Championship Path,Championship Path,none,NA,0,2,2,2,Championship Path,Championship Path,none,NA,0,2,FALSE,NA,NA,FALSE,FALSE
+2026,3,ARI,FALSE,SF,away,L,3,1,2,0,1-2,-18,2,3,Championship Path,Championship Path,none,NA,-1,3,2,3,Championship Path,Championship Path,none,NA,-1,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,ATL,FALSE,GB,away,W,3,1,2,0,1-2,-17,2,3,Championship Path,Championship Path,none,NA,-1,3,2,3,Championship Path,Championship Path,none,NA,-1,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,BAL,FALSE,DAL,away,W,3,2,1,0,2-1,14,2,3,Championship Path,Championship Path,none,NA,-2,3,2,3,Championship Path,Championship Path,none,NA,-2,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,BUF,FALSE,LAC,home,W,3,3,0,0,3-0,23,2,3,Championship Path,Championship Path,none,NA,-3,3,2,3,Championship Path,Championship Path,none,NA,-3,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,CAR,FALSE,CLE,away,L,3,1,2,0,1-2,6,2,3,Championship Path,Championship Path,none,NA,-1,3,2,3,Championship Path,Championship Path,none,NA,-1,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,CHI,FALSE,PHI,home,W,3,2,1,0,2-1,36,2,3,Championship Path,Championship Path,none,NA,-2,3,2,3,Championship Path,Championship Path,none,NA,-2,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,CIN,FALSE,PIT,away,L,3,2,1,0,2-1,17,2,3,Championship Path,Championship Path,none,NA,-2,3,2,3,Championship Path,Championship Path,none,NA,-2,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,CLE,FALSE,CAR,home,W,3,2,1,0,2-1,-17,2,3,Championship Path,Championship Path,none,NA,-2,3,2,3,Championship Path,Championship Path,none,NA,-2,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,DAL,FALSE,BAL,home,L,3,1,2,0,1-2,6,2,3,Championship Path,Championship Path,none,NA,-1,3,2,3,Championship Path,Championship Path,none,NA,-1,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,DEN,FALSE,LA,home,W,3,2,1,0,2-1,-10,2,3,Championship Path,Championship Path,none,NA,-2,3,2,3,Championship Path,Championship Path,none,NA,-2,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,DET,FALSE,NYJ,home,W,3,2,1,0,2-1,-2,2,3,Championship Path,Championship Path,none,NA,-2,3,2,3,Championship Path,Championship Path,none,NA,-2,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,GB,FALSE,ATL,home,L,3,1,2,0,1-2,-35,2,3,Championship Path,Championship Path,none,NA,-1,3,2,3,Championship Path,Championship Path,none,NA,-1,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,HOU,FALSE,IND,away,L,3,0,3,0,0-3,-21,2,3,Playoff Path,Championship Path,down to Playoff Path,loss,0,1,2,3,Playoff Path,Championship Path,down to Playoff Path,loss,0,1,FALSE,NA,NA,NA,NA
+2026,3,IND,FALSE,HOU,home,W,3,1,2,0,1-2,-19,2,3,Championship Path,Championship Path,none,NA,-1,3,2,3,Championship Path,Championship Path,none,NA,-1,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,JAX,FALSE,NE,home,W,3,2,1,0,2-1,46,2,3,Championship Path,Championship Path,none,NA,-2,3,2,3,Championship Path,Championship Path,none,NA,-2,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,KC,FALSE,MIA,away,W,3,3,0,0,3-0,38,2,3,Championship Path,Championship Path,none,NA,-3,3,2,3,Championship Path,Championship Path,none,NA,-3,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,LA,FALSE,DEN,away,L,3,1,2,0,1-2,-2,2,3,Championship Path,Championship Path,none,NA,-1,3,2,3,Championship Path,Championship Path,none,NA,-1,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,LAC,FALSE,BUF,away,L,3,0,3,0,0-3,-32,2,3,Playoff Path,Championship Path,down to Playoff Path,loss,0,1,2,3,Playoff Path,Championship Path,down to Playoff Path,loss,0,1,FALSE,NA,NA,NA,NA
+2026,3,LV,FALSE,NO,away,W,3,3,0,0,3-0,34,2,3,Championship Path,Championship Path,none,NA,-3,3,2,3,Championship Path,Championship Path,none,NA,-3,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,MIA,FALSE,KC,home,L,3,0,3,0,0-3,-50,2,3,Playoff Path,Championship Path,down to Playoff Path,loss,0,1,2,3,Playoff Path,Championship Path,down to Playoff Path,loss,0,1,FALSE,NA,NA,NA,NA
+2026,3,MIN,FALSE,TB,away,W,3,3,0,0,3-0,30,2,3,Championship Path,Championship Path,none,NA,-3,3,2,3,Championship Path,Championship Path,none,NA,-3,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,NE,FALSE,JAX,away,L,3,1,2,0,1-2,-15,2,3,Championship Path,Championship Path,none,NA,-1,3,2,3,Championship Path,Championship Path,none,NA,-1,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,NO,FALSE,LV,home,L,3,1,2,0,1-2,-2,2,3,Championship Path,Championship Path,none,NA,-1,3,2,3,Championship Path,Championship Path,none,NA,-1,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,NYG,FALSE,TEN,home,W,3,2,1,0,2-1,-9,2,3,Championship Path,Championship Path,none,NA,-2,3,2,3,Championship Path,Championship Path,none,NA,-2,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,NYJ,FALSE,DET,away,L,3,1,2,0,1-2,3,2,3,Championship Path,Championship Path,none,NA,-1,3,2,3,Championship Path,Championship Path,none,NA,-1,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,PHI,FALSE,CHI,away,L,3,2,1,0,2-1,-14,2,3,Championship Path,Championship Path,none,NA,-2,3,2,3,Championship Path,Championship Path,none,NA,-2,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,PIT,FALSE,CIN,home,W,3,2,1,0,2-1,-7,2,3,Championship Path,Championship Path,none,NA,-2,3,2,3,Championship Path,Championship Path,none,NA,-2,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,SEA,FALSE,WAS,away,L,3,2,1,0,2-1,25,2,3,Championship Path,Championship Path,none,NA,-2,3,2,3,Championship Path,Championship Path,none,NA,-2,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,SF,FALSE,ARI,home,W,3,3,0,0,3-0,48,2,3,Championship Path,Championship Path,none,NA,-3,3,2,3,Championship Path,Championship Path,none,NA,-3,3,FALSE,NA,NA,FALSE,FALSE
+2026,3,TB,FALSE,MIN,home,L,3,0,3,0,0-3,-17,2,3,Playoff Path,Championship Path,down to Playoff Path,loss,0,1,2,3,Playoff Path,Championship Path,down to Playoff Path,loss,0,1,FALSE,NA,NA,NA,NA
+2026,3,TEN,FALSE,NYG,away,L,3,0,3,0,0-3,-22,2,3,Playoff Path,Championship Path,down to Playoff Path,loss,0,1,2,3,Playoff Path,Championship Path,down to Playoff Path,loss,0,1,FALSE,NA,NA,NA,NA
+2026,3,WAS,FALSE,SEA,home,W,3,1,2,0,1-2,-17,2,3,Championship Path,Championship Path,none,NA,-1,3,2,3,Championship Path,Championship Path,none,NA,-1,3,FALSE,NA,NA,FALSE,FALSE
+2026,4,ARI,FALSE,NYG,away,L,4,1,3,0,1-3,-30,3,4,Championship Path,Championship Path,none,NA,-1,4,3,3,Championship Path,Championship Path,none,NA,0,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,ATL,FALSE,NO,away,W,4,2,2,0,2-2,4,3,4,Championship Path,Championship Path,none,NA,-2,4,3,3,Championship Path,Championship Path,none,NA,-1,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,BAL,FALSE,TEN,home,W,4,3,1,0,3-1,20,3,4,Championship Path,Championship Path,none,NA,-3,4,3,3,Championship Path,Championship Path,none,NA,-2,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,BUF,FALSE,NE,home,L,4,3,1,0,3-1,20,3,4,Championship Path,Championship Path,none,NA,-3,4,3,3,Championship Path,Championship Path,none,NA,-2,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,CAR,FALSE,DET,home,W,4,2,2,0,2-2,12,3,4,Championship Path,Championship Path,none,NA,-2,4,3,3,Championship Path,Championship Path,none,NA,-1,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,CHI,FALSE,NYJ,home,W,4,3,1,0,3-1,47,3,4,Championship Path,Championship Path,none,NA,-3,4,3,3,Championship Path,Championship Path,none,NA,-2,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,CIN,FALSE,JAX,home,L,4,2,2,0,2-2,12,3,4,Championship Path,Championship Path,none,NA,-2,4,3,3,Championship Path,Championship Path,none,NA,-1,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,CLE,FALSE,PIT,home,W,4,3,1,0,3-1,-14,3,4,Championship Path,Championship Path,none,NA,-3,4,3,3,Championship Path,Championship Path,none,NA,-2,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,DAL,FALSE,HOU,away,W,4,2,2,0,2-2,10,3,4,Championship Path,Championship Path,none,NA,-2,4,3,3,Championship Path,Championship Path,none,NA,-1,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,DEN,FALSE,SF,away,L,4,2,2,0,2-2,-20,3,4,Championship Path,Championship Path,none,NA,-2,4,3,3,Championship Path,Championship Path,none,NA,-1,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,DET,FALSE,CAR,away,L,4,2,2,0,2-2,-8,3,4,Championship Path,Championship Path,none,NA,-2,4,3,3,Championship Path,Championship Path,none,NA,-1,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,GB,FALSE,TB,away,W,4,2,2,0,2-2,-32,3,4,Championship Path,Championship Path,none,NA,-2,4,3,3,Championship Path,Championship Path,none,NA,-1,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,HOU,FALSE,DAL,home,L,4,0,4,0,0-4,-25,3,4,Playoff Path,Playoff Path,none,NA,0,2,3,3,Graveyard,Playoff Path,entered Graveyard,loss,1,1,TRUE,NA,NA,NA,NA
+2026,4,IND,FALSE,WAS,away,W,4,2,2,0,2-2,-2,3,4,Championship Path,Championship Path,none,NA,-2,4,3,3,Championship Path,Championship Path,none,NA,-1,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,JAX,FALSE,CIN,away,W,4,3,1,0,3-1,51,3,4,Championship Path,Championship Path,none,NA,-3,4,3,3,Championship Path,Championship Path,none,NA,-2,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,KC,FALSE,LV,away,W,4,4,0,0,4-0,41,3,4,Championship Path,Championship Path,none,NA,-4,4,3,3,Championship Path,Championship Path,none,NA,-3,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,LA,FALSE,PHI,away,W,4,2,2,0,2-2,2,3,4,Championship Path,Championship Path,none,NA,-2,4,3,3,Championship Path,Championship Path,none,NA,-1,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,LAC,FALSE,SEA,away,L,4,0,4,0,0-4,-39,3,4,Playoff Path,Playoff Path,none,NA,0,2,3,3,Graveyard,Playoff Path,entered Graveyard,loss,1,1,TRUE,NA,NA,NA,NA
+2026,4,LV,FALSE,KC,home,L,4,3,1,0,3-1,31,3,4,Championship Path,Championship Path,none,NA,-3,4,3,3,Championship Path,Championship Path,none,NA,-2,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,MIA,FALSE,MIN,away,L,4,0,4,0,0-4,-55,3,4,Playoff Path,Playoff Path,none,NA,0,2,3,3,Graveyard,Playoff Path,entered Graveyard,loss,1,1,TRUE,NA,NA,NA,NA
+2026,4,MIN,FALSE,MIA,home,W,4,4,0,0,4-0,35,3,4,Championship Path,Championship Path,none,NA,-4,4,3,3,Championship Path,Championship Path,none,NA,-3,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,NE,FALSE,BUF,away,W,4,2,2,0,2-2,-12,3,4,Championship Path,Championship Path,none,NA,-2,4,3,3,Championship Path,Championship Path,none,NA,-1,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,NO,FALSE,ATL,home,L,4,1,3,0,1-3,-23,3,4,Championship Path,Championship Path,none,NA,-1,4,3,3,Championship Path,Championship Path,none,NA,0,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,NYG,FALSE,ARI,home,W,4,3,1,0,3-1,3,3,4,Championship Path,Championship Path,none,NA,-3,4,3,3,Championship Path,Championship Path,none,NA,-2,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,NYJ,FALSE,CHI,away,L,4,1,3,0,1-3,-8,3,4,Championship Path,Championship Path,none,NA,-1,4,3,3,Championship Path,Championship Path,none,NA,0,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,PHI,FALSE,LA,home,L,4,2,2,0,2-2,-18,3,4,Championship Path,Championship Path,none,NA,-2,4,3,3,Championship Path,Championship Path,none,NA,-1,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,PIT,FALSE,CLE,away,L,4,2,2,0,2-2,-10,3,4,Championship Path,Championship Path,none,NA,-2,4,3,3,Championship Path,Championship Path,none,NA,-1,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,SEA,FALSE,LAC,home,W,4,3,1,0,3-1,32,3,4,Championship Path,Championship Path,none,NA,-3,4,3,3,Championship Path,Championship Path,none,NA,-2,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,SF,FALSE,DEN,home,W,4,4,0,0,4-0,58,3,4,Championship Path,Championship Path,none,NA,-4,4,3,3,Championship Path,Championship Path,none,NA,-3,4,FALSE,NA,NA,FALSE,FALSE
+2026,4,TB,FALSE,GB,home,L,4,0,4,0,0-4,-20,3,4,Playoff Path,Playoff Path,none,NA,0,2,3,3,Graveyard,Playoff Path,entered Graveyard,loss,1,1,TRUE,NA,NA,NA,NA
+2026,4,TEN,FALSE,BAL,away,L,4,0,4,0,0-4,-28,3,4,Playoff Path,Playoff Path,none,NA,0,2,3,3,Graveyard,Playoff Path,entered Graveyard,loss,1,1,TRUE,NA,NA,NA,NA
+2026,4,WAS,FALSE,IND,home,L,4,1,3,0,1-3,-34,3,4,Championship Path,Championship Path,none,NA,-1,4,3,3,Championship Path,Championship Path,none,NA,0,4,FALSE,NA,NA,FALSE,FALSE
+2026,5,ARI,FALSE,DET,home,L,5,1,4,0,1-4,-54,3,4,Playoff Path,Championship Path,down to Playoff Path,loss,0,1,3,4,Playoff Path,Championship Path,down to Playoff Path,loss,0,1,FALSE,NA,NA,NA,NA
+2026,5,ATL,FALSE,BAL,home,L,5,2,3,0,2-3,-3,3,4,Championship Path,Championship Path,none,NA,-1,5,3,4,Championship Path,Championship Path,none,NA,-1,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,BAL,FALSE,ATL,away,W,5,4,1,0,4-1,27,3,4,Championship Path,Championship Path,none,NA,-3,5,3,4,Championship Path,Championship Path,none,NA,-3,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,BUF,FALSE,LA,away,W,5,4,1,0,4-1,23,3,4,Championship Path,Championship Path,none,NA,-3,5,3,4,Championship Path,Championship Path,none,NA,-3,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,CAR,TRUE,NA,NA,NA,4,2,2,0,2-2,12,3,4,Championship Path,Championship Path,none,NA,-2,5,3,3,Championship Path,Championship Path,none,NA,-1,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,CHI,FALSE,GB,away,L,5,3,2,0,3-2,23,3,4,Championship Path,Championship Path,none,NA,-2,5,3,4,Championship Path,Championship Path,none,NA,-2,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,CIN,FALSE,MIA,away,W,5,3,2,0,3-2,19,3,4,Championship Path,Championship Path,none,NA,-2,5,3,4,Championship Path,Championship Path,none,NA,-2,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,CLE,FALSE,NYJ,away,L,5,3,2,0,3-2,-19,3,4,Championship Path,Championship Path,none,NA,-2,5,3,4,Championship Path,Championship Path,none,NA,-2,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,DAL,FALSE,TB,home,L,5,2,3,0,2-3,2,3,4,Championship Path,Championship Path,none,NA,-1,5,3,4,Championship Path,Championship Path,none,NA,-1,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,DEN,FALSE,LAC,away,W,5,3,2,0,3-2,-14,3,4,Championship Path,Championship Path,none,NA,-2,5,3,4,Championship Path,Championship Path,none,NA,-2,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,DET,FALSE,ARI,away,W,5,3,2,0,3-2,16,3,4,Championship Path,Championship Path,none,NA,-2,5,3,4,Championship Path,Championship Path,none,NA,-2,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,GB,FALSE,CHI,home,W,5,3,2,0,3-2,-8,3,4,Championship Path,Championship Path,none,NA,-2,5,3,4,Championship Path,Championship Path,none,NA,-2,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,HOU,FALSE,TEN,away,W,5,1,4,0,1-4,-2,3,4,Playoff Path,Playoff Path,none,NA,0,3,3,4,Playoff Path,Graveyard,left Graveyard,threshold stepped up,0,1,FALSE,NA,NA,NA,NA
+2026,5,IND,FALSE,PIT,away,L,5,2,3,0,2-3,-14,3,4,Championship Path,Championship Path,none,NA,-1,5,3,4,Championship Path,Championship Path,none,NA,-1,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,JAX,FALSE,PHI,home,W,5,4,1,0,4-1,53,3,4,Championship Path,Championship Path,none,NA,-3,5,3,4,Championship Path,Championship Path,none,NA,-3,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,KC,TRUE,NA,NA,NA,4,4,0,0,4-0,41,3,4,Championship Path,Championship Path,none,NA,-4,5,3,3,Championship Path,Championship Path,none,NA,-3,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,LA,FALSE,BUF,home,L,5,2,3,0,2-3,-1,3,4,Championship Path,Championship Path,none,NA,-1,5,3,4,Championship Path,Championship Path,none,NA,-1,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,LAC,FALSE,DEN,home,L,5,0,5,0,0-5,-45,3,4,Graveyard,Playoff Path,entered Graveyard,loss,1,1,3,4,Graveyard,Graveyard,none,NA,1,2,FALSE,NA,NA,NA,NA
+2026,5,LV,FALSE,NE,away,L,5,3,2,0,3-2,3,3,4,Championship Path,Championship Path,none,NA,-2,5,3,4,Championship Path,Championship Path,none,NA,-2,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,MIA,FALSE,CIN,home,L,5,0,5,0,0-5,-62,3,4,Graveyard,Playoff Path,entered Graveyard,loss,1,1,3,4,Graveyard,Graveyard,none,NA,1,2,FALSE,NA,NA,NA,NA
+2026,5,MIN,FALSE,NO,away,W,5,5,0,0,5-0,45,3,4,Championship Path,Championship Path,none,NA,-4,5,3,4,Championship Path,Championship Path,none,NA,-4,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,NE,FALSE,LV,home,W,5,3,2,0,3-2,16,3,4,Championship Path,Championship Path,none,NA,-2,5,3,4,Championship Path,Championship Path,none,NA,-2,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,NO,FALSE,MIN,home,L,5,1,4,0,1-4,-33,3,4,Playoff Path,Championship Path,down to Playoff Path,loss,0,1,3,4,Playoff Path,Championship Path,down to Playoff Path,loss,0,1,FALSE,NA,NA,NA,NA
+2026,5,NYG,FALSE,WAS,away,T,5,3,1,1,3-1-1,3,3,4,Championship Path,Championship Path,none,NA,-3,5,3,4,Championship Path,Championship Path,none,NA,-3,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,NYJ,FALSE,CLE,home,W,5,2,3,0,2-3,-3,3,4,Championship Path,Championship Path,none,NA,-1,5,3,4,Championship Path,Championship Path,none,NA,-1,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,PHI,FALSE,JAX,away,L,5,2,3,0,2-3,-20,3,4,Championship Path,Championship Path,none,NA,-1,5,3,4,Championship Path,Championship Path,none,NA,-1,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,PIT,FALSE,IND,home,W,5,3,2,0,3-2,2,3,4,Championship Path,Championship Path,none,NA,-2,5,3,4,Championship Path,Championship Path,none,NA,-2,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,SEA,FALSE,SF,home,L,5,3,2,0,3-2,29,3,4,Championship Path,Championship Path,none,NA,-2,5,3,4,Championship Path,Championship Path,none,NA,-2,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,SF,FALSE,SEA,away,W,5,5,0,0,5-0,61,3,4,Championship Path,Championship Path,none,NA,-4,5,3,4,Championship Path,Championship Path,none,NA,-4,5,FALSE,NA,NA,FALSE,FALSE
+2026,5,TB,FALSE,DAL,away,W,5,1,4,0,1-4,-12,3,4,Playoff Path,Playoff Path,none,NA,0,3,3,4,Playoff Path,Graveyard,left Graveyard,threshold stepped up,0,1,FALSE,NA,NA,NA,NA
+2026,5,TEN,FALSE,HOU,home,L,5,0,5,0,0-5,-51,3,4,Graveyard,Playoff Path,entered Graveyard,loss,1,1,3,4,Graveyard,Graveyard,none,NA,1,2,FALSE,NA,NA,NA,NA
+2026,5,WAS,FALSE,NYG,home,T,5,1,3,1,1-3-1,-34,3,4,Championship Path,Championship Path,none,NA,-1,5,3,4,Championship Path,Championship Path,none,NA,-1,5,FALSE,NA,NA,FALSE,FALSE
+2026,6,ARI,FALSE,LA,away,W,6,2,4,0,2-4,-52,3,5,Playoff Path,Playoff Path,none,NA,-1,2,3,5,Playoff Path,Playoff Path,none,NA,-1,2,FALSE,NA,NA,NA,NA
+2026,6,ATL,FALSE,CHI,home,L,6,2,4,0,2-4,-11,3,5,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,3,5,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,FALSE,NA,NA,NA,NA
+2026,6,BAL,FALSE,CLE,away,L,6,4,2,0,4-2,24,3,5,Championship Path,Championship Path,none,NA,-3,6,3,5,Championship Path,Championship Path,none,NA,-3,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,BUF,FALSE,LV,away,W,6,5,1,0,5-1,26,3,5,Championship Path,Championship Path,none,NA,-4,6,3,5,Championship Path,Championship Path,none,NA,-4,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,CAR,FALSE,PHI,away,W,5,3,2,0,3-2,23,3,4,Championship Path,Championship Path,none,NA,-2,6,3,4,Championship Path,Championship Path,none,NA,-2,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,CHI,FALSE,ATL,away,W,6,4,2,0,4-2,31,3,5,Championship Path,Championship Path,none,NA,-3,6,3,5,Championship Path,Championship Path,none,NA,-3,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,CIN,TRUE,NA,NA,NA,5,3,2,0,3-2,19,3,4,Championship Path,Championship Path,none,NA,-2,6,3,4,Championship Path,Championship Path,none,NA,-2,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,CLE,FALSE,BAL,home,W,6,4,2,0,4-2,-16,3,5,Championship Path,Championship Path,none,NA,-3,6,3,5,Championship Path,Championship Path,none,NA,-3,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,DAL,FALSE,GB,away,L,6,2,4,0,2-4,-8,3,5,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,3,5,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,FALSE,NA,NA,NA,NA
+2026,6,DEN,FALSE,SEA,home,W,6,4,2,0,4-2,-11,3,5,Championship Path,Championship Path,none,NA,-3,6,3,5,Championship Path,Championship Path,none,NA,-3,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,DET,TRUE,NA,NA,NA,5,3,2,0,3-2,16,3,4,Championship Path,Championship Path,none,NA,-2,6,3,4,Championship Path,Championship Path,none,NA,-2,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,GB,FALSE,DAL,home,W,6,4,2,0,4-2,2,3,5,Championship Path,Championship Path,none,NA,-3,6,3,5,Championship Path,Championship Path,none,NA,-3,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,HOU,FALSE,JAX,away,W,6,2,4,0,2-4,1,3,5,Playoff Path,Playoff Path,none,NA,-1,4,3,5,Playoff Path,Playoff Path,none,NA,-1,2,FALSE,NA,NA,NA,NA
+2026,6,IND,FALSE,TEN,home,L,6,2,4,0,2-4,-20,3,5,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,3,5,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,FALSE,NA,NA,NA,NA
+2026,6,JAX,FALSE,HOU,home,L,6,4,2,0,4-2,50,3,5,Championship Path,Championship Path,none,NA,-3,6,3,5,Championship Path,Championship Path,none,NA,-3,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,KC,FALSE,LAC,home,W,5,5,0,0,5-0,57,3,4,Championship Path,Championship Path,none,NA,-4,6,3,4,Championship Path,Championship Path,none,NA,-4,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,LA,FALSE,ARI,home,L,6,2,4,0,2-4,-3,3,5,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,3,5,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,FALSE,NA,NA,NA,NA
+2026,6,LAC,FALSE,KC,away,L,6,0,6,0,0-6,-61,3,5,Graveyard,Graveyard,none,NA,1,2,3,5,Graveyard,Graveyard,none,NA,1,3,FALSE,NA,NA,NA,NA
+2026,6,LV,FALSE,BUF,home,L,6,3,3,0,3-3,0,3,5,Championship Path,Championship Path,none,NA,-2,6,3,5,Championship Path,Championship Path,none,NA,-2,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,MIA,TRUE,NA,NA,NA,5,0,5,0,0-5,-62,3,4,Graveyard,Graveyard,none,NA,1,2,3,4,Graveyard,Graveyard,none,NA,1,3,FALSE,NA,NA,NA,NA
+2026,6,MIN,TRUE,NA,NA,NA,5,5,0,0,5-0,45,3,4,Championship Path,Championship Path,none,NA,-4,6,3,4,Championship Path,Championship Path,none,NA,-4,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,NE,FALSE,NYJ,home,W,6,4,2,0,4-2,23,3,5,Championship Path,Championship Path,none,NA,-3,6,3,5,Championship Path,Championship Path,none,NA,-3,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,NO,FALSE,NYG,away,W,6,2,4,0,2-4,-26,3,5,Playoff Path,Playoff Path,none,NA,-1,2,3,5,Playoff Path,Playoff Path,none,NA,-1,2,FALSE,NA,NA,NA,NA
+2026,6,NYG,FALSE,NO,home,L,6,3,2,1,3-2-1,-4,3,5,Championship Path,Championship Path,none,NA,-3,6,3,5,Championship Path,Championship Path,none,NA,-3,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,NYJ,FALSE,NE,away,L,6,2,4,0,2-4,-10,3,5,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,3,5,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,FALSE,NA,NA,NA,NA
+2026,6,PHI,FALSE,CAR,home,L,6,2,4,0,2-4,-31,3,5,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,3,5,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,FALSE,NA,NA,NA,NA
+2026,6,PIT,FALSE,TB,away,W,6,4,2,0,4-2,9,3,5,Championship Path,Championship Path,none,NA,-3,6,3,5,Championship Path,Championship Path,none,NA,-3,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,SEA,FALSE,DEN,away,L,6,3,3,0,3-3,26,3,5,Championship Path,Championship Path,none,NA,-2,6,3,5,Championship Path,Championship Path,none,NA,-2,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,SF,FALSE,WAS,home,W,6,6,0,0,6-0,67,3,5,Championship Path,Championship Path,none,NA,-5,6,3,5,Championship Path,Championship Path,none,NA,-5,6,FALSE,NA,NA,FALSE,FALSE
+2026,6,TB,FALSE,PIT,home,L,6,1,5,0,1-5,-19,3,5,Playoff Path,Playoff Path,none,NA,0,4,3,5,Playoff Path,Playoff Path,none,NA,0,2,FALSE,NA,NA,NA,NA
+2026,6,TEN,FALSE,IND,away,W,6,1,5,0,1-5,-45,3,5,Playoff Path,Graveyard,left Graveyard,threshold stepped up,0,1,3,5,Playoff Path,Graveyard,left Graveyard,threshold stepped up,0,1,FALSE,NA,NA,NA,NA
+2026,6,WAS,FALSE,SF,away,L,6,1,4,1,1-4-1,-40,3,5,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,3,5,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,FALSE,NA,NA,NA,NA
+2026,7,ARI,FALSE,DEN,home,L,7,2,5,0,2-5,-66,4,6,Playoff Path,Playoff Path,none,NA,-1,3,4,5,Playoff Path,Playoff Path,none,NA,0,3,FALSE,NA,NA,NA,NA
+2026,7,ATL,FALSE,SF,home,W,7,3,4,0,3-4,-2,4,6,Championship Path,Playoff Path,up to Championship Path,threshold stepped up,-2,1,4,5,Championship Path,Playoff Path,up to Championship Path,threshold stepped up,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,7,BAL,FALSE,CIN,home,L,7,4,3,0,4-3,2,4,6,Championship Path,Championship Path,none,NA,-3,7,4,5,Championship Path,Championship Path,none,NA,-2,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,BUF,TRUE,NA,NA,NA,6,5,1,0,5-1,26,3,5,Championship Path,Championship Path,none,NA,-4,7,3,5,Championship Path,Championship Path,none,NA,-4,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,CAR,FALSE,TB,home,L,6,3,3,0,3-3,-7,3,5,Championship Path,Championship Path,none,NA,-2,7,3,5,Championship Path,Championship Path,none,NA,-2,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,CHI,FALSE,NE,home,W,7,5,2,0,5-2,37,4,6,Championship Path,Championship Path,none,NA,-4,7,4,5,Championship Path,Championship Path,none,NA,-3,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,CIN,FALSE,BAL,away,W,6,4,2,0,4-2,41,3,5,Championship Path,Championship Path,none,NA,-3,7,3,5,Championship Path,Championship Path,none,NA,-3,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,CLE,FALSE,TEN,away,W,7,5,2,0,5-2,-13,4,6,Championship Path,Championship Path,none,NA,-4,7,4,5,Championship Path,Championship Path,none,NA,-3,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,DAL,FALSE,PHI,away,W,7,3,4,0,3-4,9,4,6,Championship Path,Playoff Path,up to Championship Path,threshold stepped up,-2,1,4,5,Championship Path,Playoff Path,up to Championship Path,threshold stepped up,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,7,DEN,FALSE,ARI,away,W,7,5,2,0,5-2,3,4,6,Championship Path,Championship Path,none,NA,-4,7,4,5,Championship Path,Championship Path,none,NA,-3,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,DET,FALSE,GB,home,W,6,4,2,0,4-2,19,3,5,Championship Path,Championship Path,none,NA,-3,7,3,5,Championship Path,Championship Path,none,NA,-3,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,GB,FALSE,DET,away,L,7,4,3,0,4-3,-1,4,6,Championship Path,Championship Path,none,NA,-3,7,4,5,Championship Path,Championship Path,none,NA,-2,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,HOU,FALSE,NYG,home,L,7,2,5,0,2-5,-5,4,6,Playoff Path,Playoff Path,none,NA,-1,5,4,5,Playoff Path,Playoff Path,none,NA,0,3,FALSE,NA,NA,NA,NA
+2026,7,IND,FALSE,MIN,away,L,7,2,5,0,2-5,-26,4,6,Playoff Path,Playoff Path,none,NA,-1,2,4,5,Playoff Path,Playoff Path,none,NA,0,2,FALSE,NA,NA,NA,NA
+2026,7,JAX,TRUE,NA,NA,NA,6,4,2,0,4-2,50,3,5,Championship Path,Championship Path,none,NA,-3,7,3,5,Championship Path,Championship Path,none,NA,-3,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,KC,FALSE,SEA,away,L,6,5,1,0,5-1,40,3,5,Championship Path,Championship Path,none,NA,-4,7,3,5,Championship Path,Championship Path,none,NA,-4,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,LA,FALSE,LV,away,W,7,3,4,0,3-4,11,4,6,Championship Path,Playoff Path,up to Championship Path,threshold stepped up,-2,1,4,5,Championship Path,Playoff Path,up to Championship Path,threshold stepped up,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,7,LAC,TRUE,NA,NA,NA,6,0,6,0,0-6,-61,3,5,Graveyard,Graveyard,none,NA,1,3,3,5,Graveyard,Graveyard,none,NA,1,4,FALSE,NA,NA,NA,NA
+2026,7,LV,FALSE,LA,home,L,7,3,4,0,3-4,-14,4,6,Championship Path,Championship Path,none,NA,-2,7,4,5,Championship Path,Championship Path,none,NA,-1,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,MIA,FALSE,NYJ,away,W,6,1,5,0,1-5,-59,3,5,Playoff Path,Graveyard,left Graveyard,threshold stepped up,0,1,3,5,Playoff Path,Graveyard,left Graveyard,threshold stepped up,0,1,FALSE,NA,NA,NA,NA
+2026,7,MIN,FALSE,IND,home,W,6,6,0,0,6-0,51,3,5,Championship Path,Championship Path,none,NA,-5,7,3,5,Championship Path,Championship Path,none,NA,-5,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,NE,FALSE,CHI,away,L,7,4,3,0,4-3,17,4,6,Championship Path,Championship Path,none,NA,-3,7,4,5,Championship Path,Championship Path,none,NA,-2,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,NO,FALSE,PIT,home,L,7,2,5,0,2-5,-32,4,6,Playoff Path,Playoff Path,none,NA,-1,3,4,5,Playoff Path,Playoff Path,none,NA,0,3,FALSE,NA,NA,NA,NA
+2026,7,NYG,FALSE,HOU,away,W,7,4,2,1,4-2-1,2,4,6,Championship Path,Championship Path,none,NA,-4,7,4,5,Championship Path,Championship Path,none,NA,-3,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,NYJ,FALSE,MIA,home,L,7,2,5,0,2-5,-13,4,6,Playoff Path,Playoff Path,none,NA,-1,2,4,5,Playoff Path,Playoff Path,none,NA,0,2,FALSE,NA,NA,NA,NA
+2026,7,PHI,FALSE,DAL,home,L,7,2,5,0,2-5,-48,4,6,Playoff Path,Playoff Path,none,NA,-1,2,4,5,Playoff Path,Playoff Path,none,NA,0,2,FALSE,NA,NA,NA,NA
+2026,7,PIT,FALSE,NO,away,W,7,5,2,0,5-2,15,4,6,Championship Path,Championship Path,none,NA,-4,7,4,5,Championship Path,Championship Path,none,NA,-3,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,SEA,FALSE,KC,home,W,7,4,3,0,4-3,43,4,6,Championship Path,Championship Path,none,NA,-3,7,4,5,Championship Path,Championship Path,none,NA,-2,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,SF,FALSE,ATL,away,L,7,6,1,0,6-1,58,4,6,Championship Path,Championship Path,none,NA,-5,7,4,5,Championship Path,Championship Path,none,NA,-4,7,FALSE,NA,NA,FALSE,FALSE
+2026,7,TB,FALSE,CAR,away,W,7,2,5,0,2-5,11,4,6,Playoff Path,Playoff Path,none,NA,-1,5,4,5,Playoff Path,Playoff Path,none,NA,0,3,FALSE,NA,NA,NA,NA
+2026,7,TEN,FALSE,CLE,home,L,7,1,6,0,1-6,-48,4,6,Playoff Path,Playoff Path,none,NA,0,2,4,5,Graveyard,Playoff Path,entered Graveyard,loss,1,1,TRUE,NA,NA,NA,NA
+2026,7,WAS,TRUE,NA,NA,NA,6,1,4,1,1-4-1,-40,3,5,Playoff Path,Playoff Path,none,NA,-1,2,3,5,Playoff Path,Playoff Path,none,NA,-1,2,FALSE,NA,NA,NA,NA
+2026,8,ARI,FALSE,DAL,away,W,8,3,5,0,3-5,-63,4,6,Playoff Path,Playoff Path,none,NA,-1,4,4,6,Playoff Path,Playoff Path,none,NA,-1,4,FALSE,NA,NA,NA,NA
+2026,8,ATL,FALSE,TB,away,L,8,3,5,0,3-5,-18,4,6,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,4,6,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,FALSE,NA,NA,NA,NA
+2026,8,BAL,FALSE,BUF,away,L,8,4,4,0,4-4,-24,4,6,Championship Path,Championship Path,none,NA,-2,8,4,6,Championship Path,Championship Path,none,NA,-2,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,BUF,FALSE,BAL,home,W,7,6,1,0,6-1,52,4,6,Championship Path,Championship Path,none,NA,-5,8,4,5,Championship Path,Championship Path,none,NA,-4,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,CAR,FALSE,GB,away,L,7,3,4,0,3-4,-15,4,6,Championship Path,Championship Path,none,NA,-2,8,4,5,Championship Path,Championship Path,none,NA,-1,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,CHI,FALSE,SEA,away,W,8,6,2,0,6-2,54,4,6,Championship Path,Championship Path,none,NA,-4,8,4,6,Championship Path,Championship Path,none,NA,-4,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,CIN,FALSE,TEN,home,W,7,5,2,0,5-2,48,4,6,Championship Path,Championship Path,none,NA,-4,8,4,5,Championship Path,Championship Path,none,NA,-3,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,CLE,FALSE,PIT,away,L,8,5,3,0,5-3,-34,4,6,Championship Path,Championship Path,none,NA,-3,8,4,6,Championship Path,Championship Path,none,NA,-3,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,DAL,FALSE,ARI,home,L,8,3,5,0,3-5,6,4,6,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,4,6,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,FALSE,NA,NA,NA,NA
+2026,8,DEN,FALSE,KC,home,W,8,6,2,0,6-2,7,4,6,Championship Path,Championship Path,none,NA,-4,8,4,6,Championship Path,Championship Path,none,NA,-4,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,DET,FALSE,MIN,home,W,7,5,2,0,5-2,23,4,6,Championship Path,Championship Path,none,NA,-4,8,4,5,Championship Path,Championship Path,none,NA,-3,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,GB,FALSE,CAR,home,W,8,5,3,0,5-3,7,4,6,Championship Path,Championship Path,none,NA,-3,8,4,6,Championship Path,Championship Path,none,NA,-3,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,HOU,TRUE,NA,NA,NA,7,2,5,0,2-5,-5,4,6,Playoff Path,Playoff Path,none,NA,-1,6,4,5,Playoff Path,Playoff Path,none,NA,0,4,FALSE,NA,NA,NA,NA
+2026,8,IND,FALSE,JAX,away,L,8,2,6,0,2-6,-61,4,6,Playoff Path,Playoff Path,none,NA,0,3,4,6,Playoff Path,Playoff Path,none,NA,0,3,FALSE,NA,NA,NA,NA
+2026,8,JAX,FALSE,IND,home,W,7,5,2,0,5-2,85,4,6,Championship Path,Championship Path,none,NA,-4,8,4,5,Championship Path,Championship Path,none,NA,-3,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,KC,FALSE,DEN,away,L,7,5,2,0,5-2,36,4,6,Championship Path,Championship Path,none,NA,-4,8,4,5,Championship Path,Championship Path,none,NA,-3,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,LA,FALSE,LAC,home,W,8,4,4,0,4-4,26,4,6,Championship Path,Championship Path,none,NA,-2,2,4,6,Championship Path,Championship Path,none,NA,-2,2,FALSE,NA,NA,FALSE,FALSE
+2026,8,LAC,FALSE,LA,away,L,7,0,7,0,0-7,-76,4,6,Graveyard,Graveyard,none,NA,1,4,4,5,Graveyard,Graveyard,none,NA,2,5,FALSE,NA,NA,NA,NA
+2026,8,LV,FALSE,NYJ,away,W,8,4,4,0,4-4,-9,4,6,Championship Path,Championship Path,none,NA,-2,8,4,6,Championship Path,Championship Path,none,NA,-2,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,MIA,FALSE,NE,home,L,7,1,6,0,1-6,-64,4,6,Playoff Path,Playoff Path,none,NA,0,2,4,5,Graveyard,Playoff Path,entered Graveyard,loss,1,1,TRUE,NA,NA,NA,NA
+2026,8,MIN,FALSE,DET,away,L,7,6,1,0,6-1,47,4,6,Championship Path,Championship Path,none,NA,-5,8,4,5,Championship Path,Championship Path,none,NA,-4,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,NE,FALSE,MIA,away,W,8,5,3,0,5-3,22,4,6,Championship Path,Championship Path,none,NA,-3,8,4,6,Championship Path,Championship Path,none,NA,-3,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,NO,TRUE,NA,NA,NA,7,2,5,0,2-5,-32,4,6,Playoff Path,Playoff Path,none,NA,-1,4,4,5,Playoff Path,Playoff Path,none,NA,0,4,FALSE,NA,NA,NA,NA
+2026,8,NYG,TRUE,NA,NA,NA,7,4,2,1,4-2-1,2,4,6,Championship Path,Championship Path,none,NA,-4,8,4,5,Championship Path,Championship Path,none,NA,-3,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,NYJ,FALSE,LV,home,L,8,2,6,0,2-6,-18,4,6,Playoff Path,Playoff Path,none,NA,0,3,4,6,Playoff Path,Playoff Path,none,NA,0,3,FALSE,NA,NA,NA,NA
+2026,8,PHI,FALSE,WAS,away,L,8,2,6,0,2-6,-65,4,6,Playoff Path,Playoff Path,none,NA,0,3,4,6,Playoff Path,Playoff Path,none,NA,0,3,FALSE,NA,NA,NA,NA
+2026,8,PIT,FALSE,CLE,home,W,8,6,2,0,6-2,36,4,6,Championship Path,Championship Path,none,NA,-4,8,4,6,Championship Path,Championship Path,none,NA,-4,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,SEA,FALSE,CHI,home,L,8,4,4,0,4-4,26,4,6,Championship Path,Championship Path,none,NA,-2,8,4,6,Championship Path,Championship Path,none,NA,-2,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,SF,TRUE,NA,NA,NA,7,6,1,0,6-1,58,4,6,Championship Path,Championship Path,none,NA,-5,8,4,5,Championship Path,Championship Path,none,NA,-4,8,FALSE,NA,NA,FALSE,FALSE
+2026,8,TB,FALSE,ATL,home,W,8,3,5,0,3-5,27,4,6,Playoff Path,Playoff Path,none,NA,-1,6,4,6,Playoff Path,Playoff Path,none,NA,-1,4,FALSE,NA,NA,NA,NA
+2026,8,TEN,FALSE,CIN,away,L,8,1,7,0,1-7,-55,4,6,Graveyard,Playoff Path,entered Graveyard,loss,1,1,4,6,Graveyard,Graveyard,none,NA,1,2,FALSE,NA,NA,NA,NA
+2026,8,WAS,FALSE,PHI,home,W,7,2,4,1,2-4-1,-23,4,6,Championship Path,Playoff Path,up to Championship Path,threshold stepped up,-2,1,4,5,Championship Path,Playoff Path,up to Championship Path,threshold stepped up,-1,1,FALSE,NA,NA,FALSE,FALSE
+2026,9,ARI,FALSE,SEA,away,L,9,3,6,0,3-6,-77,4,7,Playoff Path,Playoff Path,none,NA,-1,5,4,7,Playoff Path,Playoff Path,none,NA,-1,5,FALSE,NA,NA,NA,NA
+2026,9,ATL,FALSE,CIN,home,L,9,3,6,0,3-6,-35,4,7,Playoff Path,Playoff Path,none,NA,-1,2,4,7,Playoff Path,Playoff Path,none,NA,-1,2,FALSE,NA,NA,NA,NA
+2026,9,BAL,FALSE,JAX,home,L,9,4,5,0,4-5,-47,4,7,Playoff Path,Championship Path,down to Playoff Path,loss,-2,1,4,7,Playoff Path,Championship Path,down to Playoff Path,loss,-2,1,FALSE,NA,NA,NA,NA
+2026,9,BUF,FALSE,MIN,away,W,8,7,1,0,7-1,69,4,6,Championship Path,Championship Path,none,NA,-5,9,4,6,Championship Path,Championship Path,none,NA,-5,9,FALSE,NA,NA,FALSE,FALSE
+2026,9,CAR,FALSE,DEN,home,L,8,3,5,0,3-5,-20,4,6,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,4,6,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,FALSE,NA,NA,NA,NA
+2026,9,CHI,FALSE,TB,home,W,9,7,2,0,7-2,57,4,7,Championship Path,Championship Path,none,NA,-5,9,4,7,Championship Path,Championship Path,none,NA,-5,9,FALSE,NA,NA,FALSE,FALSE
+2026,9,CIN,FALSE,ATL,away,W,8,6,2,0,6-2,65,4,6,Championship Path,Championship Path,none,NA,-4,9,4,6,Championship Path,Championship Path,none,NA,-4,9,FALSE,NA,NA,FALSE,FALSE
+2026,9,CLE,FALSE,NO,away,L,9,5,4,0,5-4,-35,4,7,Championship Path,Championship Path,none,NA,-3,9,4,7,Championship Path,Championship Path,none,NA,-3,9,FALSE,NA,NA,FALSE,FALSE
+2026,9,DAL,FALSE,IND,away,W,9,4,5,0,4-5,10,4,7,Playoff Path,Playoff Path,none,NA,-2,2,4,7,Playoff Path,Playoff Path,none,NA,-2,2,FALSE,NA,NA,NA,NA
+2026,9,DEN,FALSE,CAR,away,W,9,7,2,0,7-2,12,4,7,Championship Path,Championship Path,none,NA,-5,9,4,7,Championship Path,Championship Path,none,NA,-5,9,FALSE,NA,NA,FALSE,FALSE
+2026,9,DET,FALSE,MIA,away,W,8,6,2,0,6-2,33,4,6,Championship Path,Championship Path,none,NA,-4,9,4,6,Championship Path,Championship Path,none,NA,-4,9,FALSE,NA,NA,FALSE,FALSE
+2026,9,GB,FALSE,NE,away,W,9,6,3,0,6-3,25,4,7,Championship Path,Championship Path,none,NA,-4,9,4,7,Championship Path,Championship Path,none,NA,-4,9,FALSE,NA,NA,FALSE,FALSE
+2026,9,HOU,FALSE,LAC,away,W,8,3,5,0,3-5,17,4,6,Playoff Path,Playoff Path,none,NA,-1,7,4,6,Playoff Path,Playoff Path,none,NA,-1,5,FALSE,NA,NA,NA,NA
+2026,9,IND,FALSE,DAL,home,L,9,2,7,0,2-7,-65,4,7,Playoff Path,Playoff Path,none,NA,0,4,4,7,Playoff Path,Playoff Path,none,NA,0,4,FALSE,NA,NA,NA,NA
+2026,9,JAX,FALSE,BAL,away,W,8,6,2,0,6-2,108,4,6,Championship Path,Championship Path,none,NA,-4,9,4,6,Championship Path,Championship Path,none,NA,-4,9,FALSE,NA,NA,FALSE,FALSE
+2026,9,KC,FALSE,NYJ,home,W,8,6,2,0,6-2,59,4,6,Championship Path,Championship Path,none,NA,-4,9,4,6,Championship Path,Championship Path,none,NA,-4,9,FALSE,NA,NA,FALSE,FALSE
+2026,9,LA,FALSE,WAS,away,W,9,5,4,0,5-4,33,4,7,Championship Path,Championship Path,none,NA,-3,3,4,7,Championship Path,Championship Path,none,NA,-3,3,FALSE,NA,NA,FALSE,FALSE
+2026,9,LAC,FALSE,HOU,home,L,8,0,8,0,0-8,-98,4,6,Graveyard,Graveyard,none,NA,2,5,4,6,Graveyard,Graveyard,none,NA,2,6,FALSE,NA,NA,NA,NA
+2026,9,LV,FALSE,SF,away,L,9,4,5,0,4-5,-30,4,7,Playoff Path,Championship Path,down to Playoff Path,loss,-2,1,4,7,Playoff Path,Championship Path,down to Playoff Path,loss,-2,1,FALSE,NA,NA,NA,NA
+2026,9,MIA,FALSE,DET,home,L,8,1,7,0,1-7,-74,4,6,Graveyard,Playoff Path,entered Graveyard,loss,1,1,4,6,Graveyard,Graveyard,none,NA,1,2,FALSE,NA,NA,NA,NA
+2026,9,MIN,FALSE,BUF,home,L,8,6,2,0,6-2,30,4,6,Championship Path,Championship Path,none,NA,-4,9,4,6,Championship Path,Championship Path,none,NA,-4,9,FALSE,NA,NA,FALSE,FALSE
+2026,9,NE,FALSE,GB,home,L,9,5,4,0,5-4,4,4,7,Championship Path,Championship Path,none,NA,-3,9,4,7,Championship Path,Championship Path,none,NA,-3,9,FALSE,NA,NA,FALSE,FALSE
+2026,9,NO,FALSE,CLE,home,W,8,3,5,0,3-5,-31,4,6,Playoff Path,Playoff Path,none,NA,-1,5,4,6,Playoff Path,Playoff Path,none,NA,-1,5,FALSE,NA,NA,NA,NA
+2026,9,NYG,FALSE,PHI,away,W,8,5,2,1,5-2-1,10,4,6,Championship Path,Championship Path,none,NA,-4,9,4,6,Championship Path,Championship Path,none,NA,-4,9,FALSE,NA,NA,FALSE,FALSE
+2026,9,NYJ,FALSE,KC,away,L,9,2,7,0,2-7,-41,4,7,Playoff Path,Playoff Path,none,NA,0,4,4,7,Playoff Path,Playoff Path,none,NA,0,4,FALSE,NA,NA,NA,NA
+2026,9,PHI,FALSE,NYG,home,L,9,2,7,0,2-7,-73,4,7,Playoff Path,Playoff Path,none,NA,0,4,4,7,Playoff Path,Playoff Path,none,NA,0,4,FALSE,NA,NA,NA,NA
+2026,9,PIT,TRUE,NA,NA,NA,8,6,2,0,6-2,36,4,6,Championship Path,Championship Path,none,NA,-4,9,4,6,Championship Path,Championship Path,none,NA,-4,9,FALSE,NA,NA,FALSE,FALSE
+2026,9,SEA,FALSE,ARI,home,W,9,5,4,0,5-4,40,4,7,Championship Path,Championship Path,none,NA,-3,9,4,7,Championship Path,Championship Path,none,NA,-3,9,FALSE,NA,NA,FALSE,FALSE
+2026,9,SF,FALSE,LV,home,W,8,7,1,0,7-1,79,4,6,Championship Path,Championship Path,none,NA,-5,9,4,6,Championship Path,Championship Path,none,NA,-5,9,FALSE,NA,NA,FALSE,FALSE
+2026,9,TB,FALSE,CHI,away,L,9,3,6,0,3-6,24,4,7,Playoff Path,Playoff Path,none,NA,-1,7,4,7,Playoff Path,Playoff Path,none,NA,-1,5,FALSE,NA,NA,NA,NA
+2026,9,TEN,TRUE,NA,NA,NA,8,1,7,0,1-7,-55,4,6,Graveyard,Graveyard,none,NA,1,2,4,6,Graveyard,Graveyard,none,NA,1,3,FALSE,NA,NA,NA,NA
+2026,9,WAS,FALSE,LA,home,L,8,2,5,1,2-5-1,-30,4,6,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,4,6,Playoff Path,Championship Path,down to Playoff Path,loss,-1,1,FALSE,NA,NA,NA,NA

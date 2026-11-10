@@ -11,7 +11,7 @@ The starting point is a common claim: *roughly 60% of Super Bowl winners started
 - [x] First look at the 2-0 claim
 - [x] Extended to the full Super Bowl era (1966–2025, 60 seasons)
 - [x] Loss thresholds by games played, for two baselines
-- [ ] NFL Graveyard tiers for the 2026 season
+- [x] NFL Graveyard tiers for the 2026 season (backfilled weekly)
 - [ ] Week-by-week trajectories (champions vs. field)
 - [ ] Figures
 
@@ -69,7 +69,7 @@ The most losses any eventual champion, and any eventual playoff team, had after 
 | 14 | 7 | 8 | 8 | 59 |
 | 15 | 7 | 9 | 9 | 47 |
 | 16 | 7 | 9 | 9 | 46 |
-| 17 | 6 | 9 | 9 | 5 |
+| 17 | 6 (used as 7) | 9 | 9 | 5 |
 
 - **The champion threshold is the same in both baselines at every point.** Thirty-three more champions did not move it. The older seasons only add teams that tie an existing boundary (1980 Raiders at 2-3 and 3-3, 1981 49ers at 1-2, 1986 Giants at 0-1, 1988 49ers at 6-5, 1993 Cowboys at 0-2).
 - **The playoff threshold moves at two points**, each set by a single team:
@@ -77,7 +77,7 @@ The most losses any eventual champion, and any eventual playoff team, had after 
     - **Game 7: the 1970 Bengals** started 1-6, won their last seven and took the AFC Central at 8-6. They are the only one of 216 teams with six or more losses after seven games to make the playoffs. That was a four-team division in the first season after the merger, and nobody else in it finished above 7-7.
 - Dropping 1982, 1987, the pre-merger seasons, or the 1968 Chiefs (whose only playoff game was a tiebreaker) changes no threshold.
 
-The full tables, with tier counts and the team-seasons at each boundary, are in `data/loss_thresholds_by_games.csv`.
+The full tables, with tier counts and the team-seasons at each boundary, are in `data/loss_thresholds_by_games.csv`. The `champion_max_losses` and `playoff_max_losses` columns are the raw maxima above. The `champion_threshold` and `playoff_threshold` columns are the same numbers carried forward so they never decrease in games played; those are what the tiers use. The only cell that changes is game 17, where the champion threshold is 7 instead of the raw 6 (see below).
 
 ### What changed between eras
 
@@ -94,10 +94,66 @@ The full tables, with tier counts and the team-seasons at each boundary, are in 
 Things to keep in mind when reading a threshold:
 
 - **The same game count is a different point in different seasons.** Game 14 was the finale through 1977 and has three games left today. Late thresholds are set by the long seasons, because a team with games left has room to recover.
-- **Not every season reaches every count.** Games 15–16 have no pre-1978 teams, games 10 on have no 1982 teams, and game 17 has only five seasons. That is why the champion threshold *drops* from 7 losses at game 16 to 6 at game 17: the 2011 Giants (7-7, then 9-7) never played a 17th game.
+- **Not every season reaches every count.** Games 15–16 have no pre-1978 teams, games 10 on have no 1982 teams, and game 17 has only five seasons. That is why the raw champion threshold *drops* from 7 losses at game 16 to 6 at game 17: the 2011 Giants (7-7, then 9-7) never played a 17th game. The tiers carry the 7 forward, so a team can't drop a tier by winning.
 - **A playoff spot was harder to get.** With a quarter of teams qualifying instead of 44%, older seasons rarely set a playoff boundary. The two that do come from a weak division (1970) and a long winning streak (1992).
 - **Ties were common before overtime.** There are 62 tie games in 1966–73 and 30 in the 52 seasons since. The thresholds count losses only, so a tie is not a step toward the Graveyard. Counting a tie as half a loss would move the playoff threshold only at games 11–14 (by half a loss) and change the tier of about 1% of team-games.
 - **Thresholds are records, not odds.** One team sets each boundary, and the first team to beat it resets it.
+
+## NFL Graveyard tiers for 2026
+
+After every completed week of the current season, `graveyard_tiers.R` puts every team in one of the three tiers by comparing its losses with the thresholds above at the same number of games. It rebuilds every completed week on each run (the backfill) and tracks every move between tiers.
+
+**Decisions:**
+
+1.  **The full baseline (1966 on) is the primary tier.** The modern tier (1999 on) is carried alongside in every file as a sensitivity check. They differ only after game 4 (0-4 is the Playoff Path on full, the Graveyard on modern) and game 7 (1-6, likewise).
+2.  **Thresholds are frozen at the end of the 2025 season.** They come from `analysis.R`, which only reads completed seasons. Nothing a 2026 team does changes them.
+3.  **Losses only.** A tie is not a loss. The one tie so far (NYG 27, WAS 27 in week 5) changes no tier: WAS at 2-5-1 after 8 games would be on the Playoff Path either way.
+4.  **Thresholds never decrease in games played.** The raw maxima are carried forward (`cummax`), which changes only game 17. So a team can move down only by losing, and up only when the threshold steps up at its next game count.
+5.  **Indexed by games played.** A team on a bye keeps last week's tier.
+6.  **Leaving the Graveyard is not a comeback.** The playoff threshold steps up at games 6, 7, 9, 12 and 15 (full baseline), so a Graveyard team that wins into one of those counts returns to the Playoff Path. Historically that is common and means nothing: 611 team-seasons since 1966 entered the Graveyard (322 since 1999), 186 of them left it at least once (226 exits in all), and none made the playoffs. The movement is recorded as `left Graveyard`, with the trigger `threshold stepped up`.
+7.  **Breaking a threshold is flagged, not absorbed.** `losses_past_playoff` says how many losses past the playoff limit a team is, i.e. by how much a playoff berth would set a new record. Once the playoffs start, `made_playoffs`, `sb_champion` and `breaks_threshold_*` fill in, and the report lists any playoff team that had a Graveyard week or any champion with a week off the Championship Path. The thresholds themselves move only when `analysis.R` is rerun after the Super Bowl with `last_complete_season` advanced.
+
+**Through week 9 (2026):**
+
+| Week | Championship Path | Playoff Path | Graveyard | Modern baseline, if different |
+|-----:|-----:|-----:|-----:|------------|
+| 1 | 32 | 0 | 0 | |
+| 2 | 32 | 0 | 0 | |
+| 3 | 27 | 5 | 0 | |
+| 4 | 27 | 5 | 0 | 27 / 0 / 5 |
+| 5 | 25 | 4 | 3 | |
+| 6 | 18 | 12 | 2 | |
+| 7 | 21 | 10 | 1 | 21 / 9 / 2 |
+| 8 | 20 | 10 | 2 | 20 / 9 / 3 |
+| 9 | 16 | 13 | 3 | |
+
+- **Graveyard entries and exits (full baseline):** LAC, MIA and TEN entered at 0-5 in week 5. TEN (week 6) and MIA (week 7) left at 1-5 when the limit stepped up to 5 at game 6, then re-entered at 1-7 (TEN week 8, MIA week 9). LAC has not left since week 5 and sits at 0-8, two losses past the limit of 6.
+- **On the modern baseline** the five 0-4 teams (HOU, LAC, MIA, TB, TEN) entered in week 4; HOU and TB left at 1-4 the next week and have stayed out, and TEN and MIA each entered a week earlier at 1-6.
+- **The two baselines disagree in 7 of 288 team-weeks**, all at the two known spots: the five 0-4 teams in week 4, TEN at 1-6 in week 7 and MIA at 1-6 in week 8. After week 9 they agree on all 32 teams.
+- Every move so far is consistent with the results: 31 tier changes on the full baseline (35 on modern), every downward one on a loss and every upward one on a win into a step in the threshold. No team changed tier on a bye.
+
+**Outputs** (`data/graveyard/`, rewritten every run):
+
+- `2026_tiers.csv`: one row per team per completed week (288 rows through week 9).
+- `2026_movements.csv`: one row per tier change per baseline.
+- `2026_tier_counts.csv`: teams in each tier by week and baseline.
+
+Columns of `2026_tiers.csv` (the `_full` and `_modern` suffixes give each baseline's version):
+
+| Column | Meaning |
+|------------------------------------|------------------------------------|
+| `season`, `week`, `team` | Keys |
+| `is_bye`, `opponent`, `home_away`, `outcome` | That week's game (NA on byes) |
+| `games_played`, `wins`, `losses`, `ties`, `record`, `point_diff` | Cumulative record after this week, as in `team_week_records.csv` |
+| `champion_threshold_*`, `playoff_threshold_*` | The thresholds in force at this games-played count |
+| `tier_*` | Championship Path, Playoff Path or Graveyard |
+| `prev_tier_*`, `movement_*`, `trigger_*` | Last week's tier; `none`, `down to Playoff Path`, `entered Graveyard`, `left Graveyard` or `up to Championship Path`; whether a `loss` or the `threshold stepped up` caused it |
+| `losses_past_playoff_*` | Losses minus the playoff threshold. Positive means a playoff berth would set a record. |
+| `weeks_in_tier_*` | Consecutive calendar weeks in the current tier, byes included |
+| `tiers_disagree` | TRUE where the two baselines put the team in different tiers |
+| `made_playoffs`, `sb_champion`, `breaks_threshold_*` | NA until the playoffs start; then whether the season's outcome contradicts the tier |
+
+`graveyard_tiers.R` stops before saving if any of its 13 checks fail: thresholds never decrease and equal the raw maxima carried forward; every team has one row per completed week on both baselines, with a tier and a threshold; games + byes = weeks; records never decrease; every tier agrees with the thresholds when re-evaluated; downward moves happen only on a loss and upward moves only when the threshold stepped up without a loss; no move on a bye; the full tier is never worse than the modern one; and every saved `data/weekly/` table for the season shows the same records as the backfill.
 
 ## Data
 
@@ -114,6 +170,8 @@ Things to keep in mind when reading a threshold:
 - `data/record_outcomes_by_games.csv`: for each baseline, every record after every number of games, with how many teams had it and how they finished.
 - `data/loss_thresholds_by_games.csv`: for each baseline, the champion and playoff loss thresholds after every number of games.
 - `data/reference_1999_2025/`: the first two files as they were before the extension to 1966 (nflverse only). `analysis.R` checks the new panel against them.
+- `data/graveyard/`: the current season's tiers, movements and tier counts (see [NFL Graveyard tiers for 2026](#nfl-graveyard-tiers-for-2026)).
+- `data/weekly/`: one team-by-team table per completed week of the current season, from `weekly_update.R`.
 
 Columns of `team_week_records.csv`:
 
@@ -175,6 +233,7 @@ From the repo root (where `statigami.Rproj` lives):
 ``` r
 source("nfl-championship-trajectories/analysis.R")
 source("nfl-championship-trajectories/validate_sources.R")  # optional
+source("nfl-championship-trajectories/graveyard_tiers.R")   # current-season tiers
 ```
 
 Requires `tidyverse`.
@@ -187,9 +246,9 @@ Every Tuesday during the season, after Monday Night Football:
 source("nfl-championship-trajectories/weekly_update.R")
 ```
 
-It re-downloads the current season's scores, then compares every team's record with every team in the historical baseline that had the same record after the same number of games. It prints a ready-to-post summary (title and playoff odds by record, unbeaten teams, the Graveyard, the champion-floor watch) and saves a team-by-team table to `data/weekly/<season>_week<NN>.csv`. Run `analysis.R` first; the weekly script reads its outputs.
+It first sources `graveyard_tiers.R`, which re-downloads the current season's scores, rebuilds the three tiers for every completed week and saves `data/graveyard/`. It then compares every team's record with every team in the historical baseline that had the same record after the same number of games, prints a ready-to-post summary (title and playoff odds by record, unbeaten teams, the three tiers with this week's Graveyard entries and exits, where the modern baseline disagrees, the champion-floor watch) and saves a team-by-team table to `data/weekly/<season>_week<NN>.csv`. Run `analysis.R` first; both scripts read its outputs.
 
-`history_baseline` at the top of the script picks the baseline. It is set to `"modern"` (1999 on), which is what every weekly table so far was built with; `"full"` uses 1966 on. The script's "Graveyard" still means *past the champion threshold*. It has not been moved to the three tiers above yet.
+`history_baseline` at the top of the script picks the baseline for the odds and the floor watch. It is set to `"modern"` (1999 on), which is what every weekly table so far was built with; `"full"` uses 1966 on. The tiers always use both baselines, full as primary. The weekly table keeps its original 18 columns unchanged (the week 3 table reproduces exactly) and appends the tier columns: `tier_full`, `tier_modern`, the previous tiers and movements, `losses_past_playoff_*`, `playoff_threshold_*` and `weeks_in_tier_full`.
 
 Title and playoff odds are smoothed with isotonic regression on losses: the raw rate for each record, pooled with its neighbours wherever a record with more losses would otherwise rank higher. With only 27 champions on the modern baseline, raw rates are noisy (7-1 teams have won more often than 8-0 teams), and a logistic curve overstates the extremes.
 
@@ -199,11 +258,13 @@ Title and playoff odds are smoothed with isotonic regression on losses: the raw 
 nfl-championship-trajectories/
 ├── analysis.R
 ├── validate_sources.R
+├── graveyard_tiers.R            (current-season tiers; sourced by weekly_update.R)
 ├── weekly_update.R
 ├── README.md
 ├── data/
 │   ├── raw/                     (downloads, git-ignored)
 │   ├── reference_1999_2025/     (original nflverse-only outputs)
+│   ├── graveyard/               (current-season tiers, movements, counts)
 │   ├── weekly/                  (one table per week)
 │   ├── loss_thresholds_by_games.csv
 │   ├── record_outcomes_by_games.csv
