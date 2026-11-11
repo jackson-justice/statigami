@@ -365,3 +365,12 @@ section(
 )
 
 cat("\nSaved team-by-team table to", output_path, "\n")
+
+
+# =============================================================================
+# 6. The website tracker
+# =============================================================================
+# Rebuilds the generated parts of website/articles/nfl-graveyard.qmd for every
+# completed week (tier boxes, what moved, what is at stake, odds).
+
+source(file.path(project_dir, "graveyard_site.R"))

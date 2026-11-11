@@ -13,6 +13,7 @@ The starting point is a common claim: *roughly 60% of Super Bowl winners started
 - [x] Loss thresholds by games played, for two baselines
 - [x] NFL Graveyard tiers for the 2026 season (backfilled weekly)
 - [x] Figures: the floors, and the 2026 tiers week by week
+- [x] Website tracker: tier boxes and weekly notes for every completed week (`website/articles/nfl-graveyard.qmd`)
 - [ ] Week-by-week trajectories (champions vs. field)
 
 ## Two baselines
@@ -164,6 +165,13 @@ Columns of `2026_tiers.csv` (the `_full` and `_modern` suffixes give each baseli
 
 The current-season figures are rebuilt on every weekly run. `chart_setup.R` holds the shared brand setup (and a neutral fallback when `brand/` is missing), the tier colors, and the band/staircase helpers both scripts use.
 
+**Website tracker** (`graveyard_site.R`, sourced at the end of `weekly_update.R`): the article at `website/articles/nfl-graveyard.qmd` opens on the latest completed week, with a week selector. For every completed week the script generates the three tier boxes (team logos by tier, newcomers tagged), a "What moved" list (entries, exits, drops, the Graveyard teams with how every team that had the same record finished, and teams on a floor whose next loss changes their tier), an "At stake" list for the following week (every game in which a result changes a tier, and the byes), and the smoothed title and playoff odds by record, all on the full baseline. It writes:
+
+- `website/articles/_nfl-graveyard/tracker.qmd`: the generated weekly sections, included by the article. Never edit it by hand.
+- `website/articles/_nfl-graveyard/meta.yml`: the article's date and facts strip.
+- `website/articles/_nfl-graveyard/stories/week<NN>.qmd`: the hand-written take for each week, created with a placeholder when missing and never overwritten. Rerun `weekly_update.R` after editing one.
+- `logos/<TEAM>.png`: team logos from nflverse, downloaded once; the site copies them next to the figures.
+
 `graveyard_tiers.R` stops before saving if any of its 13 checks fail: thresholds never decrease and equal the raw maxima carried forward; every team has one row per completed week on both baselines, with a tier and a threshold; games + byes = weeks; records never decrease; every tier agrees with the thresholds when re-evaluated; downward moves happen only on a loss and upward moves only when the threshold stepped up without a loss; no move on a bye; the full tier is never worse than the modern one; and every saved `data/weekly/` table for the season shows the same records as the backfill.
 
 ## Data
@@ -257,7 +265,9 @@ Every Tuesday during the season, after Monday Night Football:
 source("nfl-championship-trajectories/weekly_update.R")
 ```
 
-It first sources `graveyard_tiers.R`, which re-downloads the current season's scores, rebuilds the three tiers for every completed week and saves `data/graveyard/`. It then compares every team's record with every team in the historical baseline that had the same record after the same number of games, prints a ready-to-post summary (title and playoff odds by record, unbeaten teams, the three tiers with this week's Graveyard entries and exits, where the modern baseline disagrees, the champion-floor watch) and saves a team-by-team table to `data/weekly/<season>_week<NN>.csv`. Run `analysis.R` first; both scripts read its outputs.
+It first sources `graveyard_tiers.R`, which re-downloads the current season's scores, rebuilds the three tiers for every completed week and saves `data/graveyard/`. It then compares every team's record with every team in the historical baseline that had the same record after the same number of games, prints a ready-to-post summary (title and playoff odds by record, unbeaten teams, the three tiers with this week's Graveyard entries and exits, where the modern baseline disagrees, the champion-floor watch) and saves a team-by-team table to `data/weekly/<season>_week<NN>.csv`. Finally it sources `graveyard_site.R`, which rebuilds the website tracker (see above). Run `analysis.R` first; the scripts read its outputs.
+
+After the run: write the week's take in `website/articles/_nfl-graveyard/stories/week<NN>.qmd`, run `weekly_update.R` again (or just `quarto render website` to preview), and commit `data/`, `figures/`, `logos/` and `website/articles/_nfl-graveyard/`.
 
 `history_baseline` at the top of the script picks the baseline for the odds and the floor watch. It is set to `"modern"` (1999 on), which is what every weekly table so far was built with; `"full"` uses 1966 on. The tiers always use both baselines, full as primary. The weekly table keeps its original 18 columns unchanged (the week 3 table reproduces exactly) and appends the tier columns: `tier_full`, `tier_modern`, the previous tiers and movements, `losses_past_playoff_*`, `playoff_threshold_*` and `weeks_in_tier_full`.
 
@@ -271,8 +281,10 @@ nfl-championship-trajectories/
 ├── validate_sources.R
 ├── graveyard_tiers.R            (current-season tiers; sourced by weekly_update.R)
 ├── weekly_update.R
+├── graveyard_site.R             (website tracker; sourced by weekly_update.R)
 ├── chart_setup.R                (brand setup and helpers shared by the figure code)
 ├── README.md
+├── logos/                       (team logos from nflverse, for the website tracker)
 ├── data/
 │   ├── raw/                     (downloads, git-ignored)
 │   ├── reference_1999_2025/     (original nflverse-only outputs)

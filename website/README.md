@@ -34,6 +34,10 @@ If the build prints **"Brand folder not found; using neutral site styles"**, the
 | `listings/archive.ejs` | The Articles page list. |
 | `articles/_metadata.yml` | Turns on the article layout for every article. |
 
+## The NFL Graveyard tracker
+
+`articles/nfl-graveyard.qmd` is partly generated. `articles/_nfl-graveyard/` (the underscore keeps Quarto from rendering it as pages) holds `tracker.qmd` and `meta.yml`, written every week by `nfl-championship-trajectories/graveyard_site.R`, and `stories/week<NN>.qmd`, the hand-written take for each week. The week selector is a `<select>` with a few lines of script; the tier boxes and selector are styled in `styles/statigami.scss` under "The NFL Graveyard tracker". `prepare-site.ts` copies a project's `logos/` folder, if it has one, next to its figures.
+
 ## Adding an article
 
 1.  Add the project folder name to `articleProjects` in `scripts/prepare-site.ts`.

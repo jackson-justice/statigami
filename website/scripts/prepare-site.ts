@@ -42,6 +42,17 @@ for (const project of articleProjects) {
     }
   }
   if (copied === 0) throw new Error(`No figures found in ${from}`);
+
+  // Team logos, if the project has them (served next to the figures)
+  const logos = `../${project}/logos`;
+  if (await exists(logos)) {
+    await Deno.mkdir(`${to}/logos`, { recursive: true });
+    for await (const entry of Deno.readDir(logos)) {
+      if (entry.isFile && entry.name.endsWith(".png")) {
+        await Deno.copyFile(`${logos}/${entry.name}`, `${to}/logos/${entry.name}`);
+      }
+    }
+  }
 }
 
 // -----------------------------------------------------------------------------
