@@ -6,6 +6,8 @@ categories: [NFL]
 description: "A weekly elimination tracker for the 2026 NFL season: the Championship Path, the Playoff Path and the Graveyard, set by every team-season since 1966, with the strange paths in and out."
 image: figures/nfl-championship-trajectories/02_tier_tiles_2026.png
 image-alt: "A grid of every NFL team's tier after each week of 2026, with the Graveyard teams in amber at the bottom."
+# The page is two tabs (the tracker, and how it works), so no contents list
+toc: false
 # date and the facts strip are generated every week by graveyard_site.R
 metadata-files: [_nfl-graveyard/meta.yml]
 # The one number the home page features from this article
@@ -17,11 +19,24 @@ key-stat:
   source: "nflverse (1999–) and FiveThirtyEight (1966–98) · 1,770 team-seasons"
 ---
 
+```{=html}
+<div class="sg-tabs" role="tablist" aria-label="Sections of this article">
+<button type="button" class="sg-tab is-active" role="tab" id="sg-tab-tracker" aria-controls="tracker" aria-selected="true">// The tracker</button>
+<button type="button" class="sg-tab" role="tab" id="sg-tab-how" aria-controls="how-it-works" aria-selected="false" tabindex="-1">// How it works</button>
+</div>
+```
+
+:::: {#tracker .sg-tab-panel .is-active role="tabpanel" aria-labelledby="sg-tab-tracker"}
+
+{{< include _nfl-graveyard/tracker.qmd >}}
+
+::::
+
+:::: {#how-it-works .sg-tab-panel role="tabpanel" aria-labelledby="sg-tab-how"}
+
 Every week of the NFL season there's a conversation about who's going to win it all. This is the other conversation: who's already out?
 
 Not "mathematically eliminated," which doesn't happen until December. I mean something earlier and stranger: the point where a team has more losses than *any* team that went on to make the playoffs has ever had at the same stage. Not more than most of them. More than every single one, going back to the first Super Bowl season in 1966. I call that the Graveyard.
-
-{{< include _nfl-graveyard/tracker.qmd >}}
 
 ## What is the Graveyard?
 
@@ -50,7 +65,7 @@ Most of the champion floor through game 11 is one team: the 2001 Patriots, who w
 
 ## The first nine weeks
 
-The tracker above is the live version. The figures in this section are a snapshot after week 9, when three teams were in the Graveyard and the strangest paths of the season so far had already been walked.
+The tracker tab is the live version. The figures in this section are a snapshot after week 9, when three teams were in the Graveyard and the strangest paths of the season so far had already been walked.
 
 ![Every team's tier after every week of 2026, through week 9. Letter = that week's result. Faded = bye. The ring marks a team that left the Graveyard because the floor stepped up.](figures/nfl-championship-trajectories/02_tier_tiles_2026.png){fig-alt="A grid with 32 team rows and 9 week columns. Most tiles are cobalt (Championship Path). Magenta Playoff Path tiles appear from week 3 for the teams near the bottom. The bottom three rows, Miami, Tennessee and the Chargers, turn amber (Graveyard) from week 5, with white rings on Tennessee's week 6 and Miami's week 7 tiles where they briefly climbed out."}
 
@@ -110,5 +125,64 @@ That's 7 of 288 team-weeks through week 9 where the two disagree, and from game 
 
 **Limitations.** The floors are set by single teams, so they are records, not probabilities: a tier says whether something has happened before, not how likely it is. Older seasons were shorter and sent a smaller share of teams to the playoffs, which makes their boundaries rarer rather than wrong. Seventeen-game seasons have only been played five times, so the game-17 floors rest on 158 team-seasons.
 
-Code and data: [nfl-championship-trajectories](https://github.com/jackson-justice/statigami/tree/main/nfl-championship-trajectories) on GitHub, including the weekly update script that rebuilds the tiers, these figures and the tracker above.
+Code and data: [nfl-championship-trajectories](https://github.com/jackson-justice/statigami/tree/main/nfl-championship-trajectories) on GitHub, including the weekly update script that rebuilds the tiers, these figures and the tracker.
 :::
+
+::::
+
+```{=html}
+<script>
+// The two tabs. A link or address that points inside a hidden tab (#week-5,
+// #how-it-works, #does-the-baseline-matter) opens that tab first.
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".sg-tab"));
+  if (!tabs.length) return;
+  function panelOf(tab) { return document.getElementById(tab.getAttribute("aria-controls")); }
+  function activate(tab) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.classList.toggle("is-active", on);
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+      panelOf(t).classList.toggle("is-active", on);
+    });
+  }
+  function tabFor(hash) {
+    var el = null;
+    try { el = hash && hash.length > 1 ? document.getElementById(decodeURIComponent(hash.slice(1))) : null; } catch (e) {}
+    var panel = el && el.closest(".sg-tab-panel");
+    return panel ? document.getElementById(panel.getAttribute("aria-labelledby")) : null;
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener("click", function () {
+      activate(tab);
+      // The tracker's address is the week it is showing
+      var week = document.getElementById("sg-week-select");
+      var address = tab.id === "sg-tab-tracker" && week ? "week-" + week.value : tab.getAttribute("aria-controls");
+      if (history.replaceState) history.replaceState(null, "", "#" + address);
+    });
+    tab.addEventListener("keydown", function (e) {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      var next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
+      next.focus();
+      next.click();
+    });
+  });
+  // Open the right tab before the browser tries to scroll to a hidden target
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    var tab = a && tabFor(a.getAttribute("href"));
+    if (tab) activate(tab);
+  }, true);
+  function fromAddress() {
+    var tab = tabFor(location.hash);
+    if (!tab) return;
+    activate(tab);
+    var el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (el && !el.classList.contains("sg-tab-panel") && !el.classList.contains("sg-week")) el.scrollIntoView();
+  }
+  addEventListener("hashchange", fromAddress);
+  fromAddress();
+})();
+</script>
+```

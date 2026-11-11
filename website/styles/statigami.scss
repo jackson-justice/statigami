@@ -1053,6 +1053,34 @@ body:not(.sg-home) #quarto-document-content .sg-week {
 }
 .sg-tier-3 .sg-tier-teams img { filter: drop-shadow(0 0 6px color-mix(in srgb, var(--sg-amber) 45%, transparent)); }
 
+// Tabs inside an article: the tracker in one, its explainer in the other.
+// One panel shows at a time (the script is in nfl-graveyard.qmd).
+.sg-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 28px;
+  margin: 0.6em 0 1.8em;
+  border-bottom: 1px solid var(--sg-rule-ink);
+}
+.sg-tab {
+  @include mono-tag;
+  font-size: 12.5px;
+  color: var(--sg-fg-on-ink-3);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 12px 0 11px;
+  cursor: pointer;
+  transition: color 120ms var(--sg-ease), border-color 120ms var(--sg-ease);
+  &:hover { color: var(--sg-paper); }
+  &.is-active { color: var(--sg-paper); border-bottom-color: var(--sg-amber); }
+  &:focus-visible { outline: 2px solid var(--sg-amber); outline-offset: 4px; }
+}
+.sg-tab-panel { display: none; }
+.sg-tab-panel.is-active { display: block; }
+.sg-tab-panel > :first-child { margin-top: 0; }
+
 // -----------------------------------------------------------------------------
 // Small screens
 // -----------------------------------------------------------------------------
