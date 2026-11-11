@@ -22,13 +22,13 @@ Sports are the main playground, but Statigami can also include health, behavior,
 
 ## Projects
 
+### [Which NFL Teams Are Already in the Graveyard?](./nfl-graveyard)
+
+A weekly tracker for the 2026 season that sorts every team into three tiers by its losses, using every season since 1966. No team that has entered the Graveyard has ever made the playoffs. [Read the article](https://jackson-justice.github.io/statigami/articles/nfl-graveyard.html).
+
 ### [Do Tight Ends Play Better on National Tight Ends Day?](./national-tight-ends-day)
 
 Comparing seven years of National Tight Ends Days (2019–2025) with every other Sunday, plus a George Kittle case study. [Read the article](https://jackson-justice.github.io/statigami/articles/national-tight-ends-day.html).
-
-### [NFL Championship Trajectories](./nfl-championship-trajectories)
-
-How much does an NFL team's record at each point in the season tell you about its Super Bowl chances?
 
 ### [When MLB Still Bunts](./sacrifice-bunt-analysis)
 

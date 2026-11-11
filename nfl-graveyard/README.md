@@ -1,8 +1,42 @@
-# NFL Championship Trajectories
+# NFL Graveyard
 
-**How strongly does an NFL team's record at each point in the regular season relate to eventually winning the Super Bowl?**
+**Which NFL teams already have more losses than any playoff team has ever had at the same point in the season?**
 
-The starting point is a common claim: *roughly 60% of Super Bowl winners started 2-0, and only a few started 0-2.* This project checks that claim, then puts it in context by comparing eventual champions with every NFL team, week by week.
+Every team, after every week of the season, is sorted into one of three tiers by its losses: the Championship Path, the Playoff Path and the Graveyard. The boundaries come from every team-season of the Super Bowl era (1966–2025). Of the 611 teams that have entered the Graveyard, none made the playoffs.
+
+**Article and live tracker:** [Which NFL teams are already in the Graveyard?](https://jackson-justice.github.io/statigami/articles/nfl-graveyard.html), updated after every week of the 2026 season.
+
+The project started from a common claim: *roughly 60% of Super Bowl winners started 2-0, and only a few started 0-2.* The first sections below check that claim. The rest follow records further into the season, to the points where no champion, and then no playoff team, has ever come back from.
+
+This folder was called `nfl-championship-trajectories` until November 2026.
+
+## Weekly plan (every Tuesday)
+
+During the season, after Monday Night Football. Work from the repo root.
+
+1.  **Run the update.** In Positron:
+
+    ``` r
+    source("nfl-graveyard/weekly_update.R")
+    ```
+
+    It downloads the scores, rebuilds the tiers, the figures and the website tracker for the new week, and stops with an error if any of its checks fail.
+
+2.  **Read the summary it prints.** Who entered or left the Graveyard, who dropped off the Championship Path, and who is sitting on a floor. That is the raw material for the take.
+
+3.  **Write the take.** The run creates `website/articles/_nfl-graveyard/stories/week<NN>.qmd` with a placeholder line. Replace that line with two to four sentences. Check every name, score and record against the summary or `data/weekly/<season>_week<NN>.csv`.
+
+4.  **Preview.** Run `quarto render website` and open `website/_site/articles/nfl-graveyard.html`. The tracker should open on the new week with the take showing, and the page should not contain the word "PLACEHOLDER".
+
+5.  **Publish.** Commit `nfl-graveyard/` and `website/articles/` on main and push. The GitHub Action rebuilds the site in a few minutes.
+
+6.  **Check the live page:** <https://jackson-justice.github.io/statigami/articles/nfl-graveyard.html>.
+
+The "How it works" tab needs nothing each week. Its text, captions and three 2026 figures are a snapshot after week 9 (the `*_week09.png` copies in `figures/`), so the weekly run does not change it.
+
+With Claude Code, steps 1 to 5 are one request: ask for the weekly Graveyard update and give rough notes for the take. Claude runs the script, writes the take from the notes, checks it against the game data and waits for a go-ahead before pushing.
+
+What the scripts do, and the files they write, is under [Weekly update](#weekly-update) below.
 
 ## Status
 
@@ -14,7 +48,7 @@ The starting point is a common claim: *roughly 60% of Super Bowl winners started
 - [x] NFL Graveyard tiers for the 2026 season (backfilled weekly)
 - [x] Figures: the floors, and the 2026 tiers week by week
 - [x] Website tracker: tier boxes and weekly notes for every completed week (`website/articles/nfl-graveyard.qmd`)
-- [ ] Week-by-week trajectories (champions vs. field)
+- [x] Article published, with a take for every completed week
 
 ## Two baselines
 
@@ -46,7 +80,7 @@ More history is not automatically a better comparison. The league changed undern
 
 ## Loss thresholds by games played
 
-The most losses any eventual champion, and any eventual playoff team, had after each number of games. These are the boundaries for the planned NFL Graveyard tiers:
+The most losses any eventual champion, and any eventual playoff team, had after each number of games. These are the boundaries for the NFL Graveyard tiers:
 
 1.  **Championship Path:** no more losses than the worst-placed eventual champion at that point.
 2.  **Playoff Path:** more than that, but no more than the worst-placed eventual playoff team.
@@ -114,28 +148,9 @@ After every completed week of the current season, `graveyard_tiers.R` puts every
 6.  **Leaving the Graveyard is not a comeback.** The playoff threshold steps up at games 6, 7, 9, 12 and 15 (full baseline), so a Graveyard team that wins into one of those counts returns to the Playoff Path. Historically that is common and means nothing: 611 team-seasons since 1966 entered the Graveyard (322 since 1999), 186 of them left it at least once (226 exits in all), and none made the playoffs. The movement is recorded as `left Graveyard`, with the trigger `threshold stepped up`.
 7.  **Breaking a threshold is flagged, not absorbed.** `losses_past_playoff` says how many losses past the playoff limit a team is, i.e. by how much a playoff berth would set a new record. Once the playoffs start, `made_playoffs`, `sb_champion` and `breaks_threshold_*` fill in, and the report lists any playoff team that had a Graveyard week or any champion with a week off the Championship Path. The thresholds themselves move only when `analysis.R` is rerun after the Super Bowl with `last_complete_season` advanced.
 
-**Through week 9 (2026):**
-
-| Week | Championship Path | Playoff Path | Graveyard | Modern baseline, if different |
-|-------------:|-------------:|-------------:|-------------:|-------------------|
-|    1 |                32 |            0 |         0 |                               |
-|    2 |                32 |            0 |         0 |                               |
-|    3 |                27 |            5 |         0 |                               |
-|    4 |                27 |            5 |         0 | 27 / 0 / 5                    |
-|    5 |                25 |            4 |         3 |                               |
-|    6 |                18 |           12 |         2 |                               |
-|    7 |                21 |           10 |         1 | 21 / 9 / 2                    |
-|    8 |                20 |           10 |         2 | 20 / 9 / 3                    |
-|    9 |                16 |           13 |         3 |                               |
-
-- **Graveyard entries and exits (full baseline):** LAC, MIA and TEN entered at 0-5 in week 5. TEN (week 6) and MIA (week 7) left at 1-5 when the limit stepped up to 5 at game 6, then re-entered at 1-7 (TEN week 8, MIA week 9). LAC has not left since week 5 and sits at 0-8, two losses past the limit of 6.
-- **On the modern baseline** the five 0-4 teams (HOU, LAC, MIA, TB, TEN) entered in week 4; HOU and TB left at 1-4 the next week and have stayed out, and TEN and MIA each entered a week earlier at 1-6.
-- **The two baselines disagree in 7 of 288 team-weeks**, all at the two known spots: the five 0-4 teams in week 4, TEN at 1-6 in week 7 and MIA at 1-6 in week 8. After week 9 they agree on all 32 teams.
-- Every move so far is consistent with the results: 31 tier changes on the full baseline (35 on modern), every downward one on a loss and every upward one on a win into a step in the threshold. No team changed tier on a bye.
-
 **Outputs** (`data/graveyard/`, rewritten every run):
 
-- `2026_tiers.csv`: one row per team per completed week (288 rows through week 9).
+- `2026_tiers.csv`: one row per team per completed week.
 - `2026_movements.csv`: one row per tier change per baseline.
 - `2026_tier_counts.csv`: teams in each tier by week and baseline.
 
@@ -157,13 +172,13 @@ Columns of `2026_tiers.csv` (the `_full` and `_modern` suffixes give each baseli
 **Figures** (`figures/`, Statigami ink surface; the tiers take the brand's heat ramp in order, cobalt → magenta → amber, so the Graveyard is always the hot color):
 
 | File | Made by | What it shows |
-|----------------------------|----------------|----------------------------|
+|---------------------------|------------------|---------------------------|
 | `01_loss_floors_1966_2025.png` | `analysis.R` §10 | The two floors as bands on games played × losses, with the 1992 Chargers, 1970 Bengals and the game-17 carry-forward annotated, and the two cells where the modern floor is lower |
 | `02_tier_tiles_<season>.png` | `graveyard_tiers.R` §7 | Every team's tier after every week, one tile per team-week, sorted so the Graveyard is at the bottom. Letter = result, faded = bye, ring = left the Graveyard |
 | `03_loss_paths_<season>.png` | `graveyard_tiers.R` §7 | Every team's losses by game on top of the bands; teams that have been in the Graveyard drawn in full, the rest as a faint bundle |
 | `04_tier_counts_<season>.png` | `graveyard_tiers.R` §7 | Teams in each tier by week, stacked |
 
-The current-season figures are rebuilt on every weekly run. `chart_setup.R` holds the shared brand setup (and a neutral fallback when `brand/` is missing), the tier colors, and the band/staircase helpers both scripts use.
+The current-season figures are rebuilt on every weekly run. The `02`–`04` files ending in `_week09.png` are hand-made copies from after week 9, used by the article's "How it works" tab so it stays the same every week; no script writes them. The home page card uses the live `02_tier_tiles_<season>.png`. `chart_setup.R` holds the shared brand setup (and a neutral fallback when `brand/` is missing), the tier colors, and the band/staircase helpers both scripts use.
 
 **Website tracker** (`graveyard_site.R`, sourced at the end of `weekly_update.R`): the article at `website/articles/nfl-graveyard.qmd` has two tabs. "The tracker" opens on the latest completed week, with a week selector; "How it works" holds the explainer and the week 9 figures. For every completed week the script generates the three tier boxes (team logos by tier; a team that changed tier that week gets an arrow, green up or red down, solid when the move crossed the Graveyard line and outlined when it crossed the champion line; a team that has been in the Graveyard at any point this season keeps an amber dagger after its record, in whichever box it sits), a "What moved" list (entries, exits, drops, the Graveyard teams with how every team that had the same record finished, and teams on a floor whose next loss changes their tier), an "At stake" list for the following week (every game in which a result changes a tier, and the byes), and the smoothed title and playoff odds by record, all on the full baseline. It writes:
 
@@ -250,9 +265,9 @@ Columns of `team_week_records.csv`:
 From the repo root (where `statigami.Rproj` lives):
 
 ``` r
-source("nfl-championship-trajectories/analysis.R")
-source("nfl-championship-trajectories/validate_sources.R")  # optional
-source("nfl-championship-trajectories/graveyard_tiers.R")   # current-season tiers
+source("nfl-graveyard/analysis.R")
+source("nfl-graveyard/validate_sources.R")  # optional
+source("nfl-graveyard/graveyard_tiers.R")   # current-season tiers
 ```
 
 Requires `tidyverse`. The figures also need `ragg`, `systemfonts` and `rsvg` for the brand fonts and logo (see `brand/README.md`).
@@ -262,12 +277,12 @@ Requires `tidyverse`. The figures also need `ragg`, `systemfonts` and `rsvg` for
 Every Tuesday during the season, after Monday Night Football:
 
 ``` r
-source("nfl-championship-trajectories/weekly_update.R")
+source("nfl-graveyard/weekly_update.R")
 ```
 
 It first sources `graveyard_tiers.R`, which re-downloads the current season's scores, rebuilds the three tiers for every completed week and saves `data/graveyard/`. It then compares every team's record with every team in the historical baseline that had the same record after the same number of games, prints a ready-to-post summary (title and playoff odds by record, unbeaten teams, the three tiers with this week's Graveyard entries and exits, where the modern baseline disagrees, the champion-floor watch) and saves a team-by-team table to `data/weekly/<season>_week<NN>.csv`. Finally it sources `graveyard_site.R`, which rebuilds the website tracker (see above). Run `analysis.R` first; the scripts read its outputs.
 
-After the run: write the week's take in `website/articles/_nfl-graveyard/stories/week<NN>.qmd`, run `weekly_update.R` again (or just `quarto render website` to preview), and commit `data/`, `figures/`, `logos/` and `website/articles/_nfl-graveyard/`.
+After the run, follow the [weekly plan](#weekly-plan-every-tuesday) at the top: write the week's take in `website/articles/_nfl-graveyard/stories/week<NN>.qmd`, preview with `quarto render website` (the take is included at render time, so the script does not need a second run), and commit `data/`, `figures/`, `logos/` and `website/articles/_nfl-graveyard/`.
 
 `history_baseline` at the top of the script picks the baseline for the odds and the floor watch. It is set to `"modern"` (1999 on), which is what every weekly table so far was built with; `"full"` uses 1966 on. The tiers always use both baselines, full as primary. The weekly table keeps its original 18 columns unchanged (the week 3 table reproduces exactly) and appends the tier columns: `tier_full`, `tier_modern`, the previous tiers and movements, `losses_past_playoff_*`, `playoff_threshold_*` and `weeks_in_tier_full`.
 
@@ -276,7 +291,7 @@ Title and playoff odds are smoothed with isotonic regression on losses: the raw 
 ## Project structure
 
 ``` text
-nfl-championship-trajectories/
+nfl-graveyard/
 ├── analysis.R
 ├── validate_sources.R
 ├── graveyard_tiers.R            (current-season tiers; sourced by weekly_update.R)
@@ -297,5 +312,6 @@ nfl-championship-trajectories/
     ├── 01_loss_floors_1966_2025.png
     ├── 02_tier_tiles_2026.png
     ├── 03_loss_paths_2026.png
-    └── 04_tier_counts_2026.png
+    ├── 04_tier_counts_2026.png
+    └── 02–04 ..._2026_week09.png  (week 9 snapshot for "How it works")
 ```

@@ -1,5 +1,5 @@
 # =============================================================================
-# NFL Championship Trajectories
+# NFL Graveyard
 #
 # Question: How strongly does an NFL team's record at each point in the
 # regular season relate to eventually winning the Super Bowl?
@@ -18,7 +18,7 @@
 
 library(tidyverse)
 
-project_dir <- "nfl-championship-trajectories"
+project_dir <- "nfl-graveyard"
 raw_dir <- file.path(project_dir, "data", "raw")
 dir.create(raw_dir, recursive = TRUE, showWarnings = FALSE)
 

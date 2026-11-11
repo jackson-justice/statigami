@@ -1,5 +1,5 @@
 # =============================================================================
-# NFL Championship Trajectories: weekly update
+# NFL Graveyard: weekly update
 #
 # Run every Tuesday after Monday Night Football. For every team in the current
 # season, this script compares its record with every team in the historical
@@ -12,12 +12,12 @@
 #   data/loss_thresholds_by_games.csv   (used by graveyard_tiers.R)
 #
 # Run from the statigami repo root (where statigami.Rproj lives):
-#   source("nfl-championship-trajectories/weekly_update.R")
+#   source("nfl-graveyard/weekly_update.R")
 # =============================================================================
 
 library(tidyverse)
 
-project_dir <- "nfl-championship-trajectories"
+project_dir <- "nfl-graveyard"
 data_dir <- file.path(project_dir, "data")
 raw_dir <- file.path(data_dir, "raw")
 weekly_dir <- file.path(data_dir, "weekly")

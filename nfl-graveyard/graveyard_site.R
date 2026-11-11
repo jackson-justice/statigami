@@ -16,7 +16,7 @@
 #   website/articles/_nfl-graveyard/stories/week<NN>.qmd
 #       One hand-written file per week. Created with a placeholder when
 #       missing and never overwritten.
-#   nfl-championship-trajectories/logos/<TEAM>.png
+#   nfl-graveyard/logos/<TEAM>.png
 #       Team logos from nflverse, downloaded once. The site copies them next
 #       to the figures.
 #

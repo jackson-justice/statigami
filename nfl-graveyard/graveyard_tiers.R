@@ -33,12 +33,12 @@
 #           data/graveyard/<season>_tier_counts.csv  tier counts by week
 #
 # Run from the statigami repo root (where statigami.Rproj lives):
-#   source("nfl-championship-trajectories/graveyard_tiers.R")
+#   source("nfl-graveyard/graveyard_tiers.R")
 # =============================================================================
 
 library(tidyverse)
 
-project_dir <- "nfl-championship-trajectories"
+project_dir <- "nfl-graveyard"
 data_dir <- file.path(project_dir, "data")
 raw_dir <- file.path(data_dir, "raw")
 weekly_dir <- file.path(data_dir, "weekly")

@@ -21,3 +21,8 @@ When asked to turn a project into an article, do all of these:
 5.  **Publish** only when the user asks: remove `draft: true`, add the project to the Projects list in the root `README.md`, commit and push. The GitHub Action publishes the site to GitHub Pages.
 
 The writing is the user's. Draft in their first-person, conversational voice (see the NTED article), but don't invent their opinions or anecdotes: ask, or leave a clearly marked placeholder. No emoji.
+## Weekly NFL Graveyard update
+
+Every Tuesday during the season the Graveyard tracker gets a new week. The steps are in the "Weekly plan" section of `nfl-graveyard/README.md`: run `nfl-graveyard/weekly_update.R` (R is at `C:\Program Files\R\R-4.6.1\bin\Rscript.exe` if it is not on the path), write the take in `website/articles/_nfl-graveyard/stories/week<NN>.qmd`, render, then commit on main and push when the user says so.
+
+The take is the user's. Write it from their notes, check every name, score and record against the game data, and tell them what you corrected.

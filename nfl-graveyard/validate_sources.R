@@ -1,5 +1,5 @@
 # =============================================================================
-# NFL Championship Trajectories: source cross-checks
+# NFL Graveyard: source cross-checks
 #
 # analysis.R checks that the combined dataset is internally consistent. This
 # script checks the 1966-1998 source itself (FiveThirtyEight) against two
@@ -11,12 +11,12 @@
 # after analysis.R, which downloads the FiveThirtyEight and nflverse files.
 #
 # Run from the statigami repo root (where statigami.Rproj lives):
-#   source("nfl-championship-trajectories/validate_sources.R")
+#   source("nfl-graveyard/validate_sources.R")
 # =============================================================================
 
 library(tidyverse)
 
-raw_dir <- file.path("nfl-championship-trajectories", "data", "raw")
+raw_dir <- file.path("nfl-graveyard", "data", "raw")
 
 # spreadspoke (https://github.com/tobycrabtree/spreadspoke) has no license,
 # so it is only read here for checking and never saved into the project data.

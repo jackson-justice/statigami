@@ -115,7 +115,7 @@ statigami/
 │   ├── analysis.R            # main analysis
 │   ├── data/                 # curated small derived data, if appropriate
 │   └── figures/              # charts used by article and social content
-├── nfl-championship-trajectories/
+├── nfl-graveyard/
 ├── sacrifice-bunt-analysis/
 ├── ...                      # existing investigations stay where they are
 └── website/                 # future Quarto site, not required for first analysis

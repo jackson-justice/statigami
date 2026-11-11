@@ -38,7 +38,7 @@ If the build prints **"Brand folder not found; using neutral site styles"**, the
 
 `articles/nfl-graveyard.qmd` is one page with two tabs: **The tracker** (the week selector and that week's tiers, notes and odds) and **How it works** (the explainer, the week 9 figures and the methods), so the explainer is not under every week. The tabs are two `.sg-tab-panel` divs with a short script at the bottom of the article; an address such as `#week-5`, `#how-it-works` or `#does-the-baseline-matter` opens the right tab. The article has no contents list (`toc: false`).
 
-The tracker tab is generated. `articles/_nfl-graveyard/` (the underscore keeps Quarto from rendering it as pages) holds `tracker.qmd` and `meta.yml`, written every week by `nfl-championship-trajectories/graveyard_site.R`, and `stories/week<NN>.qmd`, the hand-written take for each week. The week selector is a `<select>` with a few lines of script; the tier boxes, selector and tabs are styled in `styles/statigami.scss` under "The NFL Graveyard tracker". `prepare-site.ts` copies a project's `logos/` folder, if it has one, next to its figures.
+The tracker tab is generated. `articles/_nfl-graveyard/` (the underscore keeps Quarto from rendering it as pages) holds `tracker.qmd` and `meta.yml`, written every week by `nfl-graveyard/graveyard_site.R`, and `stories/week<NN>.qmd`, the hand-written take for each week. The week selector is a `<select>` with a few lines of script; the tier boxes, selector and tabs are styled in `styles/statigami.scss` under "The NFL Graveyard tracker". `prepare-site.ts` copies a project's `logos/` folder, if it has one, next to its figures.
 
 ## Adding an article
 

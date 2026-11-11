@@ -27,7 +27,7 @@ const exists = async (path: string): Promise<boolean> => {
 // 1. Figures
 // -----------------------------------------------------------------------------
 
-const articleProjects = ["national-tight-ends-day", "nfl-championship-trajectories"];
+const articleProjects = ["national-tight-ends-day", "nfl-graveyard"];
 
 for (const project of articleProjects) {
   const from = `../${project}/figures`;
