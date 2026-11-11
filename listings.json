@@ -2,12 +2,14 @@
   {
     "listing": "/index.html",
     "items": [
+      "/articles/nfl-graveyard.html",
       "/articles/national-tight-ends-day.html"
     ]
   },
   {
     "listing": "/articles.html",
     "items": [
+      "/articles/nfl-graveyard.html",
       "/articles/national-tight-ends-day.html"
     ]
   }
