@@ -1039,12 +1039,7 @@ body:not(.sg-home) #quarto-document-content .sg-week {
     object-fit: contain;
     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
   }
-  .sg-tier-rec { color: var(--sg-paper); }
-  .sg-tier-tag {
-    @include mono-tag;
-    font-size: 9.5px;
-    color: var(--sg-tier);
-  }
+  .sg-tier-rec { color: var(--sg-paper); white-space: nowrap; }
   .sg-tier-empty {
     grid-column: 1 / -1;
     align-items: flex-start;
@@ -1052,6 +1047,44 @@ body:not(.sg-home) #quarto-document-content .sg-week {
   }
 }
 .sg-tier-3 .sg-tier-teams img { filter: drop-shadow(0 0 6px color-mix(in srgb, var(--sg-amber) 45%, transparent)); }
+
+// Arrows on teams that changed tier this week: green up, red down, solid when
+// the move crossed the Graveyard line and outlined when it crossed the
+// champion line. These two colors are not brand tokens; they are used only
+// here, where up and down have to read at a glance.
+.sg-move {
+  --sg-move: #ff6b6b;
+  width: 12px;
+  height: 10px;
+  flex: none;
+  color: var(--sg-move);
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  &.sg-move-up { --sg-move: #3fd08f; }
+  &.sg-move-outline { fill: none; }
+}
+// The dagger on every team that has been in the Graveyard this season
+.sg-tier-mark {
+  color: var(--sg-amber);
+  font-family: var(--sg-mono);
+  font-weight: 600;
+  margin-left: 3px;
+  cursor: default;
+}
+// What the arrows and the dagger mean, under the week selector
+.sg-tier-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: -0.4em 0 1.4em;
+  font-family: var(--sg-mono);
+  color: var(--sg-fg-on-ink-3);
+  body:not(.sg-home) #quarto-document-content & { font-size: 12px; line-height: 1.5; }
+  > span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .sg-tier-mark { margin-left: 0; }
+}
 
 // Tabs inside an article: the tracker in one, its explainer in the other.
 // One panel shows at a time (the script is in nfl-graveyard.qmd).

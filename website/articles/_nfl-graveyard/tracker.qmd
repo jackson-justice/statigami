@@ -16,6 +16,15 @@
 </select>
 </div>
 ```
+```{=html}
+<p class="sg-tier-legend">
+<span><svg class="sg-move sg-move-down sg-move-solid" viewBox="0 0 12 10" role="img" aria-label="Into the Graveyard"><title>Into the Graveyard</title><path d="M1 1.5h10L6 8.5Z"/></svg> into the graveyard</span>
+<span><svg class="sg-move sg-move-up sg-move-solid" viewBox="0 0 12 10" role="img" aria-label="Out of the Graveyard"><title>Out of the Graveyard</title><path d="M6 1.5 11 8.5H1Z"/></svg> out of the graveyard</span>
+<span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path"><title>Down to the Playoff Path</title><path d="M1 1.5h10L6 8.5Z"/></svg> down to the playoff path</span>
+<span><svg class="sg-move sg-move-up sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Back up to the Championship Path"><title>Back up to the Championship Path</title><path d="M6 1.5 11 8.5H1Z"/></svg> back up to the championship path</span>
+<span><span class="sg-tier-mark" aria-hidden="true">&dagger;</span> has been in the graveyard this season</span>
+</p>
+```
 
 ::: {#week-1 .sg-week}
 
@@ -266,11 +275,11 @@ Share of team-seasons 1966-2025 with the same losses after the same number of ga
 <span class="sg-tier-rule">more than any champion, but no more than some playoff team</span>
 </div>
 <ul class="sg-tier-teams">
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/HOU.png" alt="Houston Texans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-3</span><span class="sg-tier-tag">new</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/LAC.png" alt="Los Angeles Chargers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-3</span><span class="sg-tier-tag">new</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/MIA.png" alt="Miami Dolphins" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-3</span><span class="sg-tier-tag">new</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/TB.png" alt="Tampa Bay Buccaneers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-3</span><span class="sg-tier-tag">new</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/TEN.png" alt="Tennessee Titans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-3</span><span class="sg-tier-tag">new</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/HOU.png" alt="Houston Texans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-3</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/LAC.png" alt="Los Angeles Chargers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-3</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/MIA.png" alt="Miami Dolphins" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-3</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/TB.png" alt="Tampa Bay Buccaneers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-3</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/TEN.png" alt="Tennessee Titans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-3</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
 </ul>
 </section>
 <section class="sg-tier sg-tier-3">
@@ -471,9 +480,9 @@ Share of team-seasons 1966-2025 with the same losses after the same number of ga
 <span class="sg-tier-rule">more than any champion, but no more than some playoff team</span>
 </div>
 <ul class="sg-tier-teams">
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/ARI.png" alt="Arizona Cardinals" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-4</span><span class="sg-tier-tag">new</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/ARI.png" alt="Arizona Cardinals" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-4</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
 <li><img src="figures/nfl-championship-trajectories/logos/HOU.png" alt="Houston Texans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-4</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/NO.png" alt="New Orleans Saints" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-4</span><span class="sg-tier-tag">new</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/NO.png" alt="New Orleans Saints" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-4</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
 <li><img src="figures/nfl-championship-trajectories/logos/TB.png" alt="Tampa Bay Buccaneers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-4</span></li>
 </ul>
 </section>
@@ -484,9 +493,9 @@ Share of team-seasons 1966-2025 with the same losses after the same number of ga
 <span class="sg-tier-rule">more losses than any playoff team has ever had at this point</span>
 </div>
 <ul class="sg-tier-teams">
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/LAC.png" alt="Los Angeles Chargers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-5</span><span class="sg-tier-tag">new</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/MIA.png" alt="Miami Dolphins" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-5</span><span class="sg-tier-tag">new</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/TEN.png" alt="Tennessee Titans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-5</span><span class="sg-tier-tag">new</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/LAC.png" alt="Los Angeles Chargers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-5<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span><svg class="sg-move sg-move-down sg-move-solid" viewBox="0 0 12 10" role="img" aria-label="Into the Graveyard this week"><title>Into the Graveyard this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/MIA.png" alt="Miami Dolphins" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-5<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span><svg class="sg-move sg-move-down sg-move-solid" viewBox="0 0 12 10" role="img" aria-label="Into the Graveyard this week"><title>Into the Graveyard this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/TEN.png" alt="Tennessee Titans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-5<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span><svg class="sg-move sg-move-down sg-move-solid" viewBox="0 0 12 10" role="img" aria-label="Into the Graveyard this week"><title>Into the Graveyard this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
 </ul>
 </section>
 </div>
@@ -580,17 +589,17 @@ Share of team-seasons 1966-2025 with the same losses after the same number of ga
 </div>
 <ul class="sg-tier-teams">
 <li><img src="figures/nfl-championship-trajectories/logos/ARI.png" alt="Arizona Cardinals" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/ATL.png" alt="Atlanta Falcons" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4</span><span class="sg-tier-tag">new</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/DAL.png" alt="Dallas Cowboys" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4</span><span class="sg-tier-tag">new</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/ATL.png" alt="Atlanta Falcons" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/DAL.png" alt="Dallas Cowboys" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
 <li><img src="figures/nfl-championship-trajectories/logos/HOU.png" alt="Houston Texans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/IND.png" alt="Indianapolis Colts" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4</span><span class="sg-tier-tag">new</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/LA.png" alt="Los Angeles Rams" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4</span><span class="sg-tier-tag">new</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/IND.png" alt="Indianapolis Colts" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/LA.png" alt="Los Angeles Rams" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
 <li><img src="figures/nfl-championship-trajectories/logos/NO.png" alt="New Orleans Saints" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/NYJ.png" alt="New York Jets" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4</span><span class="sg-tier-tag">new</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/PHI.png" alt="Philadelphia Eagles" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4</span><span class="sg-tier-tag">new</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/WAS.png" alt="Washington Commanders" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-4-1</span><span class="sg-tier-tag">new</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/NYJ.png" alt="New York Jets" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/PHI.png" alt="Philadelphia Eagles" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/WAS.png" alt="Washington Commanders" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-4-1</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
 <li><img src="figures/nfl-championship-trajectories/logos/TB.png" alt="Tampa Bay Buccaneers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-5</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/TEN.png" alt="Tennessee Titans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-5</span><span class="sg-tier-tag">new</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/TEN.png" alt="Tennessee Titans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-5<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span><svg class="sg-move sg-move-up sg-move-solid" viewBox="0 0 12 10" role="img" aria-label="Out of the Graveyard this week"><title>Out of the Graveyard this week</title><path d="M6 1.5 11 8.5H1Z"/></svg></li>
 </ul>
 </section>
 <section class="sg-tier sg-tier-3">
@@ -600,8 +609,8 @@ Share of team-seasons 1966-2025 with the same losses after the same number of ga
 <span class="sg-tier-rule">more losses than any playoff team has ever had at this point</span>
 </div>
 <ul class="sg-tier-teams">
-<li><img src="figures/nfl-championship-trajectories/logos/MIA.png" alt="Miami Dolphins" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-5</span></li>
-<li><img src="figures/nfl-championship-trajectories/logos/LAC.png" alt="Los Angeles Chargers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-6</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/MIA.png" alt="Miami Dolphins" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-5<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/LAC.png" alt="Los Angeles Chargers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-6<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span></li>
 </ul>
 </section>
 </div>
@@ -683,9 +692,9 @@ Share of team-seasons 1966-2025 with the same losses after the same number of ga
 <li><img src="figures/nfl-championship-trajectories/logos/NE.png" alt="New England Patriots" width="56" height="56" loading="lazy"><span class="sg-tier-rec">4-3</span></li>
 <li><img src="figures/nfl-championship-trajectories/logos/SEA.png" alt="Seattle Seahawks" width="56" height="56" loading="lazy"><span class="sg-tier-rec">4-3</span></li>
 <li><img src="figures/nfl-championship-trajectories/logos/CAR.png" alt="Carolina Panthers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-3</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/ATL.png" alt="Atlanta Falcons" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-4</span><span class="sg-tier-tag">new</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/DAL.png" alt="Dallas Cowboys" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-4</span><span class="sg-tier-tag">new</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/LA.png" alt="Los Angeles Rams" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-4</span><span class="sg-tier-tag">new</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/ATL.png" alt="Atlanta Falcons" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-4</span><svg class="sg-move sg-move-up sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Back up to the Championship Path this week"><title>Back up to the Championship Path this week</title><path d="M6 1.5 11 8.5H1Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/DAL.png" alt="Dallas Cowboys" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-4</span><svg class="sg-move sg-move-up sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Back up to the Championship Path this week"><title>Back up to the Championship Path this week</title><path d="M6 1.5 11 8.5H1Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/LA.png" alt="Los Angeles Rams" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-4</span><svg class="sg-move sg-move-up sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Back up to the Championship Path this week"><title>Back up to the Championship Path this week</title><path d="M6 1.5 11 8.5H1Z"/></svg></li>
 <li><img src="figures/nfl-championship-trajectories/logos/LV.png" alt="Las Vegas Raiders" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-4</span></li>
 </ul>
 </section>
@@ -704,8 +713,8 @@ Share of team-seasons 1966-2025 with the same losses after the same number of ga
 <li><img src="figures/nfl-championship-trajectories/logos/NYJ.png" alt="New York Jets" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-5</span></li>
 <li><img src="figures/nfl-championship-trajectories/logos/PHI.png" alt="Philadelphia Eagles" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-5</span></li>
 <li><img src="figures/nfl-championship-trajectories/logos/TB.png" alt="Tampa Bay Buccaneers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-5</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/MIA.png" alt="Miami Dolphins" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-5</span><span class="sg-tier-tag">new</span></li>
-<li><img src="figures/nfl-championship-trajectories/logos/TEN.png" alt="Tennessee Titans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-6</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/MIA.png" alt="Miami Dolphins" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-5<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span><svg class="sg-move sg-move-up sg-move-solid" viewBox="0 0 12 10" role="img" aria-label="Out of the Graveyard this week"><title>Out of the Graveyard this week</title><path d="M6 1.5 11 8.5H1Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/TEN.png" alt="Tennessee Titans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-6<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span></li>
 </ul>
 </section>
 <section class="sg-tier sg-tier-3">
@@ -715,7 +724,7 @@ Share of team-seasons 1966-2025 with the same losses after the same number of ga
 <span class="sg-tier-rule">more losses than any playoff team has ever had at this point</span>
 </div>
 <ul class="sg-tier-teams">
-<li><img src="figures/nfl-championship-trajectories/logos/LAC.png" alt="Los Angeles Chargers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-6</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/LAC.png" alt="Los Angeles Chargers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-6<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span></li>
 </ul>
 </section>
 </div>
@@ -802,7 +811,7 @@ Share of team-seasons 1966-2025 with the same losses after the same number of ga
 <li><img src="figures/nfl-championship-trajectories/logos/LV.png" alt="Las Vegas Raiders" width="56" height="56" loading="lazy"><span class="sg-tier-rec">4-4</span></li>
 <li><img src="figures/nfl-championship-trajectories/logos/SEA.png" alt="Seattle Seahawks" width="56" height="56" loading="lazy"><span class="sg-tier-rec">4-4</span></li>
 <li><img src="figures/nfl-championship-trajectories/logos/CAR.png" alt="Carolina Panthers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-4</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/WAS.png" alt="Washington Commanders" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4-1</span><span class="sg-tier-tag">new</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/WAS.png" alt="Washington Commanders" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-4-1</span><svg class="sg-move sg-move-up sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Back up to the Championship Path this week"><title>Back up to the Championship Path this week</title><path d="M6 1.5 11 8.5H1Z"/></svg></li>
 </ul>
 </section>
 <section class="sg-tier sg-tier-2">
@@ -813,15 +822,15 @@ Share of team-seasons 1966-2025 with the same losses after the same number of ga
 </div>
 <ul class="sg-tier-teams">
 <li><img src="figures/nfl-championship-trajectories/logos/ARI.png" alt="Arizona Cardinals" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-5</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/ATL.png" alt="Atlanta Falcons" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-5</span><span class="sg-tier-tag">new</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/DAL.png" alt="Dallas Cowboys" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-5</span><span class="sg-tier-tag">new</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/ATL.png" alt="Atlanta Falcons" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-5</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/DAL.png" alt="Dallas Cowboys" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-5</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
 <li><img src="figures/nfl-championship-trajectories/logos/TB.png" alt="Tampa Bay Buccaneers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-5</span></li>
 <li><img src="figures/nfl-championship-trajectories/logos/HOU.png" alt="Houston Texans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-5</span></li>
 <li><img src="figures/nfl-championship-trajectories/logos/NO.png" alt="New Orleans Saints" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-5</span></li>
 <li><img src="figures/nfl-championship-trajectories/logos/IND.png" alt="Indianapolis Colts" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-6</span></li>
 <li><img src="figures/nfl-championship-trajectories/logos/NYJ.png" alt="New York Jets" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-6</span></li>
 <li><img src="figures/nfl-championship-trajectories/logos/PHI.png" alt="Philadelphia Eagles" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-6</span></li>
-<li><img src="figures/nfl-championship-trajectories/logos/MIA.png" alt="Miami Dolphins" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-6</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/MIA.png" alt="Miami Dolphins" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-6<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span></li>
 </ul>
 </section>
 <section class="sg-tier sg-tier-3">
@@ -831,8 +840,8 @@ Share of team-seasons 1966-2025 with the same losses after the same number of ga
 <span class="sg-tier-rule">more losses than any playoff team has ever had at this point</span>
 </div>
 <ul class="sg-tier-teams">
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/TEN.png" alt="Tennessee Titans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-7</span><span class="sg-tier-tag">new</span></li>
-<li><img src="figures/nfl-championship-trajectories/logos/LAC.png" alt="Los Angeles Chargers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-7</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/TEN.png" alt="Tennessee Titans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-7<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span><svg class="sg-move sg-move-down sg-move-solid" viewBox="0 0 12 10" role="img" aria-label="Into the Graveyard this week"><title>Into the Graveyard this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/LAC.png" alt="Los Angeles Chargers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-7<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span></li>
 </ul>
 </section>
 </div>
@@ -928,13 +937,13 @@ Share of team-seasons 1966-2025 with the same losses after the same number of ga
 <span class="sg-tier-rule">more than any champion, but no more than some playoff team</span>
 </div>
 <ul class="sg-tier-teams">
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/BAL.png" alt="Baltimore Ravens" width="56" height="56" loading="lazy"><span class="sg-tier-rec">4-5</span><span class="sg-tier-tag">new</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/BAL.png" alt="Baltimore Ravens" width="56" height="56" loading="lazy"><span class="sg-tier-rec">4-5</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
 <li><img src="figures/nfl-championship-trajectories/logos/DAL.png" alt="Dallas Cowboys" width="56" height="56" loading="lazy"><span class="sg-tier-rec">4-5</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/LV.png" alt="Las Vegas Raiders" width="56" height="56" loading="lazy"><span class="sg-tier-rec">4-5</span><span class="sg-tier-tag">new</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/CAR.png" alt="Carolina Panthers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-5</span><span class="sg-tier-tag">new</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/LV.png" alt="Las Vegas Raiders" width="56" height="56" loading="lazy"><span class="sg-tier-rec">4-5</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/CAR.png" alt="Carolina Panthers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-5</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
 <li><img src="figures/nfl-championship-trajectories/logos/HOU.png" alt="Houston Texans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-5</span></li>
 <li><img src="figures/nfl-championship-trajectories/logos/NO.png" alt="New Orleans Saints" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-5</span></li>
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/WAS.png" alt="Washington Commanders" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-5-1</span><span class="sg-tier-tag">new</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/WAS.png" alt="Washington Commanders" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-5-1</span><svg class="sg-move sg-move-down sg-move-outline" viewBox="0 0 12 10" role="img" aria-label="Down to the Playoff Path this week"><title>Down to the Playoff Path this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
 <li><img src="figures/nfl-championship-trajectories/logos/ARI.png" alt="Arizona Cardinals" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-6</span></li>
 <li><img src="figures/nfl-championship-trajectories/logos/ATL.png" alt="Atlanta Falcons" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-6</span></li>
 <li><img src="figures/nfl-championship-trajectories/logos/TB.png" alt="Tampa Bay Buccaneers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-6</span></li>
@@ -950,9 +959,9 @@ Share of team-seasons 1966-2025 with the same losses after the same number of ga
 <span class="sg-tier-rule">more losses than any playoff team has ever had at this point</span>
 </div>
 <ul class="sg-tier-teams">
-<li class="is-new"><img src="figures/nfl-championship-trajectories/logos/MIA.png" alt="Miami Dolphins" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-7</span><span class="sg-tier-tag">new</span></li>
-<li><img src="figures/nfl-championship-trajectories/logos/TEN.png" alt="Tennessee Titans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-7</span></li>
-<li><img src="figures/nfl-championship-trajectories/logos/LAC.png" alt="Los Angeles Chargers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-8</span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/MIA.png" alt="Miami Dolphins" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-7<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span><svg class="sg-move sg-move-down sg-move-solid" viewBox="0 0 12 10" role="img" aria-label="Into the Graveyard this week"><title>Into the Graveyard this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
+<li><img src="figures/nfl-championship-trajectories/logos/TEN.png" alt="Tennessee Titans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-7<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span></li>
+<li><img src="figures/nfl-championship-trajectories/logos/LAC.png" alt="Los Angeles Chargers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">0-8<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span></li>
 </ul>
 </section>
 </div>

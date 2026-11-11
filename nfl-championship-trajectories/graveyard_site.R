@@ -7,8 +7,9 @@
 #
 #   website/articles/_nfl-graveyard/tracker.qmd
 #       The week selector, then one hidden section per week: the three tier
-#       boxes (team logos by tier), what moved, the Graveyard and the two
-#       floors, the hand-written story for the week, what is at stake next
+#       boxes (team logos by tier, an arrow on teams that moved, a dagger
+#       on teams that have been in the Graveyard), what moved, the Graveyard
+#       and the two floors, the hand-written story, what is at stake next
 #       week, and the smoothed title and playoff odds by record.
 #   website/articles/_nfl-graveyard/meta.yml
 #       The article's date and facts strip (merged in via metadata-files).
@@ -174,8 +175,53 @@ tier_rule <- c(
   "Graveyard" = "more losses than any playoff team has ever had at this point"
 )
 
+# How each kind of move is drawn in the boxes: the arrow points the way the
+# team went, and it is solid when the move crossed the Graveyard line.
+move_marks <- tribble(
+  ~movement,                 ~direction, ~weight,   ~label,
+  "entered Graveyard",       "down",     "solid",   "Into the Graveyard",
+  "left Graveyard",          "up",       "solid",   "Out of the Graveyard",
+  "down to Playoff Path",    "down",     "outline", "Down to the Playoff Path",
+  "up to Championship Path", "up",       "outline", "Back up to the Championship Path"
+)
+arrow_paths <- c(up = "M6 1.5 11 8.5H1Z", down = "M1 1.5h10L6 8.5Z")
+
+# A small arrow for each movement ("" for no move), with the label as its
+# hover text
+move_arrow <- function(movement, suffix = " this week") {
+  m <- move_marks[match(movement, move_marks$movement), ]
+  if_else(
+    is.na(m$movement), "",
+    sprintf(
+      '<svg class="sg-move sg-move-%s sg-move-%s" viewBox="0 0 12 10" role="img" aria-label="%s"><title>%s</title><path d="%s"/></svg>',
+      m$direction, m$weight, paste0(m$label, suffix), paste0(m$label, suffix),
+      arrow_paths[m$direction]
+    )
+  )
+}
+
+# The dagger carried by every team that has been in the Graveyard this season
+graveyard_mark_label <- "Has been in the Graveyard this season"
+graveyard_mark <- sprintf(
+  '<span class="sg-tier-mark" title="%s" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (%s)</span>',
+  graveyard_mark_label, tolower(graveyard_mark_label)
+)
+
+# What the arrows and the dagger mean, shown once under the week selector
+tier_legend <- c(
+  "```{=html}",
+  '<p class="sg-tier-legend">',
+  sprintf('<span>%s %s</span>', move_arrow(move_marks$movement, suffix = ""),
+          tolower(move_marks$label)),
+  sprintf('<span><span class="sg-tier-mark" aria-hidden="true">&dagger;</span> %s</span>',
+          tolower(graveyard_mark_label)),
+  '</p>',
+  "```"
+)
+
 # The three boxes, as HTML. Teams sorted by losses, then wins. A team that
-# arrived in its box this week is tagged.
+# changed tier this week gets an arrow; a team that has been in the Graveyard
+# at any point this season keeps a dagger after its record, wherever it is.
 tier_boxes_html <- function(tw) {
   box <- function(tier) {
     rows <- tw |>
@@ -185,10 +231,10 @@ tier_boxes_html <- function(tw) {
       '<li class="sg-tier-empty">Nobody yet</li>'
     } else {
       sprintf(
-        '<li%s><img src="%s/%s.png" alt="%s" width="56" height="56" loading="lazy"><span class="sg-tier-rec">%s</span>%s</li>',
-        if_else(rows$movement_full != "none", ' class="is-new"', ""),
+        '<li><img src="%s/%s.png" alt="%s" width="56" height="56" loading="lazy"><span class="sg-tier-rec">%s%s</span>%s</li>',
         logo_web_dir, rows$team, rows$team_name, rows$record,
-        if_else(rows$movement_full != "none", '<span class="sg-tier-tag">new</span>', "")
+        if_else(rows$been_in_graveyard, graveyard_mark, ""),
+        move_arrow(rows$movement_full)
       )
     }
     c(
@@ -476,9 +522,13 @@ odds_table <- function(tw) {
 story_path <- function(w) file.path(stories_dir, sprintf("week%02d.qmd", w))
 
 week_section <- function(w) {
+  been_in <- tiers_wide |>
+    filter(week <= w, tier_full == "Graveyard") |>
+    pull(team)
   tw <- tiers_wide |>
     filter(week == w) |>
-    mutate(tier_full = as.character(tier_full)) |>
+    mutate(tier_full = as.character(tier_full),
+           been_in_graveyard = team %in% been_in) |>
     left_join(teams, by = "team")
   counts <- map_int(tier_levels, \(t) sum(tw$tier_full == t))
   last_game <- season_games |> filter(week == w) |> pull(gameday) |> max()
@@ -575,6 +625,7 @@ tracker <- c(
           project_dir),
   "",
   week_nav,
+  tier_legend,
   "",
   unlist(map(seq_len(completed_week), week_section)),
   week_script
