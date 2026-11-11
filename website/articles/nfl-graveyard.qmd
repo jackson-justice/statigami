@@ -40,7 +40,11 @@ Not "mathematically eliminated," which doesn't happen until December. I mean som
 
 ## What is the Graveyard?
 
-**[PLACEHOLDER: a sentence or two on why you started this. The project began with the "60% of Super Bowl winners started 2-0" claim. What made you flip it from a who-wins question into a who's-out question?]**
+This started with a simple question: what's the simplest stat you could use to pick a Super Bowl champion, or at least cross some teams off the list? You hear that 60% of Super Bowl winners started 2-0, so I started there. After week 2, take the records: how much does 2-0 actually help, historically, compared with 1-1 or 0-2?
+
+It helps (36 of the 60 champions started 2-0), but it doesn't eliminate anybody. Three teams have started 0-2 and won the Super Bowl, so after two weeks everyone's still eligible. So I kept going, week by week, looking for the point where a record has never produced a champion.
+
+I didn't want to stop at champions, though. Teams make the playoffs with quite a few losses, whether it's a weak division or a conference that isn't very strong that year. Super Bowl winners are different: they're not always dominant, but they're usually in the top third of the league all year. So I wanted those two bars kept separate, and that's where the three tiers come from.
 
 The whole thing runs on two numbers for each point in the season, and both come straight from history.
 
@@ -61,7 +65,9 @@ A few things about those lines that matter for everything else:
 - **They never go down.** The playoff floor is 8 losses after 14 games and 9 after 15, because a team with games left has room to recover. Where the raw history dips (the champion floor at game 17, which only five seasons have reached), the line is carried forward so a team can't fall a tier by winning.
 - **Only losses count.** A tie is not a loss. The Giants and Commanders tied in week 5 and it changed nobody's tier.
 
-Most of the champion floor through game 11 is one team: the 2001 Patriots, who were 1-3, 3-4 and 5-5 and still won the Super Bowl. **[PLACEHOLDER: optional, a line about that Patriots team or the Giants of 2007 and 2011, if you have a memory of one of those seasons.]**
+Most of the champion floor through game 11 is one team: the 2001 Patriots, who were 1-3, 3-4 and 5-5 and still won the Super Bowl. That's the team where Drew Bledsoe got hurt in week 2 and a little quarterback named Tom Brady came in and went 11-3 the rest of the way.
+
+The other name all over that line is the Giants, twice. The 2007 team started 0-2, got in as a wild card and beat the 18-0 Patriots in the Super Bowl, the first NFC wild card team to win one. The 2011 team beat the Patriots in the Super Bowl too, after losing seven games in a 16-game regular season. They're the only champion with seven losses, and they set the champion floor from game 12 on.
 
 ## The first nine weeks
 
@@ -83,9 +89,7 @@ That's what happened to Tennessee in week 6 and Miami in week 7. Each won its si
 
 I want to be careful about what leaving the Graveyard means, because it looks like a comeback and it isn't one. Of the 611 team-seasons that have entered the Graveyard, 186 left it at least once, for 226 exits in all. Twenty-seven teams went in three separate times. None of the 611 made the playoffs. Not the ones that stayed in, and not the ones that got out.
 
-The best anyone has done from 1-7 is the 2021 Dolphins: seven straight wins, 9-8, and a seat on the couch in January. They climbed out of the Graveyard in week 9, spent most of the rest of the year on the Playoff Path, and it still ended the way all 110 seasons that started 1-7 have ended. From 0-8, where the Chargers were after week 9, the best finish among 43 teams is 6-10.
-
-**[PLACEHOLDER: anything you remember about that 2021 Dolphins run, or about the 2017 Chargers (0-4 to 9-7, missed on a tiebreaker) if you want an AFC West note here. Or cut this.]**
+The best anyone has done from 1-7 is the 2021 Dolphins: seven straight losses, then seven straight wins, 9-8, and a seat on the couch in January. They climbed out of the Graveyard in week 9, spent most of the rest of the year on the Playoff Path, and it still ended the way all 110 seasons that started 1-7 have ended. From 0-8, where the Chargers were after week 9, the best finish among 43 teams is 6-10.
 
 ![Teams in each tier after every completed week of 2026, through week 9.](figures/nfl-championship-trajectories/04_tier_counts_2026.png){fig-alt="Stacked bar chart, one bar per week 1 to 9, 32 teams tall. Weeks 1 and 2 are entirely Championship Path. The Playoff Path segment grows to 13 by week 9 and the Graveyard segment is 3, 2, 1, 2 and 3 in weeks 5 through 9."}
 
@@ -93,7 +97,7 @@ Three teams in the Graveyard after nine weeks sounds like not much, and it is: t
 
 A tier is a floor, not a forecast. 132 teams since 1966 stayed on the Championship Path all season and still missed the playoffs, and 93 playoff teams spent at least a week on the Playoff Path. The tiers only say what has and hasn't happened before, which is exactly what they're for.
 
-**[PLACEHOLDER: your take on the Chargers at 0-8, or on any of the three. Was this the season you expected from them?]**
+As for the three teams in it: Miami and Tennessee are reasonable. But the Chargers, with Jim Harbaugh and Mike McDaniel? Who is the problem there? 0-8 is crazy.
 
 ## Does the baseline matter?
 
@@ -106,7 +110,7 @@ They mostly aren't. The champion floor is identical in both eras at every game c
 
 That's 7 of 288 team-weeks through week 9 where the two disagree, and from game 8 on the floors are the same in both eras, so there will be no more disagreements the rest of the way. The two modern-only cases are also the closest anyone has come to a Graveyard playoff team: the 2004 Bills and 2017 Chargers both started 0-4, both finished 9-7, and both missed the playoffs by one game. On the modern floor they were Graveyard teams. On the full floor they never were, because of a Chargers team from 1992. I went with the full baseline because a thing that has happened once is still a thing that has happened.
 
-**[PLACEHOLDER: do you agree with that call, or would you rather lead with the modern floor? One sentence in your words.]**
+The more data the better, too. This whole project is based on historical data, so I'd rather use all 60 seasons of it.
 
 ## Data and methods
 

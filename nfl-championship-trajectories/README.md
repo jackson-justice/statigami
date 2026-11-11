@@ -20,17 +20,17 @@ The starting point is a common claim: *roughly 60% of Super Bowl winners started
 
 Everything is calculated twice, and both versions are kept:
 
-| Baseline | Seasons | Super Bowls | Team-seasons | Title rate |
-|------------|-----------:|-----------:|-----------:|-----------:|
-| `full` | 1966–2025 | 60 | 1,770 | 3.4% |
-| `modern` | 1999–2025 | 27 | 861 | 3.1% |
+| Baseline |   Seasons | Super Bowls | Team-seasons | Title rate |
+|----------|----------:|------------:|-------------:|-----------:|
+| `full`   | 1966–2025 |          60 |        1,770 |       3.4% |
+| `modern` | 1999–2025 |          27 |          861 |       3.1% |
 
 More history is not automatically a better comparison. The league changed underneath these numbers (see [What changed between eras](#what-changed-between-eras)), so the modern baseline stays available to show what the older seasons add or distort.
 
 ## First look: the 2-0 claim
 
 | Start after 2 games | Baseline | All teams | Champions | Share of champions | Champion rate | vs. baseline |
-|------------|------------|-----------:|-----------:|-----------:|-----------:|-----------:|
+|-----------|-----------|----------:|----------:|----------:|----------:|----------:|
 | 2-0 | full | 462 | 36 | 60% | 7.8% | 2.3× |
 | 1-1 | full | 815 | 19 | 32% | 2.3% | 0.7× |
 | 0-2 | full | 461 | 3 | 5% | 0.7% | 0.2× |
@@ -53,7 +53,7 @@ The most losses any eventual champion, and any eventual playoff team, had after 
 3.  **Graveyard:** more losses than any eventual playoff team.
 
 | After game | Champion max losses (both baselines) | Playoff max losses, modern | Playoff max losses, full | Seasons in full baseline |
-|-----------:|-----------:|-----------:|-----------:|-----------:|
+|--------------:|--------------:|--------------:|--------------:|--------------:|
 | 1 | 1 | 1 | 1 | 60 |
 | 2 | 2 | 2 | 2 | 60 |
 | 3 | 2 | 3 | 3 | 60 |
@@ -74,16 +74,16 @@ The most losses any eventual champion, and any eventual playoff team, had after 
 
 - **The champion threshold is the same in both baselines at every point.** Thirty-three more champions did not move it. The older seasons only add teams that tie an existing boundary (1980 Raiders at 2-3 and 3-3, 1981 49ers at 1-2, 1986 Giants at 0-1, 1988 49ers at 6-5, 1993 Cowboys at 0-2).
 - **The playoff threshold moves at two points**, each set by a single team:
-    - **Game 4: the 1992 Chargers** started 0-4 and finished 11-5 as AFC West champions. They are the only one of 170 teams to start 0-4 and make the playoffs. On the modern baseline 0-4 is the Graveyard; on the full baseline it is the Playoff Path.
-    - **Game 7: the 1970 Bengals** started 1-6, won their last seven and took the AFC Central at 8-6. They are the only one of 216 teams with six or more losses after seven games to make the playoffs. That was a four-team division in the first season after the merger, and nobody else in it finished above 7-7.
+  - **Game 4: the 1992 Chargers** started 0-4 and finished 11-5 as AFC West champions. They are the only one of 170 teams to start 0-4 and make the playoffs. On the modern baseline 0-4 is the Graveyard; on the full baseline it is the Playoff Path.
+  - **Game 7: the 1970 Bengals** started 1-6, won their last seven and took the AFC Central at 8-6. They are the only one of 216 teams with six or more losses after seven games to make the playoffs. That was a four-team division in the first season after the merger, and nobody else in it finished above 7-7.
 - Dropping 1982, 1987, the pre-merger seasons, or the 1968 Chiefs (whose only playoff game was a tiebreaker) changes no threshold.
 
 The full tables, with tier counts and the team-seasons at each boundary, are in `data/loss_thresholds_by_games.csv`. The `champion_max_losses` and `playoff_max_losses` columns are the raw maxima above. The `champion_threshold` and `playoff_threshold` columns are the same numbers carried forward so they never decrease in games played; those are what the tiers use. The only cell that changes is game 17, where the champion threshold is 7 instead of the raw 6 (see below).
 
-### What changed between eras
+### What changed between eras {#what-changed-between-eras}
 
 | Era | Schedule | Playoff teams | Share of teams in playoffs |
-|------------|------------|------------|-----------:|
+|----|----|----|---:|
 | 1966–69 | 14 games, AFL and NFL separate | 4, 6, 7, 8 | 25% |
 | 1970–77 | 14 games | 8 | 30% |
 | 1978–89 | 16 games (9 in 1982, 15 in 1987) | 10 (16 in 1982) | 38% |
@@ -100,7 +100,7 @@ Things to keep in mind when reading a threshold:
 - **Ties were common before overtime.** There are 62 tie games in 1966–73 and 30 in the 52 seasons since. The thresholds count losses only, so a tie is not a step toward the Graveyard. Counting a tie as half a loss would move the playoff threshold only at games 11–14 (by half a loss) and change the tier of about 1% of team-games.
 - **Thresholds are records, not odds.** One team sets each boundary, and the first team to beat it resets it.
 
-## NFL Graveyard tiers for 2026
+## NFL Graveyard tiers for 2026 {#nfl-graveyard-tiers-for-2026}
 
 After every completed week of the current season, `graveyard_tiers.R` puts every team in one of the three tiers by comparing its losses with the thresholds above at the same number of games. It rebuilds every completed week on each run (the backfill) and tracks every move between tiers.
 
@@ -117,16 +117,16 @@ After every completed week of the current season, `graveyard_tiers.R` puts every
 **Through week 9 (2026):**
 
 | Week | Championship Path | Playoff Path | Graveyard | Modern baseline, if different |
-|-----:|-----:|-----:|-----:|------------|
-| 1 | 32 | 0 | 0 | |
-| 2 | 32 | 0 | 0 | |
-| 3 | 27 | 5 | 0 | |
-| 4 | 27 | 5 | 0 | 27 / 0 / 5 |
-| 5 | 25 | 4 | 3 | |
-| 6 | 18 | 12 | 2 | |
-| 7 | 21 | 10 | 1 | 21 / 9 / 2 |
-| 8 | 20 | 10 | 2 | 20 / 9 / 3 |
-| 9 | 16 | 13 | 3 | |
+|-------------:|-------------:|-------------:|-------------:|-------------------|
+|    1 |                32 |            0 |         0 |                               |
+|    2 |                32 |            0 |         0 |                               |
+|    3 |                27 |            5 |         0 |                               |
+|    4 |                27 |            5 |         0 | 27 / 0 / 5                    |
+|    5 |                25 |            4 |         3 |                               |
+|    6 |                18 |           12 |         2 |                               |
+|    7 |                21 |           10 |         1 | 21 / 9 / 2                    |
+|    8 |                20 |           10 |         2 | 20 / 9 / 3                    |
+|    9 |                16 |           13 |         3 |                               |
 
 - **Graveyard entries and exits (full baseline):** LAC, MIA and TEN entered at 0-5 in week 5. TEN (week 6) and MIA (week 7) left at 1-5 when the limit stepped up to 5 at game 6, then re-entered at 1-7 (TEN week 8, MIA week 9). LAC has not left since week 5 and sits at 0-8, two losses past the limit of 6.
 - **On the modern baseline** the five 0-4 teams (HOU, LAC, MIA, TB, TEN) entered in week 4; HOU and TB left at 1-4 the next week and have stayed out, and TEN and MIA each entered a week earlier at 1-6.
@@ -157,7 +157,7 @@ Columns of `2026_tiers.csv` (the `_full` and `_modern` suffixes give each baseli
 **Figures** (`figures/`, Statigami ink surface; the tiers take the brand's heat ramp in order, cobalt → magenta → amber, so the Graveyard is always the hot color):
 
 | File | Made by | What it shows |
-|------------------------------------|------------|------------------------------------|
+|----------------------------|----------------|----------------------------|
 | `01_loss_floors_1966_2025.png` | `analysis.R` §10 | The two floors as bands on games played × losses, with the 1992 Chargers, 1970 Bengals and the game-17 carry-forward annotated, and the two cells where the modern floor is lower |
 | `02_tier_tiles_<season>.png` | `graveyard_tiers.R` §7 | Every team's tier after every week, one tile per team-week, sorted so the Graveyard is at the bottom. Letter = result, faded = bye, ring = left the Graveyard |
 | `03_loss_paths_<season>.png` | `graveyard_tiers.R` §7 | Every team's losses by game on top of the bands; teams that have been in the Graveyard drawn in full, the rest as a faint bundle |
