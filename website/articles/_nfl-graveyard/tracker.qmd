@@ -12,7 +12,8 @@
 <option value="6">Week 6</option>
 <option value="7">Week 7</option>
 <option value="8">Week 8</option>
-<option value="9" selected>Week 9</option>
+<option value="9">Week 9</option>
+<option value="10" selected>Week 10</option>
 </select>
 </div>
 ```
@@ -897,7 +898,7 @@ Share of team-seasons 1966-2025 with the same losses after the same number of ga
 
 :::
 
-::: {#week-9 .sg-week .is-active}
+::: {#week-9 .sg-week}
 
 ### After week 9 {.unlisted}
 
@@ -1006,6 +1007,126 @@ Share of team-seasons 1966-2025 with the same losses after the same number of ga
 | 2-7 | Colts, Jets and Eagles | 0% | 0.5% |
 | 1-7 | Dolphins and Titans | 0% | 0% |
 | 0-8 | Chargers | 0% | 0% |
+
+Share of team-seasons 1966-2025 with the same losses after the same number of games that won the Super Bowl or made the playoffs, smoothed so the odds never rise with more losses (ties count as half a loss).
+:::
+
+:::
+
+::: {#week-10 .sg-week .is-active}
+
+### After week 10 {.unlisted}
+
+16 on the Championship Path, 12 on the Playoff Path, 4 in the Graveyard. Games through Mon, Nov 16.
+
+```{=html}
+<div class="sg-tiers">
+<section class="sg-tier sg-tier-1">
+<div class="sg-tier-head">
+<h3>Championship Path</h3>
+<span class="sg-tier-count">16 teams</span>
+<span class="sg-tier-rule">no more losses than any eventual champion had at this point</span>
+</div>
+<ul class="sg-tier-teams">
+<li><img src="figures/nfl-graveyard/logos/BUF.png" alt="Buffalo Bills" width="56" height="56" loading="lazy"><span class="sg-tier-rec">8-1</span></li>
+<li><img src="figures/nfl-graveyard/logos/SF.png" alt="San Francisco 49ers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">8-1</span></li>
+<li><img src="figures/nfl-graveyard/logos/CHI.png" alt="Chicago Bears" width="56" height="56" loading="lazy"><span class="sg-tier-rec">7-2</span></li>
+<li><img src="figures/nfl-graveyard/logos/CIN.png" alt="Cincinnati Bengals" width="56" height="56" loading="lazy"><span class="sg-tier-rec">7-2</span></li>
+<li><img src="figures/nfl-graveyard/logos/DEN.png" alt="Denver Broncos" width="56" height="56" loading="lazy"><span class="sg-tier-rec">7-2</span></li>
+<li><img src="figures/nfl-graveyard/logos/DET.png" alt="Detroit Lions" width="56" height="56" loading="lazy"><span class="sg-tier-rec">7-2</span></li>
+<li><img src="figures/nfl-graveyard/logos/JAX.png" alt="Jacksonville Jaguars" width="56" height="56" loading="lazy"><span class="sg-tier-rec">7-2</span></li>
+<li><img src="figures/nfl-graveyard/logos/KC.png" alt="Kansas City Chiefs" width="56" height="56" loading="lazy"><span class="sg-tier-rec">7-2</span></li>
+<li><img src="figures/nfl-graveyard/logos/MIN.png" alt="Minnesota Vikings" width="56" height="56" loading="lazy"><span class="sg-tier-rec">7-2</span></li>
+<li><img src="figures/nfl-graveyard/logos/PIT.png" alt="Pittsburgh Steelers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">6-3</span></li>
+<li><img src="figures/nfl-graveyard/logos/NYG.png" alt="New York Giants" width="56" height="56" loading="lazy"><span class="sg-tier-rec">5-3-1</span></li>
+<li><img src="figures/nfl-graveyard/logos/CLE.png" alt="Cleveland Browns" width="56" height="56" loading="lazy"><span class="sg-tier-rec">6-4</span></li>
+<li><img src="figures/nfl-graveyard/logos/GB.png" alt="Green Bay Packers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">6-4</span></li>
+<li><img src="figures/nfl-graveyard/logos/LA.png" alt="Los Angeles Rams" width="56" height="56" loading="lazy"><span class="sg-tier-rec">6-4</span></li>
+<li><img src="figures/nfl-graveyard/logos/SEA.png" alt="Seattle Seahawks" width="56" height="56" loading="lazy"><span class="sg-tier-rec">6-4</span></li>
+<li><img src="figures/nfl-graveyard/logos/NE.png" alt="New England Patriots" width="56" height="56" loading="lazy"><span class="sg-tier-rec">5-5</span></li>
+</ul>
+</section>
+<section class="sg-tier sg-tier-2">
+<div class="sg-tier-head">
+<h3>Playoff Path</h3>
+<span class="sg-tier-count">12 teams</span>
+<span class="sg-tier-rule">more than any champion, but no more than some playoff team</span>
+</div>
+<ul class="sg-tier-teams">
+<li><img src="figures/nfl-graveyard/logos/CAR.png" alt="Carolina Panthers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">4-5</span></li>
+<li><img src="figures/nfl-graveyard/logos/WAS.png" alt="Washington Commanders" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-5-1</span></li>
+<li><img src="figures/nfl-graveyard/logos/BAL.png" alt="Baltimore Ravens" width="56" height="56" loading="lazy"><span class="sg-tier-rec">4-6</span></li>
+<li><img src="figures/nfl-graveyard/logos/DAL.png" alt="Dallas Cowboys" width="56" height="56" loading="lazy"><span class="sg-tier-rec">4-6</span></li>
+<li><img src="figures/nfl-graveyard/logos/LV.png" alt="Las Vegas Raiders" width="56" height="56" loading="lazy"><span class="sg-tier-rec">4-6</span></li>
+<li><img src="figures/nfl-graveyard/logos/HOU.png" alt="Houston Texans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-6</span></li>
+<li><img src="figures/nfl-graveyard/logos/NO.png" alt="New Orleans Saints" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-6</span></li>
+<li><img src="figures/nfl-graveyard/logos/TB.png" alt="Tampa Bay Buccaneers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-6</span></li>
+<li><img src="figures/nfl-graveyard/logos/ARI.png" alt="Arizona Cardinals" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-7</span></li>
+<li><img src="figures/nfl-graveyard/logos/ATL.png" alt="Atlanta Falcons" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-7</span></li>
+<li><img src="figures/nfl-graveyard/logos/IND.png" alt="Indianapolis Colts" width="56" height="56" loading="lazy"><span class="sg-tier-rec">3-7</span></li>
+<li><img src="figures/nfl-graveyard/logos/PHI.png" alt="Philadelphia Eagles" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-7</span></li>
+</ul>
+</section>
+<section class="sg-tier sg-tier-3">
+<div class="sg-tier-head">
+<h3>Graveyard</h3>
+<span class="sg-tier-count">4 teams</span>
+<span class="sg-tier-rule">more losses than any playoff team has ever had at this point</span>
+</div>
+<ul class="sg-tier-teams">
+<li><img src="figures/nfl-graveyard/logos/NYJ.png" alt="New York Jets" width="56" height="56" loading="lazy"><span class="sg-tier-rec">2-8<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span><svg class="sg-move sg-move-down sg-move-solid" viewBox="0 0 12 10" role="img" aria-label="Into the Graveyard this week"><title>Into the Graveyard this week</title><path d="M1 1.5h10L6 8.5Z"/></svg></li>
+<li><img src="figures/nfl-graveyard/logos/LAC.png" alt="Los Angeles Chargers" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-8<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span></li>
+<li><img src="figures/nfl-graveyard/logos/MIA.png" alt="Miami Dolphins" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-8<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span></li>
+<li><img src="figures/nfl-graveyard/logos/TEN.png" alt="Tennessee Titans" width="56" height="56" loading="lazy"><span class="sg-tier-rec">1-8<span class="sg-tier-mark" title="Has been in the Graveyard this season" aria-hidden="true">&dagger;</span><span class="visually-hidden"> (has been in the graveyard this season)</span></span></li>
+</ul>
+</section>
+</div>
+```
+
+#### What moved {.unlisted}
+
+- **Into the Graveyard:** the Jets (2-8, after losing to the Bills).
+- **The Chargers, 1-8:** one loss past the playoff floor of seven after nine games, week 6 in the Graveyard. 80 teams since 1966 have started 1-8; the best of them finished 7-9 and none made the playoffs.
+- **The Dolphins, 1-8:** one loss past the playoff floor of seven after nine games, week 2 in the Graveyard. 80 teams since 1966 have started 1-8; the best of them finished 7-9 and none made the playoffs.
+- **The Titans, 1-8:** one loss past the playoff floor of seven after nine games, week 3 in the Graveyard. 80 teams since 1966 have started 1-8; the best of them finished 7-9 and none made the playoffs.
+- **The Jets, 2-8:** one loss past the playoff floor of seven after ten games, week 1 in the Graveyard. 136 teams since 1966 have started 2-8; the best of them finished 7-9 and none made the playoffs.
+- **On the champion floor:** the Patriots at 5-5, the worst start any champion has had after ten games (2001 NE). A loss drops them to the Playoff Path.
+- **On the playoff floor:** the Eagles at 2-7, the most losses any playoff team has had after nine games (2020 WAS). One more loss is the Graveyard.
+- **On the playoff floor:** the Cardinals, Falcons and Colts at 3-7, the most losses any playoff team has had after ten games (2020 WAS, 2022 JAX). One more loss is the Graveyard.
+
+#### My take {.unlisted}
+
+{{< include _nfl-graveyard/stories/week10.qmd >}}
+
+#### At stake in week 11 {.unlisted}
+
+- **Colts at Texans** (Thu, Nov 19): A loss puts the Colts in the Graveyard.
+- **Dolphins at Bills** (Sun, Nov 22): Nothing can get the Dolphins out this week (the earliest exit is game 12, and only by winning every game until then).
+- **Ravens at Panthers** (Sun, Nov 22): A win puts the Panthers back on the Championship Path.
+- **Titans at Cowboys** (Sun, Nov 22): Nothing can get the Titans out this week (the earliest exit is game 12, and only by winning every game until then).
+- **Cardinals at Chiefs** (Sun, Nov 22): A loss puts the Cardinals in the Graveyard.
+- **Jets at Chargers** (Sun, Nov 22): Nothing can get the Jets out this week (the earliest exit is game 12, and only by winning every game until then); nothing can get the Chargers out this week (the earliest exit is game 12, and only by winning every game until then).
+- **Steelers at Eagles** (Sun, Nov 22): A loss puts the Eagles in the Graveyard.
+- **Bengals at Commanders** (Mon, Nov 23): A win puts the Commanders back on the Championship Path.
+- **On a bye:** Falcons, Browns, Packers, Rams, Patriots and Seahawks. A tier can't change on a bye.
+
+::: {.callout-note collapse="true" title="Title and playoff odds by record, after week 10"}
+| Record | Teams | Title | Playoffs |
+|:-------|:------|------:|---------:|
+| 8-1 | Bills and 49ers | 20% | 96% |
+| 7-2 | Bears, Bengals, Broncos, Lions, Jaguars, Chiefs and Vikings | 13% | 87% |
+| 6-3 | Steelers | 4% | 71% |
+| 6-4 | Browns, Packers, Rams and Seahawks | 1% | 54% |
+| 5-3-1 | Giants | 0.6% | 44% |
+| 5-5 | Patriots | 0.4% | 25% |
+| 4-5 | Panthers | 0% | 15% |
+| 4-6 | Ravens, Cowboys and Raiders | 0% | 8% |
+| 3-5-1 | Commanders | 0% | 4% |
+| 3-6 | Texans, Saints and Buccaneers | 0% | 4% |
+| 3-7 | Cardinals, Falcons and Colts | 0% | 1.0% |
+| 2-7 | Eagles | 0% | 0.5% |
+| 1-8 | Chargers, Dolphins and Titans | 0% | 0% |
+| 2-8 | Jets | 0% | 0% |
 
 Share of team-seasons 1966-2025 with the same losses after the same number of games that won the Super Bowl or made the playoffs, smoothed so the odds never rise with more losses (ties count as half a loss).
 :::

@@ -65,3 +65,5 @@ season,week,team,baseline,games_played,record,outcome,losses,from_tier,to_tier,m
 2026,9,MIA,full,8,1-7,L,7,Playoff Path,Graveyard,entered Graveyard,loss,4,6
 2026,9,WAS,full,8,2-5-1,L,5,Championship Path,Playoff Path,down to Playoff Path,loss,4,6
 2026,9,WAS,modern,8,2-5-1,L,5,Championship Path,Playoff Path,down to Playoff Path,loss,4,6
+2026,10,NYJ,full,10,2-8,L,8,Playoff Path,Graveyard,entered Graveyard,loss,5,7
+2026,10,NYJ,modern,10,2-8,L,8,Playoff Path,Graveyard,entered Graveyard,loss,5,7
