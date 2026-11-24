@@ -9,6 +9,7 @@ season,week,baseline,championship_path,playoff_path,graveyard
 2026,8,full,20,10,2
 2026,9,full,16,13,3
 2026,10,full,16,12,4
+2026,11,full,18,8,6
 2026,1,modern,32,0,0
 2026,2,modern,32,0,0
 2026,3,modern,27,5,0
@@ -19,3 +20,4 @@ season,week,baseline,championship_path,playoff_path,graveyard
 2026,8,modern,20,9,3
 2026,9,modern,16,13,3
 2026,10,modern,16,12,4
+2026,11,modern,18,8,6
